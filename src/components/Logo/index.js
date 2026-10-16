@@ -25,7 +25,7 @@ const Logo = ({ className }) => {
     >
       <Icon
         name="sparkles"
-        size={30}
+        size={36}
         className={styles.svg}
       />
       <span>

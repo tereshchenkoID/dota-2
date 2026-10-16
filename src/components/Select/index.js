@@ -8,11 +8,12 @@ import {
 } from 'react'
 import clsx from 'clsx'
 
+import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 
 import styles from './index.module.scss'
 
-const Select = ({ value, options, onChange, label }) => {
+const Select = ({ value, options, onChange, label, disabled = false }) => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
   const [menuShift, setMenuShift] = useState(0)
@@ -94,9 +95,10 @@ const Select = ({ value, options, onChange, label }) => {
         }
       }
     >
-      <button
+      <Button
         ref={trigger}
-        type="button"
+        color="secondary"
+        disabled={disabled || !options.length}
         className={styles.trigger}
         aria-label={label}
         aria-haspopup="listbox"
@@ -113,16 +115,14 @@ const Select = ({ value, options, onChange, label }) => {
         }
       >
         <span>
-          {
-            selected.short || selected.label
-          }
+          { selected?.short || selected?.label }
         </span>
         <Icon
           name="chevron-down"
           size={16}
           className={clsx(styles.arrow, styles.glyph)}
         />
-      </button>
+      </Button>
       {
         open &&
         <div
@@ -149,9 +149,12 @@ const Select = ({ value, options, onChange, label }) => {
                 className={styles.option}
                 onClick={() => choose(option.value)}
               >
-                <span className={styles.code}>
-                  {option.short}
-                </span>
+                {
+                  option.short &&
+                  <span className={styles.code}>
+                    {option.short}
+                  </span>
+                }
                 <span>
                   {option.label}
                 </span>

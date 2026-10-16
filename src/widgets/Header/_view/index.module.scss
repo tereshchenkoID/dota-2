@@ -1,17 +1,9 @@
 .block {
   position: sticky;
   top: 0;
-  width: 100%;
+  border-bottom: rem(1px) solid var(--color-border-muted);
   background: var(--color-material);
-  border-bottom: rem(1px) solid var(--color-border-subtle);
   z-index: $z-index-8;
-}
-
-.nav,
-.details,
-.gold,
-.language {
-  display: none;
 }
 
 .container {
@@ -19,128 +11,49 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: rem(12px);
-  margin-inline: auto;
-  padding: rem(16px);
-  max-width: var(--max-width);
+  padding-block: rem(16px);
 
-  @include mob-m {
-    gap: rem(16px);
-  }
-
-  @include tab-s {
+  @include tab-l {
     grid-template-columns: auto 1fr auto;
-  }
-
-  @include tab-l {
-    gap: rem(24px);
-  }
-
-  @include desk-s {
-    gap: rem(32px);
-  }
-}
-
-.nav {
-  @include tab-s {
-    @include flex(center, center);
-
-    gap: rem(12px);
-  }
-
-  @include tab-l {
-    gap: rem(16px);
-  }
-
-  @include desk-s {
     gap: rem(24px);
   }
 }
 
-.active {
-  border-bottom: rem(2px) solid var(--color-primary-hover);
-  color: var(--color-text);
-}
-
-.link,
-.control {
-  padding: rem(12px) 0;
-  background: none;
-  font-size: rem(14px);
-  line-height: 1.5;
-  text-decoration: none;
-  color: var(--color-sub-text);
-  white-space: nowrap;
+.nav,
+.gold,
+.language {
+  display: none;
 }
 
 .account {
   @include flex(null, center);
 
-  gap: rem(16px);
-}
-
-.level {
-  @include flex(null, center);
-
-  gap: rem(12px);
-  padding: 0;
-  background: none;
-  text-align: left;
-  color: var(--color-text);
-}
-
-.badge {
-  @include size(rem(42px));
-
-  display: grid;
-  place-items: center;
-  border: rem(1px) solid var(--color-border);
-  border-radius: rem(8px);
-  background: var(--color-surface-hover);
-  font-size: rem(20px);
-  color: var(--color-link-hover);
-}
-
-.details {
-  font-size: rem(12px);
-  white-space: nowrap;
-
-  @include desk-m {
-    display: block;
-  }
-}
-
-.track {
-  @include size(rem(88px), rem(4px));
-
-  display: block;
-  margin-top: rem(8px);
-  border-radius: rem(4px);
-  background: var(--color-surface-hover);
-  overflow: hidden;
-}
-
-.fill {
-  @include size(var(--progress), 100%);
-
-  display: block;
-  background: var(--color-primary-hover);
-}
-
-.gold {
   gap: rem(8px);
-  font-size: rem(14px);
-  color: var(--color-link-hover);
-  white-space: nowrap;
 
   @include mob-m {
-    @include flex(null, center);
+    gap: rem(12px);
   }
 }
 
 .language {
-  display: block;
-
   @include mob-m {
     display: block;
+  }
+}
+
+.nav {
+  @include tab-l {
+    @include flex(center, center);
+
+    gap: rem(4px);
+  }
+}
+
+.gold {
+  @include tab-l {
+    @include flex(null, center);
+
+    gap: rem(8px);
+    white-space: nowrap;
   }
 }

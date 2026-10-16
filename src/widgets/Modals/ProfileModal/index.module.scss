@@ -1,4 +1,4 @@
-.panel {
+.block {
   display: grid;
   gap: rem(24px);
 }
@@ -6,196 +6,54 @@
 .identity {
   @include flex(null, center);
 
-  gap: rem(18px);
+  gap: rem(16px);
+}
 
-  .value {
-    display: block;
-    overflow-wrap: anywhere;
-  }
+.copy {
+  display: grid;
+  gap: rem(12px);
+  min-width: 0;
 }
 
 .avatar {
+  @include size(rem(72px));
+
   flex-shrink: 0;
   position: relative;
   padding: 0;
-  border: rem(2px) solid var(--color-primary);
-  border-radius: rem(18px);
-
-  @include size(rem(88px));
-
-  background: var(--color-surface-raised);
-  cursor: pointer;
-
-  .image {
-    border-radius: rem(15px);
-
-    @include size(100%);
-
-    object-fit: cover;
-  }
-
-  .label {
-    display: grid;
-    position: absolute;
-    right: rem(-6px);
-    bottom: rem(-6px);
-    border: rem(3px) solid var(--color-surface);
-    border-radius: rem(10px);
-
-    @include size(rem(32px));
-
-    background: var(--color-primary-hover);
-    color: var(--color-surface);
-    place-items: center;
-  }
-
-  &:focus-visible {
-    outline: rem(2px) solid var(--color-link-hover);
-    outline-offset: rem(4px);
-  }
+  border: rem(2px) solid var(--color-accent);
+  border-radius: var(--radius-panel);
+  background: var(--color-material-raised);
 }
 
-.textButton {
-  margin-top: rem(8px);
-  padding: 0;
-  border: 0;
-  background: none;
-  font-size: rem(14px);
-  color: var(--color-link);
-  cursor: pointer;
+.image {
+  @include size(100%);
+
+  border-radius: inherit;
+  object-fit: cover;
 }
 
-.nameLabel {
+.edit {
+  @include size(rem(28px));
+
   display: grid;
-  gap: rem(8px);
-
-  .input {
-    padding: rem(12px);
-    border: rem(1px) solid var(--color-border);
-    border-radius: var(--border-radius-default);
-    width: 100%;
-    background: var(--color-surface-input);
-    font: inherit;
-
-    &:focus-visible {
-      outline: rem(2px) solid var(--color-link);
-      outline-offset: rem(2px);
-    }
-  }
-}
-
-.levelCard {
-  display: grid;
-  gap: rem(14px);
-  padding: rem(20px);
-  border: rem(1px) solid var(--color-border);
-  border-radius: rem(14px);
-  background: linear-gradient(
-    130deg,
-    var(--color-surface-hover),
-    var(--color-surface-raised)
-  );
-
-}
-
-.levelHeading {
-  @include flex(null, center);
-
-  gap: rem(14px);
-}
-
-.badge {
-  display: grid;
-  border: rem(1px) solid var(--color-primary-hover);
-  border-radius: rem(10px);
-
-  @include size(rem(48px), rem(52px));
-
-  background: var(--color-border);
-  color: var(--color-text);
+  position: absolute;
+  right: rem(-8px);
+  bottom: rem(-8px);
+  border: rem(2px) solid var(--color-material);
+  border-radius: var(--radius-control);
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
   place-items: center;
 }
 
-.progress {
-  border-radius: rem(10px);
-  height: rem(8px);
-  background: var(--color-surface-input);
-  overflow: hidden;
+.level {
+  @include flex(space-between, center, null, wrap);
 
-  .fill {
-    display: block;
-    border-radius: inherit;
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-link-hover));
-  }
-}
-
-.xpLabel {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: rem(4px);
-}
-
-.summary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: rem(12px);
-
-  > .group {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: rem(8px);
-    padding: rem(14px);
-    border: rem(1px) solid var(--color-border);
-    border-radius: rem(10px);
-    background: var(--color-surface-raised);
-    color: var(--color-link-hover);
-
-    .value {
-      grid-column: 2;
-      color: var(--color-text);
-    }
-  }
+  gap: rem(8px);
 }
 
 .navigation {
   display: grid;
   gap: rem(8px);
-  padding-top: rem(24px);
-  border-top: rem(1px) solid var(--color-border-subtle);
-}
-
-.item {
-  @include flex(space-between, center);
-
-  gap: rem(16px);
-  padding: rem(16px);
-  border: rem(1px) solid var(--color-border-subtle);
-  border-radius: rem(12px);
-  width: 100%;
-  min-height: rem(56px);
-  background: var(--color-surface-raised);
-  font-size: rem(14px);
-  text-align: left;
-  text-decoration: none;
-  color: var(--color-text);
-  cursor: pointer;
-
-  .label {
-    @include flex(null, center);
-
-    gap: rem(12px);
-  }
-
-  > .glyph {
-    flex-shrink: 0;
-    color: var(--color-sub-text);
-  }
-
-  &:hover {
-    background: var(--color-surface-hover);
-    border-color: var(--color-border);
-  }
 }

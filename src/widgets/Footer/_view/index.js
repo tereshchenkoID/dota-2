@@ -3,50 +3,54 @@
 import { useTranslation } from '@/hooks/useTranslation'
 
 import Button from '@/components/Button'
+import Container from '@/components/Container'
 import Icon from '@/components/Icon'
+import Link from '@/components/Link'
 import Logo from '@/components/Logo'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
 
-const Section = () => {
+const FooterView = () => {
   const { t } = useTranslation()
 
   return (
     <footer className={styles.block}>
-      <div className={styles.container}>
-        <div>
+      <Container className={styles.container}>
+        <div className={styles.copy}>
           <Logo />
           <Text
-            className={styles.description}
             size={3}
             color="muted"
           >
-            {`© ${new Date().getFullYear()}. ${t('footer.note')}`}
+            ©
+            {' '}
+            {new Date().getFullYear()}
+            {' · '}
+            {t('footer.note')}
+          </Text>
+          <Text
+            size={3}
+            color="muted"
+          >
+            {t('footer.assets')}
           </Text>
         </div>
-        <Button
-          color="default"
-          onClick={
-            () =>
-              window.scrollTo({
-              top: 0,
-              behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
-                .matches
-                ? 'instant'
-                : 'smooth',
-            })
-          }
-        >
-          <Icon
-            name="arrow-up"
-            size={18}
-          />
-          {t('footer.top')}
-        </Button>
-      </div>
+        <div className={styles.actions}>
+          <Button
+            color="secondary"
+            square={true}
+            onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })}
+          >
+            <Icon
+              name="arrow-up"
+              size={20}
+            />
+          </Button>
+        </div>
+      </Container>
     </footer>
   )
 }
 
-export default Section
+export default FooterView

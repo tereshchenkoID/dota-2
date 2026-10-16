@@ -1,4 +1,4 @@
-.result {
+.block {
   display: grid;
   gap: rem(24px);
   text-align: center;
@@ -6,99 +6,33 @@
 
 .banner {
   position: relative;
-  border: rem(1px) solid var(--color-border-subtle);
-  border-radius: var(--border-radius-default);
-  background: var(--color-surface-raised);
   overflow: hidden;
   isolation: isolate;
 }
 
-.victory {
-  border-color: var(--color-primary);
-  background: radial-gradient(ellipse at top, var(--color-surface-hover), var(--color-surface-input));
-}
-
 .art {
-  position: absolute;
-  inset: 0;
-
   @include size(100%);
 
+  position: absolute;
+  inset: 0;
   object-fit: cover;
-  object-position: center 32%;
   filter: grayscale(1);
-  opacity: 0.15;
+  opacity: 0.08;
   z-index: -1;
 }
 
 .celebration {
   @include flex(center, center, column);
 
-  gap: rem(12px);
-  padding: rem(28px) rem(16px);
-
-  > .description {
-    max-width: rem(420px);
-  }
-}
-
-.emblem {
-  @include flex(center, center);
-  @include size(rem(72px));
-
-  margin-bottom: rem(4px);
-  border: rem(1px) solid var(--color-primary);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-primary) 16%, var(--color-surface));
-  box-shadow: 0 0 rem(40px) color-mix(in srgb, var(--color-primary) 28%, transparent);
-  color: var(--color-primary-hover);
-}
-
-.eyebrow {
-  letter-spacing: rem(2px);
-}
-
-.loot {
-  display: grid;
-  gap: rem(12px);
-}
-
-.rewards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: rem(12px);
-
-  > .group {
-    @include flex(center, center, column);
-
-    gap: rem(8px);
-    padding: rem(20px) rem(8px);
-    border: rem(1px) solid var(--color-border);
-    border-radius: var(--border-radius-default);
-    background: var(--color-surface-raised);
-    color: var(--color-link-hover);
-  }
-
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: rem(12px);
-  margin: 0;
-
-  .value {
-    margin: rem(8px) 0 0;
-  }
+  gap: rem(16px);
+  padding: rem(24px);
 }
 
 .actions {
   display: grid;
   gap: rem(12px);
-}
 
-@include mob-m {
-  .actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  @include mob-m {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

@@ -1,17 +1,30 @@
 .block {
-  padding: rem(32px) rem(16px);
-  background-color: var(--color-material);
-  border-top: rem(1px) solid color-mix(in srgb, var(--color-border) 18.8%, transparent);
+  padding-block: rem(32px);
+  border-top: rem(1px) solid var(--color-border-muted);
+  background: var(--color-material);
 }
 
 .container {
-  @include flex(space-between, center, null, wrap);
+  @include flex(null, flex-start, column);
 
   gap: rem(24px);
-  margin-inline: auto;
-  max-width: var(--max-width);
 }
 
-.description {
-  margin-block-start: rem(10px);
+.copy {
+  display: grid;
+  gap: rem(12px);
+}
+
+.actions {
+  @include flex(null, center, null, wrap);
+
+  gap: rem(8px);
+}
+
+@include tab-s {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

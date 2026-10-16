@@ -1,33 +1,14 @@
 .block {
   display: grid;
   gap: rem(16px);
-  margin: rem(24px) 0;
+  margin-block: rem(24px);
 }
 
 .card {
   display: grid;
+  justify-items: start;
   align-content: start;
   gap: rem(12px);
-  padding: rem(24px);
-  border: rem(1px) solid var(--color-border-subtle);
-  border-radius: var(--border-radius-default);
-  min-width: 0;
-  background: var(--color-surface);
-  text-decoration: none;
-  color: var(--color-link);
-
-  @include transition((border-color, background));
-
-  &:hover,
-  &:focus-visible,
-  &.active {
-    border-color: var(--color-link);
-    background: var(--color-surface-raised);
-  }
-}
-
-.arcade {
-  background: linear-gradient(130deg, var(--color-surface-raised), var(--color-surface));
 }
 
 @include tab-s {

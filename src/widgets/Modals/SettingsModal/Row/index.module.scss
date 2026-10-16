@@ -1,0 +1,22 @@
+.block {
+  display: grid;
+  gap: rem(16px);
+  padding-block: rem(20px);
+  border-bottom: rem(1px) solid var(--color-border-muted);
+
+  @include mob-m {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}
+
+.copy {
+  display: grid;
+  gap: rem(8px);
+}
+
+.label {
+  @include flex(null, center);
+
+  gap: rem(8px);
+}

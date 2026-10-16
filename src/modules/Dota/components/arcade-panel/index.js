@@ -3,6 +3,7 @@
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 
+import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 import { RUNES } from '@/modules/Dota/arcade/runes'
 import { UPGRADES } from '@/modules/Dota/arcade/upgrades'
@@ -22,9 +23,9 @@ const ArcadePanel = ({ run }) => {
       aria-label={t('gauntlet.build')}
     >
       <div className={styles.controls}>
-        <button
+        <Button
+          color="secondary"
           type="button"
-          className={styles.control}
           onClick={() => open('arcade-build')}
         >
           <Icon
@@ -32,10 +33,10 @@ const ArcadePanel = ({ run }) => {
             size={20}
           />
           {t('progression.currentBuild')}
-        </button>
-        <button
+        </Button>
+        <Button
+          color="secondary"
           type="button"
-          className={styles.control}
           onClick={() => open('arcade-records')}
         >
           <Icon
@@ -43,7 +44,7 @@ const ArcadePanel = ({ run }) => {
             size={20}
           />
           {t('progression.arcadeRecords')}
-        </button>
+        </Button>
       </div>
       <div
         className={styles.rune}
@@ -70,8 +71,8 @@ rune &&
       <div className={styles.upgrades}>
         {
           upgrades.map((upgrade) => (
-            <button
-              className={styles.upgrade}
+            <Button
+              color="secondary"
               type="button"
               key={upgrade.id}
               onClick={() => open('arcade-build')}
@@ -85,7 +86,7 @@ rune &&
               <span>
                 {number(run.upgrades[upgrade.id])}
               </span>
-            </button>
+            </Button>
           ))
         }
       </div>

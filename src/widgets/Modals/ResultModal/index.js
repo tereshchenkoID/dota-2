@@ -1,17 +1,19 @@
 'use client'
 
 import Image from 'next/image'
-import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useGameStore } from '@/modules/Dota/store/game'
 
+import Badge from '@/components/Badge'
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 import { getRewards } from '@/modules/Dota/engine/rewards'
+import Metrics from '@/modules/Metrics'
 
 import styles from './index.module.scss'
 
@@ -19,16 +21,17 @@ const ResultModal = ({ run, onClose }) => {
   const { t, number, date } = useTranslation()
   const reward = getRewards(run)
   const won = run.status === 'won'
-  const newRun = useGameStore((s) => s.newRun)
-  const closeAll = useModalStore((s) => s.closeAllModals)
-  const onAgain = () => {
-    newRun()
-    closeAll()
-  }
+  const newRun = useGameStore((state) => state.newRun)
+  const closeAll = useModalStore((state) => state.closeAllModals)
+  const onAgain = () => { newRun(); closeAll() }
 
   return (
-    <div className={clsx(styles.result, styles.group)}>
-      <div className={clsx(styles.banner, styles.group, won && styles.victory)}>
+    <div className={styles.block}>
+      <Panel
+        variant="raised"
+        padding={0}
+        className={styles.banner}
+      >
         {
           won &&
           <Image
@@ -39,145 +42,65 @@ const ResultModal = ({ run, onClose }) => {
             className={styles.art}
           />
         }
-        <div className={clsx(styles.celebration, styles.group)}>
-          <span className={styles.emblem}>
-            <Icon
-              name={won ? 'trophy' : 'swords'}
-              size={40}
-            />
-          </span>
-          <Text
-            as="span"
-            size={4}
-            color="linkHover"
-            weight="semibold"
-            className={styles.eyebrow}
-          >
+        <div className={styles.celebration}>
+          <Icon
+            name={won ? 'trophy' : 'swords'}
+            size={48}
+          />
+          <Badge color={won ? 'success' : 'neutral'}>
             {t(`result.${run.status}`)}
-          </Text>
+          </Badge>
           <Heading
             as="h3"
-            size={1}
+            size={2}
           >
             {t(won ? 'result.victory' : 'result.tryAgain')}
           </Heading>
-          <Text className={styles.description}>
+          <Text>
             {t(`result.${run.status}Body`)}
           </Text>
         </div>
-      </div>
-
-      <div className={clsx(styles.loot, styles.group)}>
+      </Panel>
+      <Text
+        size={3}
+        color="muted"
+      >
+        {t('result.reward')}
+      </Text>
+      <Metrics items={
+        [
+          { id: 'xp', label: t('header.experience'), value: t('result.xp', { amount: number(reward.xp) }), icon: 'sparkles' },
+          { id: 'gold', label: t('header.gold'), value: t('result.gold', { amount: number(reward.gold) }), icon: 'coins' },
+        ]
+      }
+      />
+      {
+        won &&
         <Text
-          className={styles.description}
           size={3}
           color="muted"
         >
-          {t('result.reward')}
+          {t('result.saved')}
         </Text>
-        <div className={clsx(styles.rewards, styles.group)}>
-          <div className={styles.group}>
-            <Icon
-              name="sparkles"
-              size={24}
-            />
-            <Heading
-              className={styles.value}
-              as="strong"
-              size={3}
-            >
-              {t('result.xp', { amount: number(reward.xp) })}
-            </Heading>
-          </div>
-          <div className={styles.group}>
-            <Icon
-              name="coins"
-              size={24}
-            />
-            <Heading
-              className={styles.value}
-              as="strong"
-              size={3}
-            >
-              {t('result.gold', { amount: number(reward.gold) })}
-            </Heading>
-          </div>
-        </div>
-        {
-          won &&
-          <Text
-            className={styles.description}
-            size={3}
-            color="muted"
-          >
-            {t('result.saved')}
-          </Text>
-        }
-      </div>
-
-      <dl className={styles.stats}>
-        <div className={styles.group}>
-          <Text
-            as="dt"
-            size={4}
-            color="muted"
-          >
-            {t('game.totalDamage')}
-          </Text>
-          <Heading
-            className={styles.value}
-            as="dd"
-            size={4}
-          >
-            {number(run.totalDamage)}
-          </Heading>
-        </div>
-        <div className={styles.group}>
-          <Text
-            as="dt"
-            size={4}
-            color="muted"
-          >
-            {t('result.turns')}
-          </Text>
-          <Heading
-            className={styles.value}
-            as="dd"
-            size={4}
-          >
-            {number(run.turn)}
-          </Heading>
-        </div>
-        <div className={styles.group}>
-          <Text
-            as="dt"
-            size={4}
-            color="muted"
-          >
-            {t('game.hp')}
-          </Text>
-          <Heading
-            className={styles.value}
-            as="dd"
-            size={4}
-          >
-            {number(run.hp)}
-            {' '}
-            HP
-          </Heading>
-        </div>
-      </dl>
+      }
+      <Metrics items={
+        [
+          { id: 'damage', label: t('game.totalDamage'), value: number(run.totalDamage) },
+          { id: 'turns', label: t('result.turns'), value: number(run.turn) },
+          { id: 'hp', label: t('game.hp'), value: `${number(run.hp)} HP` },
+        ]
+      }
+      />
       {
         run.endedAt &&
         <Text
-          className={styles.description}
           size={3}
           color="muted"
         >
           {t('result.date', { date: date(run.endedAt) })}
         </Text>
       }
-      <div className={clsx(styles.actions, styles.group)}>
+      <div className={styles.actions}>
         <Button onClick={onAgain}>
           {t('result.again')}
         </Button>

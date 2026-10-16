@@ -1,61 +1,39 @@
-.page {
-  margin: auto;
-  padding: rem(30px) rem(12px);
-  max-width: var(--max-width);
-}
-
 .intro {
   @include flex(space-between, flex-start, column);
 
   gap: rem(20px);
-  margin-bottom: rem(28px);
+  margin-bottom: rem(24px);
 
-  > .group {
-    display: grid;
-    gap: rem(12px);
+  @include mob-m {
+    flex-direction: row;
+    align-items: center;
   }
+}
+
+.link {
+  @include flex(null, center, null, null, inline-flex);
+
+  gap: rem(8px);
+  color: var(--color-accent);
+}
+
+.group {
+  display: grid;
+  gap: rem(12px);
 }
 
 .details {
   display: grid;
   gap: rem(32px);
-  margin-top: rem(38px);
-}
+  margin-top: rem(40px);
 
-.note {
-  margin-top: rem(34px);
-  text-align: center;
-}
-
-@include tab-l {
-  .page {
-    padding: rem(32px) rem(40px);
-  }
-
-  .details {
+  @include tab-l {
     grid-template-columns: 1.6fr 1fr;
     gap: rem(40px);
   }
 }
 
-.intro > .control {
-  align-self: flex-start;
-}
-
-@include mob-m {
-  .intro {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .intro > .control {
-    align-self: auto;
-  }
-}
-
-.intro .link {
-  @include flex(null, center, null, null, inline-flex);
-
-  gap: rem(8px);
-  color: var(--color-link);
+.note {
+  margin-top: rem(32px);
+  text-align: center;
 }

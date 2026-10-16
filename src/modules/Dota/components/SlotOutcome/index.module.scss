@@ -144,20 +144,20 @@
   margin: 0;
   font-size: rem(14px);
   line-height: 1.4;
-  color: var(--color-gold);
+  color: var(--color-game-accent);
 }
 
 .build,
 .rune {
   padding: rem(4px) rem(8px);
   border: rem(1px) solid currentcolor;
-  background: var(--color-surface-input);
+  background: var(--color-material-input);
 }
 
 .build {
-  color: var(--color-gold);
+  color: var(--color-game-accent);
 }
 
 .rune {
-  color: var(--color-primary-hover);
+  color: var(--color-accent-hover);
 }

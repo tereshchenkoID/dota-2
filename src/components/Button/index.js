@@ -3,22 +3,27 @@ import clsx from 'clsx'
 import styles from './index.module.scss'
 
 const Button = ({
+  as: Component = 'button',
   children,
   color = 'primary',
   type = 'button',
   square = false,
-  className = '',
+  full = false,
+  selected = false,
+  className,
   ...props
 }) => {
   return (
-    <button
-      type={type}
+    <Component
+      type={Component === 'button' ? type : undefined}
       className={
         clsx(
           styles.block,
           styles[color],
           {
             [styles.square]: square,
+            [styles.full]: full,
+            [styles.selected]: selected,
           },
           className
         )
@@ -26,7 +31,7 @@ const Button = ({
       {...props}
     >
       {children}
-    </button>
+    </Component>
   )
 }
 

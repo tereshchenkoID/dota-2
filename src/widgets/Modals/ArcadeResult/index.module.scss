@@ -1,0 +1,25 @@
+.block {
+  display: grid;
+  gap: rem(24px);
+  text-align: center;
+}
+
+.emblem {
+  color: var(--color-accent);
+}
+
+.upgrades {
+  @include flex(center, center, null, wrap);
+
+  gap: rem(12px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.upgrade {
+  @include flex(null, center);
+
+  gap: rem(8px);
+  color: var(--color-accent);
+}

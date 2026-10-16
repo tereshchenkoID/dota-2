@@ -1,10 +1,24 @@
 .viewport {
-  --color-gold: #c5a66a;
-  --color-red: #d25535;
-  --color-line: #e0e7e712;
+  --color-material: #172033;
+  --color-material-raised: #202c43;
+  --color-material-hover: #2a3955;
+  --color-material-input: #10192b;
+  --color-border: #526480;
+  --color-border-muted: #33415a;
+  --color-text: #e4e2dc;
+  --color-text-muted: #a2afb4;
+  --color-text-on-accent: #17130a;
+  --color-accent: #c5a66a;
+  --color-accent-hover: #e8d4a8;
+  --color-accent-soft: #433a27;
+  --color-focus: #e8d4a8;
+  --color-game-accent: #c5a66a;
+  --color-game-danger: #d25535;
+  --color-game-border: #e0e7e712;
   --font-display: var(--font-game-display), georgia, serif;
   --symbol-ratio: 1.02;
 
+  color-scheme: dark;
   position: relative;
   border: rem(1px) solid #59636b;
   background: #131b22 url("/assets/ui/dota-background.jpg") center top/cover;
@@ -31,6 +45,8 @@
 }
 
 .gameBrand .image {
+  display: none;
+
   @include size(rem(22px), rem(27px));
 
   object-fit: contain;
@@ -56,33 +72,6 @@
 .toolbarActions {
   display: flex;
   gap: rem(4px);
-}
-
-.toolbarActions .control {
-  display: grid;
-  border: rem(1px) solid #75818b45;
-
-  @include size(rem(34px), rem(40px));
-
-  background: #0c131950;
-
-  @include transition((background, border-color), 0.2s);
-
-  color: #c8d1d6;
-  place-items: center;
-  font:
-    rem(18px) Arial,
-    sans-serif;
-}
-
-.toolbarActions .control:hover {
-  background: #778b9b26;
-  border-color: #b7c6cd;
-}
-
-.toolbarActions .control[aria-pressed="true"] {
-  border-color: #c4a76a;
-  color: #e7c98b;
 }
 
 .viewportBody {
@@ -130,10 +119,6 @@
   background: #0b1015;
 }
 
-.toolbarActions .control:first-child {
-  display: none;
-}
-
 @include mob-m {
   .toolbar {
     gap: rem(12px);
@@ -145,6 +130,8 @@
   }
 
   .gameBrand .image {
+    display: block;
+
     @include size(rem(30px), rem(34px));
   }
 
@@ -154,16 +141,6 @@
 
   .gameBrand .label {
     display: block;
-  }
-
-  .toolbarActions .control {
-    @include size(rem(34px));
-
-    font-size: rem(20px);
-  }
-
-  .toolbarActions .control:first-child {
-    display: grid;
   }
 
   .viewportBody {
@@ -191,11 +168,6 @@
   }
 }
 
-.toolbarActions .control {
-  display: grid;
-  place-items: center;
-}
-
 @include mob-m {
   .viewport {
     --symbol-ratio: 1.22;
@@ -206,3 +178,7 @@
     --symbol-ratio: 1.15;
   }
 }
+
+.guideControl { display: none; }
+
+@include mob-m { .guideControl { display: inline-flex; } }

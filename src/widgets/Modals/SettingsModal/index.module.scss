@@ -1,24 +1,4 @@
-.row {
-  @include flex(space-between, flex-start, null, wrap);
-
-  gap: rem(12px);
-  margin-bottom: rem(32px);
-
-  > .group {
-    max-width: rem(480px);
-  }
-}
-
-.label {
-  @include flex(null, center);
-
-  gap: rem(8px);
-}
-
-@include mob-m {
-  .row {
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: rem(24px);
-  }
+.block {
+  display: grid;
+  gap: rem(16px);
 }

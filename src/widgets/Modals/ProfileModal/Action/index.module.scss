@@ -1,0 +1,10 @@
+.block {
+  justify-content: space-between;
+}
+
+.label {
+  @include flex(null, center);
+
+  gap: var(--control-gap);
+  min-width: 0;
+}

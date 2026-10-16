@@ -1,18 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 
+import Button from '@/components/Button'
 import Heading from '@/components/Heading'
+import Panel from '@/components/Panel'
+import Progress from '@/components/Progress'
 import Text from '@/components/Text'
 import {
-  getBuildProgress, getDamageSources, getHeroPreview, getItemPreview 
+  getBuildProgress, getDamageSources, getHeroPreview, getItemPreview
 } from '@/modules/Dota/arcade/build-impact'
 import { HEROES } from '@/modules/Dota/config/heroes'
 
-import styles from './index.module.scss'
+import styles from '../index.module.scss'
 
 const ITEMS = [
   ['divine-rapier', 'damage'],
@@ -21,14 +23,17 @@ const ITEMS = [
   ['black-king-bar', 'shields'],
 ]
 
-const BuildImpact = ({ run }) => {
+const Impact = ({ run }) => {
   const { t, number } = useTranslation()
   const [count, setCount] = useState(3)
   const progress = getBuildProgress(run)
   const sources = getDamageSources(run)
 
   return (
-    <section className={styles.group}>
+    <Panel
+      variant="raised"
+      className={styles.group}
+    >
       <Heading
         as="h3"
         size={4}
@@ -41,11 +46,10 @@ const BuildImpact = ({ run }) => {
       >
         {t('buildImpact.levels', { highest: number(progress.highest), max: number(progress.maximum), total: number(progress.total), capacity: number(progress.capacity) })}
       </Text>
-      <progress
-        className={styles.progress}
+      <Progress
         value={progress.highest}
         max={progress.maximum}
-        aria-label={t('buildImpact.highest')}
+        label={t('buildImpact.highest')}
       />
       <Text
         size={3}
@@ -74,15 +78,16 @@ const BuildImpact = ({ run }) => {
       >
         {
           [3, 4, 5].map((value) => (
-            <button
-              className={clsx(styles.control, count === value && styles.selected)}
+            <Button
+              color="secondary"
+              selected={count === value}
               type="button"
               aria-pressed={count === value}
               key={value}
               onClick={() => setCount(value)}
             >
               {t('buildImpact.match', { count: number(value) })}
-            </button>
+            </Button>
           ))
         }
       </div>
@@ -171,8 +176,8 @@ const BuildImpact = ({ run }) => {
       >
         {t('buildImpact.trackedHint')}
       </Text>
-    </section>
+    </Panel>
   )
 }
 
-export default BuildImpact
+export default Impact

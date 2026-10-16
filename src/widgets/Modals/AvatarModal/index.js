@@ -7,10 +7,13 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useProfileStore } from '@/store/profile'
 
 import Icon from '@/components/Icon'
+import Input from '@/components/Input'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 import AVATARS from '@/modules/Dota/config/avatars.json'
 
 import styles from './index.module.scss'
+
 const AvatarModal = ({ onClose }) => {
   const [query, setQuery] = useState('')
   const { t, number } = useTranslation()
@@ -18,22 +21,16 @@ const AvatarModal = ({ onClose }) => {
   const filtered = AVATARS.filter((hero) =>
     hero.name.toLowerCase().includes(query.trim().toLowerCase()),
   )
+
   return (
     <div>
-      <label className={styles.search}>
-        <Icon
-          className={styles.glyph}
-          name="search"
-          size={20}
-        />
-        <input
-          className={styles.input}
-          aria-label={t('profile.search')}
-          placeholder={t('profile.search')}
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-      </label>
+      <Input
+        icon="search"
+        aria-label={t('profile.search')}
+        placeholder={t('profile.search')}
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
       <Text
         size={3}
         color="muted"
@@ -45,7 +42,11 @@ const AvatarModal = ({ onClose }) => {
       <div className={styles.grid}>
         {
           filtered.map((hero) => (
-            <button
+            <Panel
+              as="button"
+              padding={1}
+              interactive
+              selected={hero.id === avatar}
               className={styles.control}
               type="button"
               key={hero.id}
@@ -81,7 +82,7 @@ const AvatarModal = ({ onClose }) => {
                   size={20}
                 />
               }
-            </button>
+            </Panel>
           ))
         }
       </div>

@@ -2,10 +2,7 @@
   display: grid;
   justify-items: start;
   gap: rem(24px);
-  padding: rem(32px) rem(20px);
-  border: rem(1px) solid var(--color-border);
-  border-radius: var(--border-radius-default);
-  background: var(--color-surface);
+
 }
 
 .banner {
@@ -14,15 +11,15 @@
   gap: rem(12px);
   margin-bottom: rem(16px);
   padding: rem(12px) rem(16px);
-  border: rem(1px) solid var(--color-gold);
-  background: var(--color-surface-input);
+  border: rem(1px) solid var(--color-game-accent);
+  background: var(--color-material-input);
   font-size: rem(18px);
-  color: var(--color-gold);
+  color: var(--color-game-accent);
 }
 
 .elite {
-  color: var(--color-red);
-  border-color: var(--color-red);
+  color: var(--color-game-danger);
+  border-color: var(--color-game-danger);
 }
 
 .boss {
@@ -31,7 +28,7 @@
 }
 
 .empowered {
-  box-shadow: 0 0 rem(24px) var(--color-red);
+  box-shadow: 0 0 rem(24px) var(--color-game-danger);
 }
 
 .resume {
@@ -57,9 +54,9 @@
 }
 
 .world .empowered {
-  outline: rem(2px) solid var(--color-gold);
+  outline: rem(2px) solid var(--color-game-accent);
   outline-offset: rem(2px);
-  box-shadow: 0 0 rem(28px) color-mix(in srgb, var(--color-red) 45%, transparent);
+  box-shadow: 0 0 rem(28px) color-mix(in srgb, var(--color-game-danger) 45%, transparent);
 }
 
 .curse {
@@ -69,7 +66,7 @@
   margin-bottom: rem(16px);
   padding: rem(12px) rem(16px);
   border-left: rem(4px) solid var(--color-aura);
-  background: var(--color-surface-input);
+  background: var(--color-material-input);
   font-size: rem(16px);
-  color: var(--color-gold);
+  color: var(--color-game-accent);
 }

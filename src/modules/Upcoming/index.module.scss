@@ -1,9 +1,6 @@
-.card {
-  display: flex;
-  flex-direction: column;
-  border: rem(1px) solid var(--color-border-subtle);
-  border-radius: rem(16px);
-  background: var(--color-surface);
+.block {
+  @include flex(null, null, column);
+
   overflow: hidden;
 }
 
@@ -12,15 +9,14 @@
 
   position: relative;
   min-height: rem(200px);
-  background:
-    radial-gradient(
+  background: radial-gradient(
       ellipse at 50% 30%,
       color-mix(in srgb, var(--color-card-accent) 24%, transparent),
       transparent 70%
     ),
-    linear-gradient(135deg, var(--color-surface-raised), var(--color-bg));
+    linear-gradient(135deg, var(--color-material-raised), var(--color-page));
   overflow: hidden;
-  color: var(--color-card-accent);
+  color: var(--color-text-muted);
 }
 
 .decor {
@@ -31,19 +27,17 @@
 }
 
 .orbit {
+  @include size(rem(240px));
+
   position: absolute;
   border: rem(1px) solid color-mix(in srgb, var(--color-card-accent) 25%, transparent);
   border-radius: 50%;
-
-  @include size(rem(240px));
-
   transform: rotate(-24deg) scaleX(1.4);
 
   &::after {
     position: absolute;
     inset: rem(24px);
-    border: rem(1px) solid
-      color-mix(in srgb, var(--color-card-accent) 14%, transparent);
+    border: rem(1px) solid color-mix(in srgb, var(--color-card-accent) 14%, transparent);
     border-radius: inherit;
     content: "";
   }
@@ -53,35 +47,26 @@
   position: relative;
   font-size: rem(56px);
   font-weight: var(--font-weight-extrabold);
-  letter-spacing: rem(-2px);
-  text-shadow: 0 rem(4px) rem(32px)
-    color-mix(in srgb, var(--color-card-accent) 20%, transparent);
+  text-shadow: 0 rem(4px) rem(32px) color-mix(in srgb, var(--color-card-accent) 20%, transparent);
 }
 
 .genre {
   position: absolute;
   top: rem(20px);
   left: rem(20px);
-  letter-spacing: rem(2px);
 }
 
 .content {
   display: grid;
+  justify-items: flex-start;
   align-content: start;
   gap: rem(16px);
-  padding: rem(24px);
+  padding: var(--panel-padding);
   height: 100%;
-}
-
-.status {
-  @include flex(null, center);
-
-  gap: rem(8px);
-  color: var(--color-card-accent);
 }
 
 .note {
   padding-top: rem(16px);
-  align-self: end;
-  border-top: rem(1px) solid var(--color-border-subtle);
+  width: 100%;
+  border-top: rem(1px) solid var(--color-border-muted);
 }

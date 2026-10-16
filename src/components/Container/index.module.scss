@@ -1,0 +1,10 @@
+.block {
+  margin-inline: auto;
+  padding-inline: rem(16px);
+  width: 100%;
+  max-width: var(--max-width);
+
+  @include tab-s {
+    padding-inline: rem(24px);
+  }
+}

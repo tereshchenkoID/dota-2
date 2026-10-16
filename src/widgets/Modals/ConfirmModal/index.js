@@ -1,4 +1,5 @@
 'use client'
+
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useArcadeStore } from '@/modules/Dota/store/arcade'
@@ -8,11 +9,13 @@ import Button from '@/components/Button'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
+
 const ConfirmModal = ({ action, onClose }) => {
   const { t } = useTranslation()
   const { spinning, newRun, reset } = useGameStore()
   const arcade = useArcadeStore()
   const closeAll = useModalStore((s) => s.closeAllModals)
+
   return (
     <>
       <Text color="muted">

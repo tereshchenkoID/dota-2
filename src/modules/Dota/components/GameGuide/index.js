@@ -3,6 +3,9 @@ import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 
+import Heading from '@/components/Heading'
+import Panel from '@/components/Panel'
+import Text from '@/components/Text'
 import { HEROES } from '@/modules/Dota/config/heroes'
 import { ITEMS } from '@/modules/Dota/config/items'
 import { PAYLINES } from '@/modules/Dota/config/paylines'
@@ -14,16 +17,27 @@ const GameGuide = ({ compact = false }) => {
     <div className={clsx(styles.guide, styles.group)}>
       <div className={clsx(styles.guideHeading, styles.group)}>
         <div className={styles.group}>
-          <span className={styles.eyebrow}>
+          <Text
+            as="span"
+            size={4}
+            color="accent"
+          >
             {t('guide.heroes')}
-          </span>
-          <h2 className={styles.title}>
+          </Text>
+          <Heading
+            as="h2"
+            size={3}
+          >
             {t('guide.title')}
-          </h2>
+          </Heading>
         </div>
-        <p className={styles.description}>
+        <Text
+          size={3}
+          color="muted"
+          className={styles.description}
+        >
           {t('guide.subtitle')}
-        </p>
+        </Text>
       </div>
       <div className={clsx(styles.heroes, styles.group)}>
         {
@@ -40,23 +54,38 @@ const GameGuide = ({ compact = false }) => {
                 alt=""
               />
               <div className={styles.group}>
-                <h3 className={styles.title}>
+                <Heading
+                  as="h3"
+                  size={5}
+                >
                   {t(h.nameKey)}
-                </h3>
-                <p className={styles.description}>
+                </Heading>
+                <Text
+                  size={3}
+                  color="muted"
+                  className={styles.description}
+                >
                   {t('abilities.' + h.ability)}
-                </p>
+                </Text>
                 {
                   !compact &&
                   <>
-                    <small className={styles.caption}>
+                    <Text
+                      as="span"
+                      size={4}
+                      color="accent"
+                    >
                       {t('guide.damage', { damage: number(h.baseDamage) })}
-                    </small>
-                    <p className={styles.description}>
+                    </Text>
+                    <Text
+                      size={3}
+                      color="muted"
+                      className={styles.description}
+                    >
                       {t('guide.five')}
                       :
                       {t('abilities.' + h.ultimate)}
-                    </p>
+                    </Text>
                   </>
                 }
               </div>
@@ -67,17 +96,22 @@ const GameGuide = ({ compact = false }) => {
       {
         !compact &&
         <>
-          <h3 className={clsx(styles.sectionTitle, styles.title)}>
+          <Heading
+            as="h3"
+            size={4}
+            className={styles.sectionTitle}
+          >
             {t('guide.lines')}
-          </h3>
-          <p className={clsx(styles.rules, styles.description)}>
+          </Heading>
+          <Text color="muted">
             {t('guide.rules')}
-          </p>
+          </Text>
           <div className={clsx(styles.lines, styles.group)}>
             {
               PAYLINES.map((line, i) => (
-                <div
-                  className={styles.group}
+                <Panel
+                  padding={1}
+                  className={styles.line}
                   key={i}
                 >
                   <svg
@@ -91,7 +125,7 @@ const GameGuide = ({ compact = false }) => {
                           cx={(n % 5) * 20 + 10}
                           cy={Math.floor(n / 5) * 20 + 8}
                           r="2"
-                          fill="#50638a"
+                          fill="var(--color-border)"
                         />
                       ))
                     }
@@ -102,26 +136,34 @@ const GameGuide = ({ compact = false }) => {
                           .join(' ')
                       }
                       fill="none"
-                      stroke="#a9bcff"
+                      stroke="var(--color-accent)"
                       strokeWidth="2"
                     />
                   </svg>
-                  <small className={styles.caption}>
+                  <Text
+                    as="span"
+                    size={4}
+                    color="accent"
+                  >
                     {t('guide.line' + (i + 1))}
-                  </small>
-                </div>
+                  </Text>
+                </Panel>
               ))
             }
           </div>
-          <p className={clsx(styles.rules, styles.description)}>
+          <Text color="muted">
             {t('guide.weights')}
-          </p>
-          <h3 className={clsx(styles.sectionTitle, styles.title)}>
+          </Text>
+          <Heading
+            as="h3"
+            size={4}
+            className={styles.sectionTitle}
+          >
             {t('guide.items')}
-          </h3>
-          <p className={clsx(styles.rules, styles.description)}>
+          </Heading>
+          <Text color="muted">
             {t('guide.itemsRule')}
-          </p>
+          </Text>
           <div className={clsx(styles.items, styles.group)}>
             {
               ITEMS.map((item) => (
@@ -137,12 +179,19 @@ const GameGuide = ({ compact = false }) => {
                     alt=""
                   />
                   <div className={styles.group}>
-                    <h3 className={styles.title}>
+                    <Heading
+                      as="h3"
+                      size={5}
+                    >
                       {t(item.nameKey)}
-                    </h3>
-                    <p className={styles.description}>
+                    </Heading>
+                    <Text
+                      size={3}
+                      color="muted"
+                      className={styles.description}
+                    >
                       {t('item.' + item.id)}
-                    </p>
+                    </Text>
                   </div>
                 </div>
               ))

@@ -15,6 +15,7 @@ const GAME_ASSETS = [...new Set([
   '/assets/ui/dota-logo.png',
 ])]
 const STORES = [useGameStore, useProfileStore, useArcadeStore]
+
 const subscribe = (notify) => {
   const unsubscribe = STORES.flatMap((store) => [
     store.persist.onHydrate(notify),
@@ -22,6 +23,7 @@ const subscribe = (notify) => {
   ])
   return () => unsubscribe.forEach((stop) => stop())
 }
+
 const getSnapshot = () => STORES.every((store) => store.persist.hasHydrated())
 const getServerSnapshot = () => false
 
@@ -54,6 +56,7 @@ export const useGameReady = () => {
       image.onerror = () => finish(false)
       image.src = src
     })
+
     const fonts = document.fonts
       ? Promise.all(['--font-inter', '--font-game', '--font-game-display'].map((property) => {
         const family = getComputedStyle(document.documentElement).getPropertyValue(property).trim()
@@ -64,6 +67,7 @@ export const useGameReady = () => {
     Promise.all([...GAME_ASSETS.map(preload), fonts]).then(() => {
       if (!cancelled) setAssets({ loaded, failed, done: true })
     })
+
     return () => {
       cancelled = true
       images.forEach((image) => {

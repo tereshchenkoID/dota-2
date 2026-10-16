@@ -11,13 +11,16 @@ import Text from '@/components/Text'
 import { getRunSeconds } from '@/modules/Dota/arcade/run-records'
 import { RUNES } from '@/modules/Dota/arcade/runes'
 import { UPGRADES } from '@/modules/Dota/arcade/upgrades'
+import Metrics from '@/modules/Metrics'
 
 import styles from './index.module.scss'
 
 const ArcadeResult = ({ onClose }) => {
   const { t, number } = useTranslation()
   const { run, newRun, stats } = useArcadeStore()
+
   if (run.status !== 'defeated') return null
+
   const seconds = getRunSeconds(run)
   const rows = [
     ['duration', t('progression.duration', { minutes: number(Math.floor(seconds / 60)), seconds: number(seconds % 60) })],
@@ -46,40 +49,15 @@ const ArcadeResult = ({ onClose }) => {
         {t(`gauntlet.defeat.${run.defeatReason}`)}
       </Text>
       {
-run.maxStage > run.recordAtStart &&
-<Text
-  color="accent"
-  weight="bold"
->
-  {t('gauntlet.newRecord', { stage: number(run.maxStage) })}
-</Text>
+        run.maxStage > run.recordAtStart &&
+        <Text
+          color="accent"
+          weight="bold"
+        >
+          {t('gauntlet.newRecord', { stage: number(run.maxStage) })}
+        </Text>
       }
-      <dl className={styles.stats}>
-        {
-          rows.map(([key, value]) => (
-            <div
-              className={styles.stat}
-              key={key}
-            >
-              <Text
-                as="dt"
-                size={3}
-                color="muted"
-              >
-                {t(key === 'duration' ? 'progression.durationLabel' : key === 'record' ? 'progression.record' : `gauntlet.metrics.${key}`)}
-              </Text>
-              <Heading
-                as="dd"
-                size={3}
-              >
-                {
-                  typeof value === 'number' ? number(value) : value
-                }
-              </Heading>
-            </div>
-          ))
-        }
-      </dl>
+      <Metrics items={rows.map(([key, value]) => ({ id: key, label: t(key === 'duration' ? 'progression.durationLabel' : key === 'record' ? 'progression.record' : `gauntlet.metrics.${key}`), value: typeof value === 'number' ? number(value) : value }))} />
       <Text>
         {t('gauntlet.build')}
       </Text>
@@ -104,13 +82,13 @@ run.maxStage > run.recordAtStart &&
         }
       </ul>
       {
-!Object.values(run.upgrades).some(Boolean) &&
-<Text
-  size={3}
-  color="muted"
->
-  {t('gauntlet.noUpgrades')}
-</Text>
+        !Object.values(run.upgrades).some(Boolean) &&
+        <Text
+          size={3}
+          color="muted"
+        >
+          {t('gauntlet.noUpgrades')}
+        </Text>
       }
       <Text>
         {t('progression.usedRunes')}
@@ -138,24 +116,25 @@ run.maxStage > run.recordAtStart &&
         }
       </ul>
       {
-!Object.values(run.runeHistory || {}).some(Boolean) &&
-<Text
-  size={3}
-  color="muted"
->
-  {t('progression.noUsedRunes')}
-</Text>
+        !Object.values(run.runeHistory || {}).some(Boolean) &&
+        <Text
+          size={3}
+          color="muted"
+        >
+          {t('progression.noUsedRunes')}
+        </Text>
       }
       <Button onClick={() => { if (newRun()) onClose() }}>
         {t('progression.tryAgain')}
       </Button>
-      <Link
-        className={styles.link}
+      <Button
+        as={Link}
+        color="secondary"
         href="/dota/"
         onClick={onClose}
       >
         {t('progression.backToMenu')}
-      </Link>
+      </Button>
     </div>
   )
 }

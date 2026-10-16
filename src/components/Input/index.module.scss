@@ -1,0 +1,50 @@
+.block {
+  display: grid;
+  gap: rem(8px);
+  min-width: 0;
+}
+
+.field {
+  @include flex(null, center);
+
+  gap: var(--control-gap);
+  padding-inline: var(--control-padding);
+  border: rem(1px) solid var(--color-border);
+  border-radius: var(--radius-control);
+  height: var(--control-height);
+  background: var(--color-material-input);
+  color: var(--color-text);
+
+  &:focus-within {
+    outline: rem(2px) solid var(--color-focus);
+    outline-offset: rem(2px);
+  }
+}
+
+.input {
+  @include size(100%);
+
+  padding: 0;
+  border: 0;
+  outline: none;
+  min-width: 0;
+  background: transparent;
+  color: inherit;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.invalid {
+  border-color: var(--color-danger);
+}

@@ -1,0 +1,17 @@
+.block {
+  display: grid;
+  gap: rem(24px);
+}
+
+.entry {
+  display: grid;
+  gap: rem(8px);
+}
+
+.recent {
+  display: grid;
+  gap: rem(12px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

@@ -1,0 +1,20 @@
+.block {
+  display: grid;
+  gap: rem(12px);
+
+  @include tab-s {
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  }
+}
+
+.item {
+  display: grid;
+  place-items: start center;
+  gap: rem(8px);
+}
+
+.label {
+  @include flex(null, center);
+
+  gap: rem(8px);
+}

@@ -1,0 +1,25 @@
+.block {
+  @include size(100%, rem(8px));
+
+  display: block;
+  border: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border-muted);
+  overflow: hidden;
+  color: var(--color-accent);
+  appearance: none;
+
+  &::-webkit-progress-bar {
+    background-color: var(--color-border-muted);
+  }
+
+  &::-webkit-progress-value {
+    border-radius: inherit;
+    background-color: var(--color-accent);
+  }
+
+  &::-moz-progress-bar {
+    border-radius: inherit;
+    background-color: var(--color-accent);
+  }
+}

@@ -1,15 +1,16 @@
 import { lazy } from 'react'
 
 import { resolveGuide } from './GuideModal/registry'
+
 export const MODAL_REGISTRY = {
-  'arcade-build': { Component: lazy(() => import('./arcade-build')), title: 'progression.currentBuild' },
-  'arcade-records': { Component: lazy(() => import('./arcade-records')), title: 'progression.arcadeRecords' },
+  'arcade-build': { Component: lazy(() => import('./ArcadeBuild')), title: 'progression.currentBuild' },
+  'arcade-records': { Component: lazy(() => import('./ArcadeRecords')), title: 'progression.arcadeRecords' },
   'arcade-reward': {
-    Component: lazy(() => import('./arcade-reward')),
+    Component: lazy(() => import('./ArcadeReward')),
     title: 'gauntlet.cleared',
   },
   'arcade-result': {
-    Component: lazy(() => import('./arcade-result')),
+    Component: lazy(() => import('./ArcadeResult')),
     title: 'progression.runComplete',
   },
   'arcade-restart': {

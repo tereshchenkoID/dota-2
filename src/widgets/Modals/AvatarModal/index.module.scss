@@ -1,82 +1,44 @@
-.search {
-  @include flex(null, center);
-
-  gap: rem(10px);
-  padding: rem(10px) rem(14px);
-  border: rem(1px) solid var(--color-border);
-  border-radius: rem(10px);
-  background: var(--color-surface-input);
-  color: var(--color-link);
-
-  &:focus-within {
-    outline: rem(2px) solid var(--color-link);
-  }
-
-  .input {
-    border: 0;
-    outline: none;
-    width: 100%;
-    background: none;
-    font: rem(16px) var(--font-family);
-    color: var(--color-text);
-  }
-}
-
 .count {
-  margin: rem(14px) 0;
+  margin: rem(16px) 0;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: rem(8px);
   padding: rem(4px);
   max-height: 55dvh;
   overflow: auto;
 
-  .control {
-    display: grid;
+  @include mob-m {
+    grid-template-columns: repeat(5, 1fr);
     gap: rem(8px);
-    position: relative;
-    padding: rem(4px);
-    border: rem(1px) solid var(--color-border);
-    border-radius: rem(9px);
-    background: var(--color-surface-raised);
-    color: var(--color-text);
-    cursor: pointer;
-
-    .image {
-      aspect-ratio: 1;
-      border-radius: rem(4px);
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .label {
-      min-height: rem(30px);
-    }
-
-    .glyph {
-      position: absolute;
-      top: rem(8px);
-      right: rem(8px);
-      border-radius: 50%;
-      background: var(--color-link);
-      color: var(--color-surface-input);
-    }
-
-    &:hover,
-    &:focus-visible,
-    &[aria-pressed="true"] {
-      outline: rem(2px) solid var(--color-link);
-      border-color: var(--color-link);
-    }
   }
 }
 
-@include mob-m {
-  .grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: rem(10px);
-  }
+.control {
+  display: grid;
+  gap: rem(8px);
+  position: relative;
+}
+
+.image {
+  aspect-ratio: 1;
+  border-radius: rem(4px);
+  width: 100%;
+  object-fit: cover;
+}
+
+.label {
+  min-height: rem(30px);
+}
+
+.glyph {
+  position: absolute;
+  top: rem(8px);
+  right: rem(8px);
+  padding: rem(2px);
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-material-input);
 }

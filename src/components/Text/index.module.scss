@@ -28,21 +28,21 @@
 }
 
 .muted {
-  color: var(--color-sub-text);
+  color: var(--color-text-muted);
 }
 
 .accent {
-  color: var(--color-primary-hover);
+  color: var(--color-accent-hover);
 }
 
 .current { color: inherit; }
 
 .white { color: var(--color-white); }
 
-.link { color: var(--color-link); }
-
-.linkHover { color: var(--color-link-hover); }
-
 .semibold { font-weight: var(--font-weight-semibold); }
 
 .bold { font-weight: var(--font-weight-bold); }
+
+.danger { color: var(--color-danger); }
+
+.success { color: var(--color-success); }

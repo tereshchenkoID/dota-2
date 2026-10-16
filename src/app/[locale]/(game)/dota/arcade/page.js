@@ -1,7 +1,7 @@
-import Section from './_view'
+import Section from '../_view'
 
 export const metadata = { title: 'Roshan Gauntlet — Dota Spins' }
 
-const Page = () => <Section />
+const Arcade = () => <Section mode={'arcade'}/>
 
-export default Page
+export default Arcade

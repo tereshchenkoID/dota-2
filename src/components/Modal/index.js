@@ -4,6 +4,7 @@ import { useEffect, useId, useRef } from 'react'
 import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
+import { useAppearanceStore } from '@/store/appearance'
 
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
@@ -23,6 +24,7 @@ const Modal = ({
   const ref = useRef(null)
   const titleId = useId()
   const { t } = useTranslation()
+  const theme = useAppearanceStore((state) => state.resolvedTheme)
 
   useEffect(() => {
     const previous = document.activeElement
@@ -46,6 +48,7 @@ const Modal = ({
   return (
     <dialog
       ref={ref}
+      data-theme={theme}
       className={
         clsx(
           styles.block,
@@ -73,12 +76,12 @@ const Modal = ({
           <Heading
             id={titleId}
             as="h2"
-            size={2}
+            size={3}
           >
             {title}
           </Heading>
           <Button
-            color="alt"
+            color="secondary"
             square={true}
             onClick={onClose}
             aria-label={t('ui.close')}

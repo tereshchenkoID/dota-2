@@ -2,32 +2,10 @@
   @include flex(null, center, null, null, inline-flex);
 
   flex-shrink: 0;
-  gap: rem(8px);
-  font-size: rem(14px);
+  gap: rem(12px);
   font-weight: var(--font-weight-heavy);
   line-height: 1;
   color: var(--color-text);
-
-  @include mob-s {
-    font-size: rem(16px);
-  }
-
-  @include mob-m {
-    font-size: rem(18px);
-  }
-
-  @include tab-s {
-    font-size: rem(16px);
-  }
-
-  @include tab-l {
-    font-size: rem(18px);
-  }
-
-  @include desk-s {
-    gap: rem(12px);
-    font-size: rem(20px);
-  }
 }
 
 .small {
@@ -35,7 +13,7 @@
   margin-top: rem(8px);
   font-size: rem(12px);
   font-weight: var(--font-weight-regular);
-  color: var(--color-sub-text);
+  color: var(--color-text-muted);
 
   @include tab-l {
     display: block;
@@ -48,12 +26,6 @@
 }
 
 .svg {
-  @include size(rem(24px));
-
   flex-shrink: 0;
-  color: var(--color-primary-hover);
-
-  @include mob-m {
-    @include size(rem(30px));
-  }
+  color: var(--color-accent-hover);
 }

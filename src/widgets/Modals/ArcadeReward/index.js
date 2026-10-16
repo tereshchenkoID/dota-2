@@ -1,14 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 import { useArcadeStore } from '@/modules/Dota/store/arcade'
 
+import Badge from '@/components/Badge'
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 import { REWARDS } from '@/modules/Dota/arcade/reward-generator'
 import { getRuneValues } from '@/modules/Dota/arcade/runes'
@@ -20,16 +21,19 @@ const ArcadeReward = ({ onClose }) => {
   const { t, number } = useTranslation()
   const { run, chooseReward, nextStage } = useArcadeStore()
   const [showRewards, setShowRewards] = useState(false)
+
   useEffect(() => {
     const timer = setTimeout(() => setShowRewards(true), window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 850)
     return () => clearTimeout(timer)
   }, [run.id, run.stage])
+
   const selected = REWARDS.find((entry) => entry.id === run.selectedReward)
+
   if (!['choosing-reward', 'transitioning'].includes(run.status)) return null
 
   if (!showRewards && !selected) {
     return (
-      <div className={clsx(styles.block, styles.victory)}>
+      <div className={styles.block}>
         <Icon
           name="trophy"
           size={48}
@@ -72,7 +76,8 @@ const ArcadeReward = ({ onClose }) => {
       </Text>
       {
         selected ? (
-          <div
+          <Panel
+            variant="raised"
             className={styles.confirmation}
             role="status"
           >
@@ -89,7 +94,7 @@ const ArcadeReward = ({ onClose }) => {
             <Text>
               {t('gauntlet.rewardApplied')}
             </Text>
-          </div>
+          </Panel>
         ) : (
           <div className={styles.cards}>
             {
@@ -99,10 +104,12 @@ const ArcadeReward = ({ onClose }) => {
                 const previous = entry.type === 'rune' ? 0 : entry.effect === 'maxHp' ? run.maxHp : getUpgradeValue(entry, level - 1)
                 const value = entry.type === 'rune' ? 0 : entry.effect === 'maxHp' ? run.maxHp + entry.value : getUpgradeValue(entry, level)
                 return (
-                  <button
+                  <Panel
+                    as="button"
+                    interactive
                     key={id}
                     type="button"
-                    className={clsx(styles.card, styles[entry.rarity])}
+                    className={styles.card}
                     onClick={() => chooseReward(id)}
                   >
                     <span className={styles.icon}>
@@ -111,13 +118,13 @@ const ArcadeReward = ({ onClose }) => {
                         size={32}
                       />
                     </span>
-                    <span className={styles.rarity}>
+                    <Badge color={entry.rarity === 'common' ? 'neutral' : 'accent'}>
                       {t(`gauntlet.rarities.${entry.rarity}`)}
                       {' '}
                       ·
                       {' '}
                       {t(`gauntlet.types.${entry.type}`)}
-                    </span>
+                    </Badge>
                     <Heading
                       as="span"
                       size={4}
@@ -125,14 +132,14 @@ const ArcadeReward = ({ onClose }) => {
                       {t(entry.nameKey)}
                     </Heading>
                     {
-entry.type !== 'rune' &&
-<Text
-  as="span"
-  size={3}
-  color="accent"
->
-  {t('progression.levelChange', { current: number(level - 1), next: number(level), max: number(entry.maxLevel) })}
-</Text>
+                      entry.type !== 'rune' &&
+                      <Text
+                        as="span"
+                        size={3}
+                        color="accent"
+                      >
+                        {t('progression.levelChange', { current: number(level - 1), next: number(level), max: number(entry.maxLevel) })}
+                      </Text>
                     }
                     <Text
                       as="span"
@@ -150,7 +157,7 @@ entry.type !== 'rune' &&
                     >
                       {t(entry.type === 'rune' ? 'progression.nextStageOnly' : 'progression.permanent')}
                     </Text>
-                  </button>
+                  </Panel>
                 )
               })
             }

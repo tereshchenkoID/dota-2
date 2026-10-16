@@ -1,0 +1,52 @@
+.block {
+  display: grid;
+  justify-items: center;
+  gap: rem(24px);
+  padding: rem(16px) 0;
+  animation: victory-in 0.3s ease-out both;
+  text-align: center;
+  color: var(--color-accent-hover);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.cards {
+  display: grid;
+  gap: rem(12px);
+}
+
+.card {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: rem(12px);
+
+  @include tab-s {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.icon {
+  color: var(--color-accent);
+}
+
+.confirmation {
+  @include flex(center, center, column);
+
+  gap: rem(16px);
+  text-align: center;
+}
+
+@keyframes victory-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(8px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

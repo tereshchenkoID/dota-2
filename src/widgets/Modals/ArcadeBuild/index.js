@@ -5,12 +5,13 @@ import { useArcadeStore } from '@/modules/Dota/store/arcade'
 
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 import { getBuildSummary } from '@/modules/Dota/arcade/build-summary'
 import { getRuneValues } from '@/modules/Dota/arcade/runes'
 import { getUpgradeValue, UPGRADES } from '@/modules/Dota/arcade/upgrades'
 
-import BuildImpact from './impact'
+import Impact from './Impact'
 
 import styles from './index.module.scss'
 
@@ -30,11 +31,12 @@ const ArcadeBuild = () => {
       <Text color="accent">
         {t('gauntlet.stage', { stage: number(run.stage) })}
       </Text>
-      <BuildImpact run={run} />
+      <Impact run={run} />
       <div className={styles.groups}>
         {
           summary.groups.map((group) => (
-            <section
+            <Panel
+              variant="raised"
               className={styles.group}
               key={group.id}
             >
@@ -71,32 +73,35 @@ const ArcadeBuild = () => {
                   ))
                 }
               </dl>
-            </section>
+            </Panel>
           ))
         }
       </div>
       {
-summary.rune &&
-<section className={styles.group}>
-  <Heading
-    as="h3"
-    size={4}
-  >
-    {t(summary.rune.nameKey)}
-  </Heading>
-  <Text
-    size={3}
-    color="accent"
-  >
-    {t(run.preparedRune ? 'gauntlet.prepared' : summary.rune.durationType === 'attacks' ? 'gauntlet.attacksRemaining' : 'gauntlet.spinsRemaining', { count: number(run.activeRune?.remaining || 0) })}
-  </Text>
-  <Text
-    size={3}
-    color="muted"
-  >
-    {t(summary.rune.descriptionKey, getRuneValues(summary.rune))}
-  </Text>
-</section>
+        summary.rune &&
+        <Panel
+          variant="raised"
+          className={styles.group}
+        >
+          <Heading
+            as="h3"
+            size={4}
+          >
+            {t(summary.rune.nameKey)}
+          </Heading>
+          <Text
+            size={3}
+            color="accent"
+          >
+            {t(run.preparedRune ? 'gauntlet.prepared' : summary.rune.durationType === 'attacks' ? 'gauntlet.attacksRemaining' : 'gauntlet.spinsRemaining', { count: number(run.activeRune?.remaining || 0) })}
+          </Text>
+          <Text
+            size={3}
+            color="muted"
+          >
+            {t(summary.rune.descriptionKey, getRuneValues(summary.rune))}
+          </Text>
+        </Panel>
       }
       <Heading
         as="h3"
@@ -105,39 +110,40 @@ summary.rune &&
         {t('gauntlet.build')}
       </Heading>
       {
-        upgrades.length ? upgrades.map((upgrade) => (
-          <section
-            className={styles.upgrade}
-            key={upgrade.id}
-          >
-            <Icon
-              name={upgrade.icon}
-              size={24}
-            />
-            <div className={styles.details}>
-              <Text weight="semibold">
-                {t(upgrade.nameKey)}
-                {' '}
-                ·
-                {' '}
-                {number(run.upgrades[upgrade.id])}
-              </Text>
-              <Text
-                size={3}
-                color="muted"
-              >
-                {t(upgrade.descriptionKey, { value: number(getUpgradeValue(upgrade, run.upgrades[upgrade.id])) })}
-              </Text>
-            </div>
-          </section>
-        )) : (
+        upgrades.length ?
+          upgrades.map((upgrade) =>
+            <section
+              className={styles.upgrade}
+              key={upgrade.id}
+            >
+              <Icon
+                name={upgrade.icon}
+                size={24}
+              />
+              <div className={styles.details}>
+                <Text weight="semibold">
+                  {t(upgrade.nameKey)}
+                  {' '}
+                  ·
+                  {' '}
+                  {number(run.upgrades[upgrade.id])}
+                </Text>
+                <Text
+                  size={3}
+                  color="muted"
+                >
+                  {t(upgrade.descriptionKey, { value: number(getUpgradeValue(upgrade, run.upgrades[upgrade.id])) })}
+                </Text>
+              </div>
+            </section>
+          )
+          :
           <Text
             size={3}
             color="muted"
           >
             {t('gauntlet.noUpgrades')}
           </Text>
-        )
       }
       <Text
         size={3}

@@ -8,11 +8,14 @@ import { isLanguage } from '@/i18n/config'
 import { ROUTING } from '@/i18n/routing'
 
 import StoreHydration from '@/modules/StoreHydration'
+import ThemeSync from '@/modules/ThemeSync'
 import Footer from '@/widgets/Footer'
 import Header from '@/widgets/Header'
 import Modals from '@/widgets/Modals'
 
 import './layout.scss'
+
+import { THEME_BOOTSTRAP } from '@/lib/theme'
 
 const INTER = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -50,6 +53,8 @@ const LocaleLayout = async ({ children, params }) => {
   return (
     <html
       lang={locale}
+      data-theme="dark"
+      suppressHydrationWarning
       className={
         clsx(
           INTER.variable,
@@ -58,12 +63,16 @@ const LocaleLayout = async ({ children, params }) => {
         )
       }
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+      </head>
       <body>
         <NextIntlClientProvider
           locale={locale}
           messages={messages}
         >
           <StoreHydration />
+          <ThemeSync />
           <Header />
           <main>
             {children}

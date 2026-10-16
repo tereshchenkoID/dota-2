@@ -4,7 +4,10 @@ import { useGameReady } from '@/hooks/useGameReady'
 import { useTranslation } from '@/hooks/useTranslation'
 
 import Button from '@/components/Button'
+import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
+import Progress from '@/components/Progress'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
@@ -16,7 +19,8 @@ const GamePreloader = ({ children }) => {
   if (ready) return children
 
   return (
-    <section
+    <Panel
+      variant="raised"
       className={styles.loader}
       aria-busy={!error}
       aria-label={t('game.loading')}
@@ -26,28 +30,23 @@ const GamePreloader = ({ children }) => {
         name={error ? 'circle-alert' : 'swords'}
         size={48}
       />
-      <strong className={styles.title}>
+      <Heading
+        as="strong"
+        size={3}
+      >
         {t('app.title')}
-      </strong>
+      </Heading>
       <Text role="status">
         {t(error ? 'game.loadingError' : 'game.loading')}
       </Text>
       {
         !error &&
         <>
-          <div
+          <Progress
             className={styles.track}
-            role="progressbar"
-            aria-label={t('game.loading')}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-valuenow={progress}
-          >
-            <span
-              className={styles.fill}
-              style={{ '--progress': `${progress}%` }}
-            />
-          </div>
+            value={progress}
+            label={t('game.loading')}
+          />
           <Text
             size={3}
             color="muted"
@@ -65,7 +64,7 @@ const GamePreloader = ({ children }) => {
           {t('game.retry')}
         </Button>
       }
-    </section>
+    </Panel>
   )
 }
 

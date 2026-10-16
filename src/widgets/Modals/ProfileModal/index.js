@@ -1,18 +1,23 @@
 'use client'
 
 import Image from 'next/image'
-import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useProfileStore } from '@/store/profile'
 import { useGameStore } from '@/modules/Dota/store/game'
 
+import Badge from '@/components/Badge'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
-import Link from '@/components/Link'
+import Input from '@/components/Input'
+import Panel from '@/components/Panel'
+import Progress from '@/components/Progress'
 import Text from '@/components/Text'
 import { BALANCE } from '@/modules/Dota/config/balance'
+import Metrics from '@/modules/Metrics'
+
+import Action from './Action'
 
 import styles from './index.module.scss'
 
@@ -20,12 +25,12 @@ const ProfileModal = () => {
   const { t, number } = useTranslation()
   const { username, avatar, setUsername } = useProfileStore()
   const { openModal, closeAllModals } = useModalStore()
-  const progress = useGameStore((s) => s.progress)
+  const progress = useGameStore((state) => state.progress)
   const earned = progress.xp % BALANCE.xpPerLevel
 
   return (
-    <div className={clsx(styles.panel, styles.group)}>
-      <div className={clsx(styles.identity, styles.group)}>
+    <div className={styles.block}>
+      <div className={styles.identity}>
         <button
           type="button"
           className={styles.avatar}
@@ -39,15 +44,14 @@ const ProfileModal = () => {
             src={`/assets/avatars/${avatar}.png`}
             alt={avatar}
           />
-          <span className={styles.label}>
+          <span className={styles.edit}>
             <Icon
-              className={styles.glyph}
               name="image-plus"
-              size={18}
+              size={20}
             />
           </span>
         </button>
-        <div className={styles.group}>
+        <div className={styles.copy}>
           <Text
             size={3}
             color="muted"
@@ -57,239 +61,101 @@ const ProfileModal = () => {
           <Heading
             as="strong"
             size={3}
-            className={clsx(styles.username, styles.value)}
+            className={styles.username}
           >
-            {
-              username.trim() || 'Player'
-            }
+            {username.trim() || 'Player'}
           </Heading>
-          <button
-            type="button"
-            className={styles.textButton}
-            onClick={() => openModal('avatar')}
-          >
-            {t('profile.changeAvatar')}
-          </button>
         </div>
       </div>
-      <Text
-        as="label"
-        size={3}
-        color="muted"
-        className={styles.nameLabel}
+      <Input
+        label={t('profile.username')}
+        value={username}
+        maxLength={24}
+        onChange={(event) => setUsername(event.target.value)}
+        onBlur={() => { if (!username.trim()) setUsername('Player') }}
+        autoComplete="nickname"
+      />
+      <Panel
+        variant="raised"
+        className={styles.copy}
       >
-        {t('profile.username')}
-        <input
-          className={styles.input}
-          value={username}
-          maxLength={24}
-          onChange={(event) => setUsername(event.target.value)}
-          onBlur={
-            () => {
-              if (!username.trim()) setUsername('Player')
-            }
-          }
-          autoComplete="nickname"
-        />
-      </Text>
-      <section className={styles.levelCard}>
-        <div className={clsx(styles.levelHeading, styles.group)}>
+        <div className={styles.level}>
           <Heading
-            as="span"
-            size={3}
-            className={clsx(styles.badge, styles.label)}
+            as="h3"
+            size={4}
           >
-            {number(progress.level)}
+            {t('header.level', { level: number(progress.level) })}
           </Heading>
-          <div className={styles.group}>
-            <Text
-              size={3}
-              color="muted"
-            >
-              {t('header.experience')}
-            </Text>
-            <Heading
-              className={styles.value}
-              as="strong"
-              size={4}
-            >
-              {t('header.level', { level: number(progress.level) })}
-            </Heading>
-          </div>
+          <Badge color="accent">
+            {t('header.experience')}
+          </Badge>
         </div>
-        <div
-          className={clsx(styles.progress, styles.group)}
-          role="progressbar"
-          aria-label={t('header.experience')}
-          aria-valuenow={earned}
-          aria-valuemin={0}
-          aria-valuemax={BALANCE.xpPerLevel}
+        <Progress
+          value={earned}
+          max={BALANCE.xpPerLevel}
+          label={t('header.experience')}
+        />
+        <Text
+          size={3}
+          color="accent"
         >
-          <i
-            className={styles.fill}
-            style={{ width: `${(earned / BALANCE.xpPerLevel) * 100}%` }}
-          />
-        </div>
-        <div className={clsx(styles.xpLabel, styles.group)}>
-          <Text
-            className={styles.label}
-            as="span"
-            size={4}
-            color="linkHover"
-          >
-            {number(earned)}
-            {' '}
-            /
-            {number(BALANCE.xpPerLevel)}
-            {' '}
-            XP
-          </Text>
-          <Text
-            className={styles.label}
-            as="span"
-            size={4}
-            color="linkHover"
-          >
-            {
-              t('profile.nextLevel', {
-              amount: number(BALANCE.xpPerLevel - earned),
-            })
-            }
-          </Text>
-        </div>
+          {number(earned)}
+          {' '}
+          /
+          {' '}
+          {number(BALANCE.xpPerLevel)}
+          {' '}
+          XP
+        </Text>
+        <Text
+          size={3}
+          color="muted"
+        >
+          {t('profile.nextLevel', { amount: number(BALANCE.xpPerLevel - earned) })}
+        </Text>
         <Text
           size={3}
           color="muted"
         >
           {t('profile.totalXp', { amount: number(progress.xp) })}
         </Text>
-      </section>
-      <div className={clsx(styles.summary, styles.group)}>
-        <div className={styles.group}>
-          <Icon
-            className={styles.glyph}
-            name="coins"
-            size={20}
-          />
-          <Text
-            className={styles.label}
-            as="span"
-            size={3}
-            color="current"
-          >
-            {t('header.gold')}
-          </Text>
-          <Heading
-            className={styles.value}
-            as="strong"
-            size={3}
-          >
-            {number(progress.gold)}
-          </Heading>
-        </div>
-        <div className={styles.group}>
-          <Icon
-            className={styles.glyph}
-            name="trophy"
-            size={20}
-          />
-          <Text
-            className={styles.label}
-            as="span"
-            size={3}
-            color="current"
-          >
-            {t('stats.wins')}
-          </Text>
-          <Heading
-            className={styles.value}
-            as="strong"
-            size={3}
-          >
-            {number(progress.wins)}
-          </Heading>
-        </div>
-      </div>
-      <button
-        type="button"
-        className={styles.item}
-        onClick={() => openModal('settings')}
-      >
-        <span className={styles.label}>
-          <Icon
-            className={styles.glyph}
-            name="settings"
-            size={20}
-          />
-          {t('header.settings')}
-        </span>
-        <Icon
-          className={styles.glyph}
-          name="arrow-right"
-          size={18}
-        />
-      </button>
+      </Panel>
+      <Metrics items={
+        [
+          { id: 'gold', label: t('header.gold'), value: number(progress.gold), icon: 'coins' },
+          { id: 'wins', label: t('stats.wins'), value: number(progress.wins), icon: 'trophy' },
+        ]
+      }
+      />
       <nav
         className={styles.navigation}
         aria-label={t('profile.navigation')}
       >
-        <Link
-          className={styles.item}
+        <Action
+          icon="settings"
+          onClick={() => openModal('settings')}
+        >
+          {t('header.settings')}
+        </Action>
+        <Action
+          icon="gamepad-2"
           href="/#games"
           onClick={closeAllModals}
         >
-          <span className={styles.label}>
-            <Icon
-              className={styles.glyph}
-              name="gamepad-2"
-              size={20}
-            />
-            {t('nav.games')}
-          </span>
-          <Icon
-            className={styles.glyph}
-            name="arrow-right"
-            size={18}
-          />
-        </Link>
-        <button
-          type="button"
-          className={styles.item}
+          {t('nav.games')}
+        </Action>
+        <Action
+          icon="circle-question-mark"
           onClick={() => openModal('guide')}
         >
-          <span className={styles.label}>
-            <Icon
-              className={styles.glyph}
-              name="circle-question-mark"
-              size={20}
-            />
-            {t('nav.guide')}
-          </span>
-          <Icon
-            className={styles.glyph}
-            name="arrow-right"
-            size={18}
-          />
-        </button>
-        <button
-          type="button"
-          className={styles.item}
+          {t('nav.guide')}
+        </Action>
+        <Action
+          icon="trophy"
           onClick={() => openModal('stats')}
         >
-          <span className={styles.label}>
-            <Icon
-              className={styles.glyph}
-              name="trophy"
-              size={20}
-            />
-            {t('nav.stats')}
-          </span>
-          <Icon
-            className={styles.glyph}
-            name="arrow-right"
-            size={18}
-          />
-        </button>
+          {t('nav.stats')}
+        </Action>
       </nav>
     </div>
   )

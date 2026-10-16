@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 
 import { usePathname } from '@/i18n/navigation'
 
@@ -10,6 +9,7 @@ import { useArcadeStore } from '@/modules/Dota/store/arcade'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
 import Link from '@/components/Link'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
@@ -25,8 +25,11 @@ const ModeMenu = () => {
       className={styles.block}
       aria-label={t('gauntlet.chooseMode')}
     >
-      <Link
-        className={clsx(styles.card, pathname === '/dota' && styles.active)}
+      <Panel
+        as={Link}
+        interactive
+        selected={pathname === '/dota'}
+        className={styles.card}
         href="/dota/"
       >
         <Icon
@@ -45,9 +48,12 @@ const ModeMenu = () => {
         >
           {t('gauntlet.classicDescription')}
         </Text>
-      </Link>
-      <Link
-        className={clsx(styles.card, styles.arcade, pathname.includes('/arcade') && styles.active)}
+      </Panel>
+      <Panel
+        as={Link}
+        interactive
+        selected={pathname.includes('/arcade')}
+        className={styles.card}
         href="/dota/arcade/"
       >
         <Icon
@@ -75,7 +81,7 @@ const ModeMenu = () => {
           {' · '}
           {t(continuing ? 'gauntlet.continue' : 'gauntlet.start')}
         </Text>
-      </Link>
+      </Panel>
     </nav>
   )
 }

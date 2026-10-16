@@ -2,10 +2,10 @@ import Section from './_view'
 
 export const metadata = { title: 'Dota Spins — Spin Arcade' }
 
-const Page = () => {
+const Dota = () => {
   return (
     <Section />
   )
 }
 
-export default Page
+export default Dota

@@ -1,5 +1,3 @@
-'use client'
-
 import { LANGUAGES } from '@/i18n/config'
 
 import { useChangeLanguage } from '@/hooks/useChangeLanguage'

@@ -3,11 +3,11 @@
   gap: rem(12px);
   margin-top: rem(16px);
   padding: rem(16px);
-  border: rem(1px) solid var(--color-gold);
+  border: rem(1px) solid var(--color-game-accent);
   min-width: 0;
-  background: var(--color-surface-input);
+  background: var(--color-material-input);
   font-size: rem(14px);
-  color: var(--color-gold);
+  color: var(--color-game-accent);
 }
 
 .controls,
@@ -16,28 +16,4 @@
   @include flex(null, center, null, wrap);
 
   gap: rem(8px);
-}
-
-.control,
-.upgrade {
-  @include flex(center, center);
-
-  gap: rem(8px);
-  padding: rem(12px);
-  border: rem(1px) solid var(--color-line);
-  min-height: rem(44px);
-  background: var(--color-surface-raised);
-  color: var(--color-gold);
-  cursor: pointer;
-
-  @include transition(border-color);
-
-  &:hover,
-  &:focus-visible {
-    border-color: var(--color-gold);
-  }
-}
-
-.rune {
-  overflow-wrap: anywhere;
 }

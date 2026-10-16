@@ -1,12 +1,11 @@
 'use client'
 
-import clsx from 'clsx'
-
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useArcadeStore } from '@/modules/Dota/store/arcade'
 
 import Button from '@/components/Button'
+import Container from '@/components/Container'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
 import Link from '@/components/Link'
@@ -19,14 +18,16 @@ import GamePreloader from '@/modules/Dota/components/GamePreloader'
 import ModeMenu from '@/modules/Dota/components/mode-menu'
 
 import styles from './index.module.scss'
-const DotaView = ({ mode = 'classic' }) => {
-  const arcadeRun = useArcadeStore((s) => s.run)
-  const arcade = mode === 'arcade'
+
+const Section = ({ mode = 'classic' }) => {
   const { t } = useTranslation()
   const open = useModalStore((s) => s.openModal)
+  const arcadeRun = useArcadeStore((s) => s.run)
+  const arcade = mode === 'arcade'
+
   return (
-    <div className={clsx(styles.page, styles.group)}>
-      <div className={clsx(styles.intro, styles.group)}>
+    <Container>
+      <section className={styles.intro}>
         <div className={styles.group}>
           <Link
             className={styles.link}
@@ -50,22 +51,23 @@ const DotaView = ({ mode = 'classic' }) => {
           </Text>
         </div>
         <Button
-          className={styles.control}
           color="secondary"
           onClick={() => open('guide')}
         >
           {t('nav.guide')}
         </Button>
-      </div>
+      </section>
       <ModeMenu />
       <GamePreloader>
         {
-          arcade ? <ArcadeGame /> : <DotaGame />
+          arcade
+            ? <ArcadeGame />
+            : <DotaGame />
         }
-        <div className={clsx(styles.details, styles.group)}>
+        <section className={styles.details}>
           <GameGuide compact />
           <BattleLog battle={arcade ? (arcadeRun.battle || { log: [] }) : undefined} />
-        </div>
+        </section>
         <Text
           size={3}
           color="muted"
@@ -74,8 +76,8 @@ const DotaView = ({ mode = 'classic' }) => {
           {t('game.free')}
         </Text>
       </GamePreloader>
-    </div>
+    </Container>
   )
 }
 
-export default DotaView
+export default Section

@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useGameStore } from '@/modules/Dota/store/game'
 
+import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 
 import styles from './index.module.scss'
@@ -123,8 +124,10 @@ const GameViewport = ({ children, onOpen }) => {
           </div>
         </div>
         <div className={styles.toolbarActions}>
-          <button
-            className={styles.control}
+          <Button
+            color="secondary"
+            square
+            className={styles.guideControl}
             type="button"
             onClick={() => onOpen('guide')}
             aria-label={t('nav.guide')}
@@ -133,9 +136,10 @@ const GameViewport = ({ children, onOpen }) => {
               name="circle-question-mark"
               size={21}
             />
-          </button>
-          <button
-            className={styles.control}
+          </Button>
+          <Button
+            color="secondary"
+            square
             type="button"
             onClick={soundClick}
             aria-label={t('header.sound')}
@@ -154,9 +158,10 @@ const GameViewport = ({ children, onOpen }) => {
                 />
               )
             }
-          </button>
-          <button
-            className={styles.control}
+          </Button>
+          <Button
+            color="secondary"
+            square
             type="button"
             onClick={() => onOpen('settings')}
             aria-label={t('header.settings')}
@@ -165,9 +170,10 @@ const GameViewport = ({ children, onOpen }) => {
               name="settings"
               size={21}
             />
-          </button>
-          <button
-            className={styles.control}
+          </Button>
+          <Button
+            color="secondary"
+            square
             type="button"
             onClick={toggleFullscreen}
             aria-label={
@@ -191,7 +197,7 @@ const GameViewport = ({ children, onOpen }) => {
                 />
               )
             }
-          </button>
+          </Button>
         </div>
       </header>
       <div className={styles.viewportBody}>

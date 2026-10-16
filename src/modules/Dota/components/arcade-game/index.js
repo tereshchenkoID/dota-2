@@ -10,6 +10,7 @@ import { useArcadeStore } from '@/modules/Dota/store/arcade'
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 import { MODIFIERS } from '@/modules/Dota/arcade/modifiers'
 import ArcadePanel from '@/modules/Dota/components/arcade-panel'
@@ -37,7 +38,7 @@ const ArcadeGame = () => {
 
   if (run.status === 'idle') {
     return (
-      <section className={styles.intro}>
+      <Panel className={styles.intro}>
         <Heading>
           {t('gauntlet.title')}
         </Heading>
@@ -56,7 +57,7 @@ const ArcadeGame = () => {
         >
           {t('progression.arcadeRecords')}
         </Button>
-      </section>
+      </Panel>
     )
   }
 

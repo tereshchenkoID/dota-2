@@ -1,7 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
-
 import { usePathname } from '@/i18n/navigation'
 
 import { useTranslation } from '@/hooks/useTranslation'
@@ -9,112 +7,88 @@ import { useModalStore } from '@/store/modal'
 import { useGameStore } from '@/modules/Dota/store/game'
 
 import Button from '@/components/Button'
+import Container from '@/components/Container'
 import Icon from '@/components/Icon'
 import Link from '@/components/Link'
 import Logo from '@/components/Logo'
+import Text from '@/components/Text'
 import Languages from '@/modules/Languages'
 
 import styles from './index.module.scss'
 
-const Section = () => {
+const HeaderView = () => {
   const { t, number } = useTranslation()
-
-  const onOpen = useModalStore((s) => s.openModal)
-  const active = useModalStore((s) => s.active)
-  const progress = useGameStore((s) => s.progress)
+  const { openModal, active } = useModalStore()
+  const progress = useGameStore((state) => state.progress)
   const pathname = usePathname()
 
   return (
     <header className={styles.block}>
-      <div className={styles.container}>
+      <Container className={styles.container}>
         <Logo />
         <nav className={styles.nav}>
-          <Link
+          <Button
+            as={Link}
             href="/#games"
-            className={
-              clsx(
-                styles.link,
-                {
-                  [styles.active]: pathname === '/',
-                }
-              )
-            }
+            color="ghost"
+            selected={pathname === '/'}
           >
             {t('nav.games')}
-          </Link>
-          <button
-            className={styles.control}
-            type="button"
-            onClick={() => onOpen('guide')}
+          </Button>
+          <Button
+            color="ghost"
+            onClick={() => openModal('guide')}
           >
             {t('nav.guide')}
-          </button>
-          <button
-            className={styles.control}
-            type="button"
-            onClick={() => onOpen('stats')}
+          </Button>
+          <Button
+            color="ghost"
+            onClick={() => openModal('stats')}
           >
             {t('nav.stats')}
-          </button>
+          </Button>
         </nav>
         <div className={styles.account}>
-          <button
-            type="button"
-            className={clsx(styles.level, styles.control)}
-            onClick={() => onOpen('profile')}
+          <Button
+            color="secondary"
+            square
+            onClick={() => openModal('profile')}
             aria-label={t('profile.levelDetails')}
           >
-            <span className={styles.badge}>
-              {number(progress.level)}
-            </span>
-            <span className={styles.details}>
-              <b>
-                {t('header.level', { level: number(progress.level) })}
-              </b>
-              <span className={styles.track}>
-                <i
-                  className={styles.fill}
-                  style={
-                    {
-                      '--progress': `${((progress.xp % 250) / 250) * 100}%`,
-                    }
-                  }
-                />
-              </span>
-            </span>
-          </button>
-          <span
+            {number(progress.level)}
+          </Button>
+          <Text
+            as="span"
+            size={3}
+            color="accent"
             className={styles.gold}
-            title={t('header.gold')}
           >
             <Icon
               name="coins"
-              size={19}
+              size={20}
             />
-            <b>
-              {number(progress.gold)}
-            </b>
-          </span>
+            {number(progress.gold)}
+          </Text>
           <div className={styles.language}>
             <Languages />
           </div>
           <Button
-            color="alt"
-            square={true}
+            color="secondary"
+            square
             aria-label={t('ui.menu')}
             aria-haspopup="dialog"
             aria-expanded={active === 'profile'}
-            onClick={() => onOpen('profile')}
+            onClick={() => openModal('profile')}
           >
             <Icon
               name="menu"
-              size={22}
+              size={20}
             />
           </Button>
         </div>
-      </div>
+      </Container>
     </header>
   )
 }
 
-export default Section
+export default HeaderView

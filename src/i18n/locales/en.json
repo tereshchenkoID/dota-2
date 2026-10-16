@@ -142,7 +142,7 @@
   },
   "footer": {
     "note": "A fan-made, offline-first adventure. Not affiliated with Valve.",
-    "top": "Back to top"
+    "assets": "Dota 2 assets © Valve."
   },
   "symbols": {
     "juggernaut": "Juggernaut",
@@ -469,6 +469,61 @@
       "healing": "Healing {base} → {value} HP",
       "extraSpins": "Bonus spins {base} → {value}",
       "shields": "Blocks {base} → {value}"
+    }
+  },
+  "appearance": {
+    "title": "Appearance",
+    "description": "Choose a site theme. Each game keeps its own visual world.",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "uiKit": {
+    "title": "UI Kit",
+    "system": "Spin Arcade · Design system",
+    "description": "One component library for every page and dialog. Inspect real controls, states, typography and themes.",
+    "buttons": "Buttons and actions",
+    "controlHint": "Buttons, inputs, selects and toggles use the same 44 px control height. Variants change emphasis, not geometry.",
+    "disabled": "Disabled",
+    "selected": "Selected",
+    "iconButton": "Icon button",
+    "forms": "Fields and switches",
+    "input": "Search",
+    "placeholder": "Enter a name",
+    "validation": "Validation state",
+    "example": "Example value",
+    "error": "Example validation message.",
+    "toggle": "Preview switch",
+    "progress": "Progress example",
+    "typography": "Typography",
+    "heading": "Heading · size {size}",
+    "text": "Body text · size {size}",
+    "panels": "Panels and surfaces",
+    "panelHint": "Shared padding, border and radius. Only the surface variant changes.",
+    "metrics": "Metrics and badges",
+    "metricLevel": "Level",
+    "metricPoints": "Points",
+    "dialogs": "Dialogs",
+    "dialogHint": "A shared modal shell manages appearance, focus, Escape, scrolling and the game fullscreen portal.",
+    "openDialog": "Open demo",
+    "colors": "Semantic colors",
+    "colorHint": "Tokens describe a purpose. Light and dark palettes share the same names; components never select a palette themselves.",
+    "variants": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "ghost": "Ghost",
+      "danger": "Danger"
+    },
+    "materials": {
+      "default": "Default surface",
+      "raised": "Raised surface",
+      "inset": "Input surface"
+    },
+    "badges": {
+      "neutral": "Neutral",
+      "accent": "Accent",
+      "success": "Success",
+      "danger": "Danger"
     }
   }
 }

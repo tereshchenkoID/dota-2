@@ -1,9 +1,9 @@
-'use client'
-
 import { useTranslation } from '@/hooks/useTranslation'
 
+import Badge from '@/components/Badge'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
@@ -19,8 +19,10 @@ const Upcoming = ({ id, title, mark, genre, accent }) => {
   const { t } = useTranslation()
 
   return (
-    <article
-      className={styles.card}
+    <Panel
+      as="article"
+      padding={0}
+      className={styles.block}
       style={{ '--color-card-accent': accent }}
       aria-labelledby={`upcoming-${id}`}
     >
@@ -46,7 +48,7 @@ const Upcoming = ({ id, title, mark, genre, accent }) => {
         </Text>
       </div>
       <div className={styles.content}>
-        <span className={styles.status}>
+        <Badge color="accent">
           <Icon
             name="clock-3"
             size={14}
@@ -59,7 +61,7 @@ const Upcoming = ({ id, title, mark, genre, accent }) => {
           >
             {t('home.comingSoon')}
           </Text>
-        </span>
+        </Badge>
         <Heading
           id={`upcoming-${id}`}
           as="h3"
@@ -82,7 +84,7 @@ const Upcoming = ({ id, title, mark, genre, accent }) => {
           {t('home.inDevelopment')}
         </Text>
       </div>
-    </article>
+    </Panel>
   )
 }
 

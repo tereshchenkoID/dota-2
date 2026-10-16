@@ -1,7 +1,9 @@
 import { useTranslation } from '@/hooks/useTranslation'
 
+import Badge from '@/components/Badge'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
@@ -14,6 +16,7 @@ const STEPS = [
 
 const ArcadeGuide = () => {
   const { t } = useTranslation()
+
   return (
     <div className={styles.guide}>
       <Text color="muted">
@@ -22,16 +25,17 @@ const ArcadeGuide = () => {
       <div className={styles.steps}>
         {
           STEPS.map(({ key, icon }) => (
-            <section
+            <Panel
+              variant="raised"
               className={styles.step}
               key={key}
             >
-              <span className={styles.icon}>
+              <Badge color="accent">
                 <Icon
                   name={icon}
-                  size={22}
+                  size={20}
                 />
-              </span>
+              </Badge>
               <div>
                 <Heading
                   className={styles.title}
@@ -47,7 +51,7 @@ const ArcadeGuide = () => {
                   {t(`arcadeGuide.${key}Body`)}
                 </Text>
               </div>
-            </section>
+            </Panel>
           ))
         }
       </div>

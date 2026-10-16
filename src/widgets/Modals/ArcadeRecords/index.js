@@ -4,7 +4,9 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useArcadeStore } from '@/modules/Dota/store/arcade'
 
 import Heading from '@/components/Heading'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
+import Metrics from '@/modules/Metrics'
 
 import styles from './index.module.scss'
 
@@ -20,32 +22,7 @@ const ArcadeRecords = () => {
 
   return (
     <div className={styles.block}>
-      <dl className={styles.stats}>
-        {
-          metrics.map(([key, value]) => (
-            <div
-              className={styles.stat}
-              key={key}
-            >
-              <Text
-                as="dt"
-                size={3}
-                color="muted"
-              >
-                {t(`progression.records.${key}`)}
-              </Text>
-              <Heading
-                as="dd"
-                size={4}
-              >
-                {
-                  typeof value === 'number' ? number(value) : value
-                }
-              </Heading>
-            </div>
-          ))
-        }
-      </dl>
+      <Metrics items={metrics.map(([key, value]) => ({ id: key, label: t(`progression.records.${key}`), value: typeof value === 'number' ? number(value) : value }))} />
       <Heading
         as="h3"
         size={4}
@@ -53,11 +30,14 @@ const ArcadeRecords = () => {
         {t('progression.recent')}
       </Heading>
       {
-        stats.recent.length ? (
+        stats.recent.length
+          ?
           <ol className={styles.recent}>
             {
-              stats.recent.map((entry) => (
-                <li
+              stats.recent.map((entry) =>
+                <Panel
+                  as="li"
+                  variant="raised"
                   className={styles.entry}
                   key={entry.id}
                 >
@@ -74,23 +54,22 @@ const ArcadeRecords = () => {
                     {t('progression.recordSummary', { damage: number(entry.damage), spins: number(entry.spins), minutes: number(Math.floor(entry.seconds / 60)), seconds: number(entry.seconds % 60) })}
                   </Text>
                   {
-entry.endedAt &&
-<Text
-  size={3}
-  color="muted"
->
-  {date(entry.endedAt)}
-</Text>
+                        entry.endedAt &&
+                        <Text
+                          size={3}
+                          color="muted"
+                        >
+                          {date(entry.endedAt)}
+                        </Text>
                   }
-                </li>
-              ))
+                </Panel>
+              )
             }
           </ol>
-        ) : (
+          :
           <Text color="muted">
             {t('progression.noRecords')}
           </Text>
-        )
       }
       <Text
         size={3}
@@ -99,13 +78,13 @@ entry.endedAt &&
         {t('progression.recordsHint')}
       </Text>
       {
-stats.finished > stats.measuredRuns &&
-<Text
-  size={3}
-  color="muted"
->
-  {t('progression.legacyRecords')}
-</Text>
+        stats.finished > stats.measuredRuns &&
+        <Text
+          size={3}
+          color="muted"
+        >
+          {t('progression.legacyRecords')}
+        </Text>
       }
     </div>
   )

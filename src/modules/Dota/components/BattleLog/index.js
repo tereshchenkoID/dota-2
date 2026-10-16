@@ -3,6 +3,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useGameStore } from '@/modules/Dota/store/game'
 
 import Heading from '@/components/Heading'
+import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
@@ -11,7 +12,7 @@ const BattleLog = ({ battle }) => {
   const classicLog = useGameStore((s) => s.run.log)
   const log = battle?.log || classicLog
   return (
-    <section className={styles.log}>
+    <Panel>
       <Heading
         as="h2"
         size={3}
@@ -74,7 +75,7 @@ const BattleLog = ({ battle }) => {
           )
         }
       </div>
-    </section>
+    </Panel>
   )
 }
 

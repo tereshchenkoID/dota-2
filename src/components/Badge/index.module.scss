@@ -1,0 +1,38 @@
+.block {
+  @include flex(null, center, null, null, inline-flex);
+
+  gap: rem(8px);
+  padding: rem(4px) rem(8px);
+  border: rem(1px) solid transparent;
+  border-radius: var(--radius-full);
+  min-height: rem(28px);
+  font-size: rem(12px);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+}
+
+.neutral {
+  border-color: var(--color-border-muted);
+  background-color: var(--color-material-raised);
+  color: var(--color-text-muted);
+}
+
+.accent {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.success {
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.danger {
+  background-color: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.dark {
+  background-color: var(--color-image-overlay);
+  color: var(--color-white);
+}

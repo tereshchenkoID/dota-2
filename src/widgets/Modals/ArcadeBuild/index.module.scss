@@ -1,0 +1,61 @@
+.block,
+.groups,
+.group,
+.details {
+  display: grid;
+  gap: rem(16px);
+  min-width: 0;
+}
+
+.list {
+  display: grid;
+  gap: rem(12px);
+  margin: 0;
+}
+
+.row {
+  @include flex(space-between, baseline);
+
+  gap: rem(12px);
+}
+
+.upgrade {
+  @include flex(null, flex-start);
+
+  gap: rem(12px);
+  padding-bottom: rem(16px);
+  border-bottom: rem(1px) solid var(--color-border-muted);
+  color: var(--color-accent);
+}
+
+@include tab-s {
+  .groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.resources,
+.examples {
+  display: grid;
+  gap: rem(12px);
+  margin: 0;
+  min-width: 0;
+}
+
+.controls {
+  @include flex(null, center, null, wrap);
+
+  gap: rem(8px);
+}
+
+.example {
+  display: grid;
+  gap: rem(4px);
+}
+
+@include tab-s {
+  .resources,
+  .examples {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
