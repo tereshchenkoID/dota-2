@@ -12,7 +12,7 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: rem(12px);
-  margin: auto;
+  margin-inline: auto;
   padding: rem(16px);
   max-width: var(--max-width);
 }
@@ -22,20 +22,21 @@
 
   gap: rem(24px);
 
-  .link,.control {
-    padding: rem(12px) 0;
-    background: none;
-    font-size: rem(14px);
-    line-height: 1.5;
-    text-decoration: none;
-    color: var(--color-sub-text);
-    white-space: nowrap;
-  }
-
-  .active {
+  &.active {
     border-bottom: rem(2px) solid var(--color-primary-hover);
     color: var(--color-text);
   }
+}
+
+.link,
+.control {
+  padding: rem(12px) 0;
+  background: none;
+  font-size: rem(14px);
+  line-height: 1.5;
+  text-decoration: none;
+  color: var(--color-sub-text);
+  white-space: nowrap;
 }
 
 .account {
@@ -45,22 +46,21 @@
 }
 
 .level {
+  @include flex(null, center);
+
   gap: rem(12px);
   padding: 0;
   background: none;
   text-align: left;
   color: var(--color-text);
-
-  @include flex(null, center);
 }
 
 .badge {
+  @include size(rem(40px), rem(44px));
+
   display: grid;
   border: rem(1px) solid var(--color-border);
   border-radius: rem(8px);
-
-  @include size(rem(40px), rem(44px));
-
   background: var(--color-surface-hover);
   font-size: rem(20px);
   color: var(--color-link-hover);
@@ -73,22 +73,20 @@
 }
 
 .track {
+  @include size(rem(88px), rem(4px));
+
   display: block;
   margin-top: rem(8px);
   border-radius: rem(4px);
-
-  @include size(rem(88px), rem(4px));
-
   background: var(--color-surface-hover);
   overflow: hidden;
+}
 
-  .fill {
-    display: block;
+.fill {
+  @include size(var(--progress), 100%);
 
-    @include size(var(--progress), 100%);
-
-    background: var(--color-primary-hover);
-  }
+  display: block;
+  background: var(--color-primary-hover);
 }
 
 .gold {
@@ -144,12 +142,14 @@
   }
 
   .nav {
-    display: flex;
-    gap: rem(12px);
+    @include flex;
 
-    .link,.control {
-      font-size: rem(12px);
-    }
+    gap: rem(12px);
+  }
+
+  .link,
+  .control {
+    font-size: rem(12px);
   }
 }
 
@@ -160,10 +160,11 @@
 
   .nav {
     gap: rem(16px);
+  }
 
-    .link,.control {
-      font-size: rem(14px);
-    }
+  .link,
+  .control {
+    font-size: rem(14px);
   }
 }
 

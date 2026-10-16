@@ -58,23 +58,29 @@ const SlotOutcome = ({ run, spinning }) => {
                   {t('abilities.' + run.lastAbility)}
                 </strong>
                 {
-                  run.lastDamage > 0 &&
-                  <b className={styles.value}>
-                    +
-                    {number(run.lastDamage)}
-                  </b>
+run.lastDamage > 0 &&
+<b className={styles.value}>
+  +
+  {number(run.lastDamage)}
+</b>
                 }
               </div>
               {
-                run.lastHealing > 0 &&
-                <p className={styles.healing}>
-                  <Icon
-                    className={styles.glyph}
-                    name="heart-pulse"
-                    size={16}
-                  />
-                  {t('game.healed', { amount: number(run.lastHealing) })}
-                </p>
+run.lastBreakdown && run.lastDamage > 0 &&
+<p className={styles.breakdown}>
+  {t('progression.damageBreakdown', { base: number(run.lastBreakdown.base), upgrades: number(run.lastBreakdown.upgrades), rune: number(run.lastBreakdown.rune), total: number(run.lastDamage) })}
+</p>
+              }
+              {
+run.lastHealing > 0 &&
+<p className={styles.healing}>
+  <Icon
+    className={styles.glyph}
+    name="heart-pulse"
+    size={16}
+  />
+  {t('game.healed', { amount: number(run.lastHealing) })}
+</p>
               }
             </>
           ) : (

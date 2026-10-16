@@ -18,7 +18,12 @@ const Link = ({
   return (
     <Component
       href={href}
-      className={clsx(styles.link, className)}
+      className={
+        clsx(
+          styles.link,
+          className
+        )
+      }
       {...props}
     >
       {children}

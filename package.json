@@ -17,7 +17,8 @@
     "lint:fix": "eslint . --fix && stylelint \"src/**/*.scss\" --fix",
     "test": "vitest run",
     "test:watch": "vitest",
-    "simulate:arcade": "node --import ./scripts/register-alias.js ./scripts/simulate-arcade.js"
+    "simulate:arcade": "node --import ./scripts/register-alias.js ./scripts/simulate-arcade.js",
+    "simulate:impact": "node --import ./scripts/register-alias.js ./scripts/arcade-impact.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",

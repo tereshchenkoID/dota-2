@@ -4,7 +4,10 @@ import { describe, expect, it } from 'vitest'
 import { MODIFIERS } from './modifiers'
 import { REWARDS } from './reward-generator'
 
-const read = (locale) => JSON.parse(readFileSync(new URL(`../../../i18n/locales/${locale}.json`, import.meta.url), 'utf8')).gauntlet
+const read = (locale) => {
+  const messages = JSON.parse(readFileSync(new URL(`../../../i18n/locales/${locale}.json`, import.meta.url), 'utf8'))
+  return { gauntlet: messages.gauntlet, progression: messages.progression }
+}
 const flatten = (value, prefix = '') => Object.entries(value).flatMap(([key, entry]) => typeof entry === 'object' ? flatten(entry, `${prefix}${key}.`) : [[`${prefix}${key}`, entry]])
 
 describe('Arcade translations', () => {
@@ -21,8 +24,8 @@ describe('Arcade translations', () => {
     for (const locale of ['en', 'ru', 'uk']) {
       const messages = Object.fromEntries(flatten(read(locale)))
       for (const entry of [...REWARDS, ...MODIFIERS]) {
-        expect(messages[entry.nameKey.replace('gauntlet.', '')]).toBeTruthy()
-        expect(messages[entry.descriptionKey.replace('gauntlet.', '')]).toBeTruthy()
+        expect(messages[entry.nameKey]).toBeTruthy()
+        expect(messages[entry.descriptionKey]).toBeTruthy()
       }
     }
   })

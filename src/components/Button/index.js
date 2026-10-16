@@ -6,6 +6,7 @@ const Button = ({
   children,
   color = 'primary',
   type = 'button',
+  square = false,
   className = '',
   ...props
 }) => {
@@ -16,6 +17,9 @@ const Button = ({
         clsx(
           styles.block,
           styles[color],
+          {
+            [styles.square]: square,
+          },
           className
         )
       }

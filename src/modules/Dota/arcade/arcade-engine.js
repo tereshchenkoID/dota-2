@@ -5,12 +5,14 @@ import { ARCADE_CONFIG } from './arcade-config'
 import { resolveArcadeEffect } from './effect-resolver'
 import { chooseModifier } from './modifiers'
 import { generateRewardChoices, REWARDS } from './reward-generator'
+import { RECORD_DEFAULTS } from './run-records'
 import { activateRune, consumeRune, RUNES } from './runes'
+import { normalizeArcadeState } from './save-normalizer'
 import { getStageConfig } from './stage-config'
-import { getBonuses, UPGRADES } from './upgrades'
+import { getBonuses } from './upgrades'
 
 export const IDLE_RUN = { status: 'idle' }
-export const INITIAL_ARCADE_STATS = { bestStage: 0, runs: 0, finished: 0, bosses: 0, damage: 0, spins: 0 }
+export const INITIAL_ARCADE_STATS = { bestStage: 0, runs: 0, finished: 0, bosses: 0, damage: 0, spins: 0, ...RECORD_DEFAULTS }
 
 export function enterStage(run, random) {
   const bonuses = getBonuses(run.upgrades)
@@ -22,6 +24,12 @@ export function enterStage(run, random) {
     spins: stageConfig.spins + bonuses.spins,
     shields: bonuses.shields,
     secondWindUsed: false,
+    blockedAttacks: 0,
+    bonusSpinsEarned: 0,
+    healingReceived: 0,
+    secondWindTriggered: false,
+    lastBlockSource: null,
+    lastBreakdown: null,
   }
   return {
     ...run,
@@ -31,6 +39,8 @@ export function enterStage(run, random) {
     maxStage: Math.max(run.maxStage, run.stage),
     choices: [],
     selectedReward: null,
+    runeHistory: run.preparedRune ? { ...run.runeHistory, [run.preparedRune]: (run.runeHistory?.[run.preparedRune] || 0) + 1 } : run.runeHistory || {},
+    runeActivation: run.preparedRune || null,
   }
 }
 
@@ -44,6 +54,8 @@ export function createArcadeRun({ id, seed, now = new Date().toISOString(), reco
     maxHp: ARCADE_CONFIG.playerHp,
     battle: { hp: ARCADE_CONFIG.playerHp },
     upgrades: {},
+    runeHistory: {},
+    recorded: false,
     preparedRune: null,
     activeRune: null,
     stageConfig: null,
@@ -59,7 +71,7 @@ export function createArcadeRun({ id, seed, now = new Date().toISOString(), reco
   }, random)
 }
 
-export function completeArcadeStage(run) {
+export function completeArcadeStage(run, rewardOptions) {
   if (run.status !== 'fighting' || run.battle.status !== 'won') return run
   const recovery = getBonuses(run.upgrades).recovery
   const next = {
@@ -67,9 +79,10 @@ export function completeArcadeStage(run) {
     status: 'choosing-reward',
     defeatedBosses: run.defeatedBosses + 1,
     activeRune: null,
+    victorySummary: { bonusSpins: run.battle.bonusSpinsEarned || 0, healing: run.battle.healingReceived || 0, blocked: run.battle.blockedAttacks || 0, recovery: Math.min(recovery, run.maxHp - run.battle.hp) },
     battle: { ...run.battle, hp: Math.min(run.maxHp, run.battle.hp + recovery) },
   }
-  return { ...next, choices: generateRewardChoices(next) }
+  return { ...next, choices: generateRewardChoices(next, undefined, rewardOptions) }
 }
 
 export function applyUpgrade(run, rewardId) {
@@ -106,7 +119,7 @@ export function finishArcadeRun(run, reason, now) {
   }
 }
 
-export function resolveArcadeTurn(run, grid, now = new Date().toISOString()) {
+export function resolveArcadeTurn(run, grid, now = new Date().toISOString(), rewardOptions) {
   if (run.status !== 'fighting' || run.battle.spins <= 0) return run
   const battle = run.battle
   const matches = findCombinations(grid)
@@ -117,6 +130,8 @@ export function resolveArcadeTurn(run, grid, now = new Date().toISOString()) {
     ...battle,
     hp: Math.min(run.maxHp, battle.hp + healing),
     lastHealing: healing,
+    healingReceived: (battle.healingReceived || 0) + healing,
+    bonusSpinsEarned: (battle.bonusSpinsEarned || 0) + effect.extraSpins,
     grid,
     matches,
     turn: battle.turn + 1,
@@ -128,6 +143,13 @@ export function resolveArcadeTurn(run, grid, now = new Date().toISOString()) {
     lastEffect: effect.snapshot,
     shields: Math.min(ARCADE_CONFIG.maxShields, battle.shields + effect.shields),
     lastAttack: 0,
+    lastBlockSource: null,
+    secondWindTriggered: false,
+    lastBreakdown: {
+      base: Math.min(dealt, effect.breakdown.base),
+      upgrades: Math.min(Math.max(0, dealt - effect.breakdown.base), effect.breakdown.upgrades),
+      rune: Math.max(0, dealt - effect.breakdown.base - effect.breakdown.upgrades),
+    },
   }
   let next = {
     ...run,
@@ -144,8 +166,12 @@ export function resolveArcadeTurn(run, grid, now = new Date().toISOString()) {
     if (runeBlocks) {
       nextBattle.lastAttack = -1
       next.activeRune = consumeRune(next.activeRune, 'attacks')
+      nextBattle.blockedAttacks = (battle.blockedAttacks || 0) + 1
+      nextBattle.lastBlockSource = 'rune'
     } else if (nextBattle.shields > 0) {
       nextBattle.shields -= 1
+      nextBattle.blockedAttacks = (battle.blockedAttacks || 0) + 1
+      nextBattle.lastBlockSource = 'shield'
       nextBattle.lastAttack = -1
     } else {
       const phase = nextBattle.bossHp / run.stageConfig.maxHp
@@ -156,12 +182,13 @@ export function resolveArcadeTurn(run, grid, now = new Date().toISOString()) {
       if (!nextBattle.hp && reviveHp && !nextBattle.secondWindUsed) {
         nextBattle.hp = Math.min(run.maxHp, reviveHp)
         nextBattle.secondWindUsed = true
+        nextBattle.secondWindTriggered = true
       }
     }
   }
   next.activeRune = consumeRune(next.activeRune, 'spins')
   nextBattle.log = [{ turn: nextBattle.turn, damage: dealt, healing, attack: nextBattle.lastAttack, ability: effect.abilities.at(-1) || null }, ...battle.log].slice(0, 6)
-  if (nextBattle.status === 'won') return completeArcadeStage(next)
+  if (nextBattle.status === 'won') return completeArcadeStage(next, rewardOptions)
   if (!nextBattle.hp) return finishArcadeRun(next, 'hp', now)
   if (!nextBattle.spins || nextBattle.turn >= ARCADE_CONFIG.maxTurns) return finishArcadeRun(next, 'spins', now)
   return next
@@ -172,17 +199,7 @@ function runeBlocksAttack(id) {
   return Boolean(RUNES.find((rune) => rune.id === id)?.effects.blocks)
 }
 
-// Unknown arcade save versions start fresh while retaining records.
-// Classic uses a different key and is never touched.
+// Migrations normalize the same schema on regular hydration as well as upgrades.
 export function migrateArcadeState(persisted, version) {
-  const stats = { ...INITIAL_ARCADE_STATS, ...persisted?.stats }
-  if (version !== 1) return { run: IDLE_RUN, stats, pending: null }
-  const run = persisted?.run
-  if (!run || !['idle', 'fighting', 'choosing-reward', 'transitioning', 'defeated'].includes(run.status)) return { run: IDLE_RUN, stats, pending: null }
-  if (run.status !== 'idle' && (!run.battle || !run.id || !run.stageConfig || !Number.isFinite(run.battle.hp))) return { run: IDLE_RUN, stats, pending: null }
-  if (run.status !== 'idle') {
-    const upgrades = Object.fromEntries(UPGRADES.map((entry) => [entry.id, Math.min(entry.maxLevel, Math.max(0, Math.floor(run.upgrades?.[entry.id] || 0)))]))
-    return { run: { ...run, upgrades }, stats, pending: run.status === 'fighting' ? persisted.pending || null : null }
-  }
-  return { run, stats, pending: null }
+  return normalizeArcadeState(persisted, version)
 }

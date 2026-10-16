@@ -3,10 +3,10 @@
   @include flex(center, center, null, null, inline-flex);
 
   gap: rem(10px);
-  padding: rem(12px) rem(22px);
+  padding: rem(10px) rem(14px);
   border: rem(1px) solid transparent;
   border-radius: var(--border-radius-default);
-  min-height: rem(46px);
+  min-height: rem(42px);
   font-size: rem(16px);
   font-weight: var(--font-weight-semibold);
   line-height: 1.3;
@@ -66,18 +66,27 @@
   }
 }
 
+.alt {
+  background-color: var(--color-surface);
+  color: var(--color-link-hover);
+  border-color: var(--color-border);
+
+  @include hover {
+    &:hover {
+      &:not(:disabled) {
+        background: var(--color-surface-hover);
+      }
+    }
+  }
+}
+
 .danger {
   background-color: var(--color-danger);
   color: var(--color-white);
   border-color: var(--color-danger-hover);
 }
 
-.icon {
+.square {
+  aspect-ratio: 1 / 1;
   padding: rem(8px);
-  width: rem(44px);
-  min-width: rem(44px);
-  background-color: var(--color-surface);
-  font-size: rem(22px);
-  color: var(--color-link-hover);
-  border-color: var(--color-border);
 }

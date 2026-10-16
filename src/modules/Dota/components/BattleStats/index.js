@@ -5,7 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import Icon from '@/components/Icon'
 
 import styles from './index.module.scss'
-const BattleStats = ({ run, maxHp = 100 }) => {
+const BattleStats = ({ run, maxHp = 100, feedback }) => {
   const { t, number } = useTranslation()
   return (
     <section className={styles.stats}>
@@ -97,9 +97,12 @@ const BattleStats = ({ run, maxHp = 100 }) => {
         </b>
       </div>
       <p className={styles.lastAbility}>
-        <span className={styles.label}>
-          {t('game.ability')}
-        </span>
+        {
+          feedback ||
+          <span className={styles.label}>
+            {t('game.ability')}
+          </span>
+        }
         <b className={styles.value}>
           {
             run.lastAbility

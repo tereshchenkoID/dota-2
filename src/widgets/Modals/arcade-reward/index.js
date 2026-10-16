@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
@@ -10,14 +11,50 @@ import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
 import Text from '@/components/Text'
 import { REWARDS } from '@/modules/Dota/arcade/reward-generator'
+import { getRuneValues } from '@/modules/Dota/arcade/runes'
+import { getUpgradeValue } from '@/modules/Dota/arcade/upgrades'
 
 import styles from './index.module.scss'
 
 const ArcadeReward = ({ onClose }) => {
   const { t, number } = useTranslation()
   const { run, chooseReward, nextStage } = useArcadeStore()
+  const [showRewards, setShowRewards] = useState(false)
+  useEffect(() => {
+    const timer = setTimeout(() => setShowRewards(true), window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 850)
+    return () => clearTimeout(timer)
+  }, [run.id, run.stage])
   const selected = REWARDS.find((entry) => entry.id === run.selectedReward)
   if (!['choosing-reward', 'transitioning'].includes(run.status)) return null
+
+  if (!showRewards && !selected) {
+    return (
+      <div className={clsx(styles.block, styles.victory)}>
+        <Icon
+          name="trophy"
+          size={48}
+        />
+        <Heading
+          as="h3"
+          size={2}
+        >
+          {t('gauntlet.stageCleared', { stage: number(run.stage) })}
+        </Heading>
+        <Text>
+          {t('gauntlet.stageSummary', { damage: number(run.battle.totalDamage), spins: number(run.battle.turn), hp: number(run.battle.hp), max: number(run.maxHp) })}
+        </Text>
+        <Text color="accent">
+          {t('progression.victorySummary', { blocked: number(run.victorySummary?.blocked || 0), recovery: number(run.victorySummary?.recovery || 0), spins: number(run.victorySummary?.bonusSpins || 0), healing: number(run.victorySummary?.healing || 0) })}
+        </Text>
+        <Text color="muted">
+          {t('gauntlet.nextStage', { stage: number(run.stage + 1) })}
+        </Text>
+        <Button onClick={() => setShowRewards(true)}>
+          {t('progression.skip')}
+        </Button>
+      </div>
+    )
+  }
 
   return (
     <div className={styles.block}>
@@ -26,6 +63,12 @@ const ArcadeReward = ({ onClose }) => {
       </Text>
       <Text color="muted">
         {t('gauntlet.stageSummary', { damage: number(run.battle.totalDamage), spins: number(run.battle.turn), hp: number(run.battle.hp), max: number(run.maxHp) })}
+      </Text>
+      <Text
+        size={3}
+        color="muted"
+      >
+        {t('progression.victorySummary', { blocked: number(run.victorySummary?.blocked || 0), recovery: number(run.victorySummary?.recovery || 0), spins: number(run.victorySummary?.bonusSpins || 0), healing: number(run.victorySummary?.healing || 0) })}
       </Text>
       {
         selected ? (
@@ -53,7 +96,8 @@ const ArcadeReward = ({ onClose }) => {
               run.choices.map((id) => {
                 const entry = REWARDS.find((reward) => reward.id === id)
                 const level = entry.type === 'rune' ? 1 : (run.upgrades[id] || 0) + 1
-                const value = entry.type === 'rune' ? 0 : entry.value < 1 ? Math.round(entry.value * level * 100) : entry.value * level
+                const previous = entry.type === 'rune' ? 0 : entry.effect === 'maxHp' ? run.maxHp : getUpgradeValue(entry, level - 1)
+                const value = entry.type === 'rune' ? 0 : entry.effect === 'maxHp' ? run.maxHp + entry.value : getUpgradeValue(entry, level)
                 return (
                   <button
                     key={id}
@@ -81,21 +125,30 @@ const ArcadeReward = ({ onClose }) => {
                       {t(entry.nameKey)}
                     </Heading>
                     {
-                      entry.type !== 'rune' &&
-                      <Text
-                        as="span"
-                        size={3}
-                        color="accent"
-                      >
-                        {t('gauntlet.level', { level: number(level), max: number(entry.maxLevel) })}
-                      </Text>
+entry.type !== 'rune' &&
+<Text
+  as="span"
+  size={3}
+  color="accent"
+>
+  {t('progression.levelChange', { current: number(level - 1), next: number(level), max: number(entry.maxLevel) })}
+</Text>
                     }
                     <Text
                       as="span"
                       size={3}
                       color="muted"
                     >
-                      {t(entry.descriptionKey, { value: number(value || 0) })}
+                      {
+                        entry.type === 'rune' ? t(entry.descriptionKey, getRuneValues(entry)) : t('progression.bonusChange', { stat: t(`progression.stats.${entry.effect === 'spins' ? 'extraSpins' : entry.effect === 'shields' ? 'startingShields' : entry.effect}`), before: entry.value < 1 ? t('progression.percent', { value: number(previous) }) : number(previous), after: entry.value < 1 ? t('progression.percent', { value: number(value) }) : number(value) })
+                      }
+                    </Text>
+                    <Text
+                      as="span"
+                      size={4}
+                      color="muted"
+                    >
+                      {t(entry.type === 'rune' ? 'progression.nextStageOnly' : 'progression.permanent')}
                     </Text>
                   </button>
                 )

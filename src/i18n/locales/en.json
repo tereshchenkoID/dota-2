@@ -142,7 +142,6 @@
   },
   "footer": {
     "note": "A fan-made, offline-first adventure. Not affiliated with Valve.",
-    "assets": "Dota 2 assets © Valve.",
     "top": "Back to top"
   },
   "symbols": {
@@ -274,7 +273,7 @@
     "restartTitle": "Restart Roshan Gauntlet?",
     "restartBody": "Your current Arcade Run and its upgrades will be replaced. Your personal best and Classic progress stay saved.",
     "rules": "After every victory, choose one of three rewards. HP carries between stages. Every fifth Roshan is empowered; curses begin at stage 3. Each stage has a 100-spin safety limit, including bonus spins.",
-    "runeHint": "Only one rune can be prepared. It activates automatically next stage. Tap an upgrade to inspect it. All hero combinations count as abilities; critical bonuses affect Phantom Assassin and Daedalus.",
+    "runeHint": "One rune activates automatically next stage. Hero damage affects all combinations; Arcane Knowledge affects 4–5 hero matches. Inspect Current Build for exact bonuses.",
     "defeat": {
       "hp": "Roshan has defeated you. Try a different build.",
       "spins": "No spins left. Your next run could go further."
@@ -307,7 +306,7 @@
       },
       "arcane-knowledge": {
         "name": "Arcane Knowledge",
-        "description": "Hero ability damage +{value}%."
+        "description": "4–5 hero combination damage +{value}%."
       },
       "fortified-armor": {
         "name": "Fortified Armor",
@@ -319,7 +318,7 @@
       },
       "vitality": {
         "name": "Vitality",
-        "description": "Maximum HP +{value}. Each level also heals 15 HP."
+        "description": "Maximum HP +{value}. Each level also heals 20 HP."
       },
       "battle-recovery": {
         "name": "Battle Recovery",
@@ -341,31 +340,31 @@
     "runes": {
       "double-damage": {
         "name": "Double Damage Rune",
-        "description": "Next stage: ×2 final damage for 3 spins."
+        "description": "Next stage: ×{multiplier} final damage for {duration} spins."
       },
       "regeneration": {
         "name": "Regeneration Rune",
-        "description": "Heal 35 HP when the next stage starts."
+        "description": "Heal {healing} HP when the next stage starts."
       },
       "haste": {
         "name": "Haste Rune",
-        "description": "Next stage starts with 3 additional spins."
+        "description": "Next stage starts with {spins} additional spins."
       },
       "arcane": {
         "name": "Arcane Rune",
-        "description": "Next stage: hero abilities deal 50% more damage for 5 spins."
+        "description": "Next stage: hero damage +{bonus}% for {duration} spins."
       },
       "invisibility": {
         "name": "Invisibility Rune",
-        "description": "Block the first Roshan attack next stage."
+        "description": "Next stage: heal {healing} HP and block the first {duration} Roshan attacks."
       },
       "shield": {
         "name": "Shield Rune",
-        "description": "Start the next stage with 2 extra blocks."
+        "description": "Start the next stage with {shields} extra blocks."
       },
       "illusion": {
         "name": "Illusion Rune",
-        "description": "Next stage: hero combinations echo 40% damage for 3 spins. Items are not copied."
+        "description": "Next stage: current hero combinations echo {bonus}% damage for {duration} spins. Items and Refresher copies are excluded."
       }
     },
     "modifiers": {
@@ -386,5 +385,65 @@
         "description": "Roshan attacks every 2 spins instead of 3."
       }
     }
+  },
+  "progression": {
+    "currentBuild": "Current Build",
+    "arcadeRecords": "Arcade Records",
+    "runComplete": "RUN COMPLETE",
+    "tryAgain": "Try Again",
+    "backToMenu": "Back to Menu",
+    "duration": "{minutes}m {seconds}s",
+    "record": "Personal best",
+    "usedRunes": "Runes used",
+    "noUsedRunes": "No runes activated this run.",
+    "percent": "{value}%",
+    "factor": "×{value}",
+    "scopeHint": "Hero damage affects every hero combination. Ability damage affects 4–5 hero matches. Critical damage affects Phantom Assassin and the Daedalus critical bonus. Charges round up; damage rounds once after modifiers.",
+    "recent": "Last 10 results",
+    "noRecords": "Finish a run to start your records.",
+    "recordSummary": "Damage {damage} · Spins {spins} · {minutes}m {seconds}s",
+    "recordsHint": "Average stage counts completed, recorded runs. Restarts count toward total runs, not completed results. Duration includes time between spins and reloads.",
+    "legacyRecords": "Earlier totals and best stage were preserved. Historical average and duration are available for runs recorded since this update.",
+    "runeActivated": "{name} activated",
+    "victorySummary": "Blocked: {blocked} · Healing: +{healing} HP · Bonus spins: +{spins} · Victory recovery: +{recovery} HP",
+    "skip": "Choose rewards now",
+    "levelChange": "Level {current} → {next} / {max}",
+    "bonusChange": "{stat}: {before} → {after}",
+    "nextStageOnly": "Next stage only",
+    "permanent": "For the rest of this run",
+    "damageBreakdown": "Base {base} + build {upgrades} + rune {rune} = {total}",
+    "events": {
+      "secondWind": "Second Wind! Survived with {hp} HP.",
+      "runeBlock": "Invisibility Rune blocked Roshan.",
+      "shieldBlock": "A shield blocked Roshan.",
+      "attack": "Roshan strikes: −{damage} HP",
+      "ready": "Keep your build ready for the next strike."
+    },
+    "stats": {
+      "heroBonus": "Hero damage",
+      "criticalBonus": "Critical damage",
+      "abilityBonus": "4–5 match ability damage",
+      "eliteBonus": "Damage against elite",
+      "hp": "Current HP",
+      "maxHp": "Maximum HP",
+      "shields": "Current blocks",
+      "startingShields": "Blocks at stage start",
+      "recovery": "HP after victory",
+      "reviveHp": "Second Wind HP",
+      "spins": "Spins remaining",
+      "extraSpins": "Bonus spins per stage",
+      "artifactBonus": "Artifact power",
+      "runeMultiplier": "Rune damage multiplier"
+    },
+    "records": {
+      "runs": "Total runs",
+      "best": "Best stage",
+      "average": "Average recorded stage",
+      "bosses": "Roshan defeated",
+      "damage": "Total damage",
+      "longest": "Longest recorded run"
+    },
+    "notAvailable": "—",
+    "durationLabel": "Duration"
   }
 }

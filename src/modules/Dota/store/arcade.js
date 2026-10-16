@@ -10,6 +10,7 @@ import {
   resolveArcadeTurn,
   startNextArcadeStage,
 } from '@/modules/Dota/arcade/arcade-engine'
+import { recordFinishedRun } from '@/modules/Dota/arcade/run-records'
 import { generateGrid } from '@/modules/Dota/engine/spin'
 
 import { SAFE_STORAGE } from '@/lib/storage'
@@ -37,15 +38,15 @@ export const createArcadeStore = (storage = SAFE_STORAGE) => create(persist((set
   finishSpin: () => {
     const state = get()
     if (!state.pending || state.run.status !== 'fighting') return
-    const run = resolveArcadeTurn(state.run, state.pending)
-    const stats = {
+    let run = resolveArcadeTurn(state.run, state.pending)
+    let stats = {
       ...state.stats,
       bestStage: Math.max(state.stats.bestStage, run.maxStage),
       bosses: state.stats.bosses + run.defeatedBosses - state.run.defeatedBosses,
       damage: state.stats.damage + run.totalDamage - state.run.totalDamage,
       spins: state.stats.spins + 1,
-      finished: state.stats.finished + Number(run.status === 'defeated'),
     }
+    if (run.status === 'defeated') ({ run, stats } = recordFinishedRun(stats, run))
     set({ run, stats, pending: null, spinning: false })
   },
   chooseReward: (id) => {
@@ -67,12 +68,12 @@ export const createArcadeStore = (storage = SAFE_STORAGE) => create(persist((set
   },
 }), {
   name: ARCADE_STORAGE_KEY,
-  version: 1,
+  version: 2,
   storage: createJSONStorage(() => storage),
   skipHydration: true,
   partialize: ({ run, stats, pending }) => ({ run, stats, pending }),
   migrate: migrateArcadeState,
-  merge: (persisted, current) => ({ ...current, ...migrateArcadeState(persisted, 1), spinning: false }),
+  merge: (persisted, current) => ({ ...current, ...migrateArcadeState(persisted, 2), spinning: false }),
   onRehydrateStorage: () => (state) => { if (state?.pending) state.finishSpin() },
 }))
 

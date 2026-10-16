@@ -52,7 +52,9 @@
 
 .paylineMarker {
   display: grid;
+  position: relative;
   width: rem(6px);
+  z-index: $z-index-1;
   color: #c49d5d;
   place-items: center;
 }

@@ -42,3 +42,39 @@
 .resume {
   margin-bottom: rem(16px);
 }
+
+.world {
+  --color-aura: #718b65;
+
+  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--color-aura) 12%, transparent), transparent 72%);
+}
+
+.introduction { --color-aura: #718b65; }
+
+.development { --color-aura: #8bb85d; }
+
+.challenge { --color-aura: #cb7053; }
+
+.endless { --color-aura: #e34736; }
+
+.world .boss {
+  box-shadow: 0 0 rem(24px) color-mix(in srgb, var(--color-aura) 24%, transparent);
+}
+
+.world .empowered {
+  outline: rem(2px) solid var(--color-gold);
+  outline-offset: rem(2px);
+  box-shadow: 0 0 rem(28px) color-mix(in srgb, var(--color-red) 45%, transparent);
+}
+
+.curse {
+  @include flex(null, center, null, wrap);
+
+  gap: rem(8px) rem(12px);
+  margin-bottom: rem(16px);
+  padding: rem(12px) rem(16px);
+  border-left: rem(4px) solid var(--color-aura);
+  background: var(--color-surface-input);
+  font-size: rem(16px);
+  color: var(--color-gold);
+}

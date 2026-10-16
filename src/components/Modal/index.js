@@ -78,8 +78,8 @@ const Modal = ({
             {title}
           </Heading>
           <Button
-            color="icon"
-            className={styles.close}
+            color="alt"
+            square={true}
             onClick={onClose}
             aria-label={t('ui.close')}
           >

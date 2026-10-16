@@ -1,7 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
-
 import { useTranslation } from '@/hooks/useTranslation'
 
 import Button from '@/components/Button'
@@ -17,31 +15,17 @@ const Section = () => {
   return (
     <footer className={styles.block}>
       <div className={styles.container}>
-        <div className={clsx(styles.brand, styles.item)}>
+        <div>
           <Logo />
           <Text
             className={styles.description}
             size={3}
             color="muted"
           >
-            ©
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-            ·
-            {' '}
-            {t('footer.note')}
+            {`© ${new Date().getFullYear()}. ${t('footer.note')}`}
           </Text>
         </div>
-        <Text
-          className={clsx(styles.description, styles.item)}
-          size={3}
-          color="muted"
-        >
-          {t('footer.assets')}
-        </Text>
         <Button
-          className={clsx(styles.control, styles.item)}
           color="default"
           onClick={
             () =>

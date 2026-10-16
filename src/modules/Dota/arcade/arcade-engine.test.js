@@ -31,7 +31,7 @@ const memoryStorage = () => {
 
 describe('stages and rewards', () => {
   it('scales endlessly and empowers every fifth stage', () => {
-    expect(getStageConfig(1)).toMatchObject({ maxHp: 800, damage: 4, spins: 22, elite: false })
+    expect(getStageConfig(1)).toMatchObject({ maxHp: 500, damage: 4, spins: 22, elite: false })
     for (let stage = 2; stage < 100; stage++) {
       expect(getStageConfig(stage).maxHp).toBeGreaterThan(getStageConfig(stage - 1).maxHp)
       expect(getStageConfig(stage).elite).toBe(stage % 5 === 0)
@@ -60,8 +60,8 @@ describe('stages and rewards', () => {
     expect(run.upgrades[id]).toBe(max)
   })
   it('uses additive levels rather than compounding', () => {
-    expect(getBonuses({ 'blade-mastery': 3 }).heroBonus).toBeCloseTo(0.3)
-    expect(resolveArcadeEffect([match('juggernaut')], { ...fresh(), upgrades: { 'blade-mastery': 3 } }).damage).toBe(62)
+    expect(getBonuses({ 'blade-mastery': 3 }).heroBonus).toBeCloseTo(0.45)
+    expect(resolveArcadeEffect([match('juggernaut')], { ...fresh(), upgrades: { 'blade-mastery': 3 } }).damage).toBe(70)
   })
   it('rejects invalid and duplicate reward selections and premature transitions', () => {
     const initial = fresh()
@@ -82,16 +82,16 @@ describe('health and transitions', () => {
     const run = applyUpgrade(offer('extra-charges', win({ ...fresh(), battle: { ...fresh().battle, hp: 37, spins: 7 } })), 'extra-charges')
     const next = startNextArcadeStage(run, seededRandom(2))
     expect(next.battle.hp).toBe(37)
-    expect(next.battle.spins).toBe(23)
+    expect(next.battle.spins).toBe(24)
     expect(next.battle.turn).toBe(0)
   })
   it('Vitality increases current and maximum HP only by the new level increment', () => {
     let run = applyUpgrade(offer('vitality'), 'vitality')
-    expect(run.maxHp).toBe(115)
-    expect(run.battle.hp).toBe(115)
+    expect(run.maxHp).toBe(120)
+    expect(run.battle.hp).toBe(120)
     run = applyUpgrade(offer('vitality', { ...run, status: 'choosing-reward' }), 'vitality')
-    expect(run.maxHp).toBe(130)
-    expect(run.battle.hp).toBe(130)
+    expect(run.maxHp).toBe(140)
+    expect(run.battle.hp).toBe(140)
   })
   it('recovers HP once before offering rewards and respects maximum', () => {
     const base = { ...fresh(), upgrades: { 'battle-recovery': 3 }, battle: { ...fresh().battle, hp: 90 } }
@@ -108,7 +108,7 @@ describe('health and transitions', () => {
   it('Second Wind fires once per stage and never after defeat', () => {
     let run = { ...fresh(), upgrades: { 'second-wind': 2 }, battle: { ...fresh().battle, hp: 1, turn: 2 } }
     run = resolveArcadeTurn(run, EMPTY_GRID)
-    expect(run.battle).toMatchObject({ hp: 20, secondWindUsed: true })
+    expect(run.battle).toMatchObject({ hp: 40, secondWindUsed: true })
     run = resolveArcadeTurn({ ...run, battle: { ...run.battle, hp: 1, turn: 5 } }, EMPTY_GRID)
     expect(run.status).toBe('defeated')
     expect(run.defeatReason).toBe('hp')
@@ -144,7 +144,7 @@ describe('runes and boss modifiers', () => {
     const next = startNextArcadeStage(run, seededRandom(1))
     expect(next.preparedRune).toBeNull()
     expect(next.activeRune).toBeNull()
-    expect(next.battle.spins).toBe(25)
+    expect(next.battle.spins).toBe(28)
   })
   it('expires a duration on empty spins as well as winning spins', () => {
     let run = { ...fresh(), activeRune: { id: 'double-damage', remaining: 3 } }
@@ -154,7 +154,7 @@ describe('runes and boss modifiers', () => {
   })
   it('Regeneration heals on entry only and is capped', () => {
     expect(activateRune({ hp: 90, spins: 22, shields: 0 }, 'regeneration', 100)).toMatchObject({ battle: { hp: 100 }, activeRune: null })
-    expect(activateRune({ hp: 10, spins: 22, shields: 0 }, 'regeneration', 100).battle.hp).toBe(45)
+    expect(activateRune({ hp: 10, spins: 22, shields: 0 }, 'regeneration', 100).battle.hp).toBe(60)
   })
   it('Invisibility blocks exactly one attack before ordinary shields', () => {
     let run = { ...fresh(), activeRune: { id: 'invisibility', remaining: 1 }, battle: { ...fresh().battle, shields: 2, turn: 2 } }
@@ -189,13 +189,13 @@ describe('item interactions and effect ordering', () => {
   })
   it('Arcane with Aghanim boosts hero abilities but not artifact damage or healing', () => {
     const result = resolveArcadeEffect([match('juggernaut'), match('divine-rapier'), match('aghanims-scepter'), match('healing-salve')], { ...fresh(), activeRune: { id: 'arcane', remaining: 5 } })
-    expect(result.damage).toBe(Math.round(48 * 1.35 * 1.5 + 80 * 1.35))
+    expect(result.damage).toBe(Math.round(48 * 1.35 * 1.75 + 80 * 1.35))
     expect(result.healing).toBe(20)
   })
   it('Illusion does not echo Refresher, items or resources', () => {
     const run = { ...fresh(), activeRune: { id: 'illusion', remaining: 3 }, battle: { ...fresh().battle, lastEffect: { damage: 100, heroDamage: 100, extraSpins: 1, shields: 1, healing: 20 } } }
     const result = resolveArcadeEffect([match('juggernaut'), match('refresher-orb')], run)
-    expect(result.damage).toBe(167)
+    expect(result.damage).toBe(184)
     expect(result).toMatchObject({ extraSpins: 1, shields: 1, healing: 20 })
     const onlyOrb = resolveArcadeEffect([match('refresher-orb')], run)
     expect(onlyOrb.damage).toBe(100)
@@ -216,20 +216,20 @@ describe('item interactions and effect ordering', () => {
   it('Artifact Mastery strengthens supported damage multipliers', () => {
     const matches = [match('juggernaut'), match('daedalus')]
     const effect = resolveArcadeEffect(matches, { ...fresh(), upgrades: { 'artifact-mastery': 3 } })
-    expect(effect.damage).toBe(79)
+    expect(effect.damage).toBe(90)
   })
   it('combines Shield rune and Black King Bar without losing charges', () => {
     const activated = activateRune({ ...fresh().battle, turn: 2 }, 'shield', 100)
     const grid = Array.from({ length: 5 }, () => Array(3).fill('black-king-bar'))
     const run = resolveArcadeTurn({ ...fresh(), battle: activated.battle }, grid)
-    expect(run.battle.shields).toBe(11)
+    expect(run.battle.shields).toBe(18)
     expect(run.battle.hp).toBe(100)
   })
   it('adds Butterfly spins to the existing Extra Charges budget', () => {
     const selected = applyUpgrade(offer('extra-charges'), 'extra-charges')
     const run = startNextArcadeStage(selected, seededRandom(1))
     const grid = Array.from({ length: 5 }, () => Array(3).fill('butterfly'))
-    expect(resolveArcadeTurn(run, grid).battle.spins).toBe(30)
+    expect(resolveArcadeTurn(run, grid).battle.spins).toBe(31)
   })
   it('caps combined Regeneration and Healing Salve at upgraded maximum HP', () => {
     const battle = activateRune({ ...fresh().battle, hp: 80 }, 'regeneration', 115).battle
@@ -257,21 +257,21 @@ describe('persistence, records and Classic isolation', () => {
   it('persists reward offers, HP, upgrades, active rune and selected reward without double grants', async () => {
     const storage = memoryStorage()
     const store = createArcadeStore(storage)
-    store.setState({ run: offer('vitality') })
+    store.setState({ run: { ...offer('vitality'), choices: ['vitality', 'haste', 'blade-mastery'] } })
     const restored = createArcadeStore(storage)
     await restored.persist.rehydrate()
-    expect(restored.getState().run.choices).toEqual(['vitality'])
+    expect(restored.getState().run.choices).toEqual(['vitality', 'haste', 'blade-mastery'])
     expect(restored.getState().chooseReward('vitality')).toBe(true)
     expect(restored.getState().chooseReward('vitality')).toBe(false)
     const afterChoice = createArcadeStore(storage)
     await afterChoice.persist.rehydrate()
-    expect(afterChoice.getState().run).toMatchObject({ status: 'transitioning', maxHp: 115, upgrades: { vitality: 1 } })
-    expect(afterChoice.getState().run.battle.hp).toBe(115)
+    expect(afterChoice.getState().run).toMatchObject({ status: 'transitioning', maxHp: 120, upgrades: { vitality: 1 } })
+    expect(afterChoice.getState().run.battle.hp).toBe(120)
     afterChoice.getState().nextStage(seededRandom(1))
     afterChoice.setState((state) => ({ run: { ...state.run, activeRune: { id: 'arcane', remaining: 2 } } }))
     const active = createArcadeStore(storage)
     await active.persist.rehydrate()
-    expect(active.getState().run).toMatchObject({ stage: 2, activeRune: { id: 'arcane', remaining: 2 }, battle: { hp: 115 } })
+    expect(active.getState().run).toMatchObject({ stage: 2, activeRune: { id: 'arcane', remaining: 2 }, battle: { hp: 120 } })
   })
   it('records a stage once and keeps records across new runs and reloads', async () => {
     const storage = memoryStorage()
@@ -312,11 +312,11 @@ describe('persistence, records and Classic isolation', () => {
 
 describe('additional invariants', () => {
   it('applies critical, ability and elite hunter bonuses in their proper scope', () => {
-    expect(resolveArcadeEffect([match('phantom-assassin')], { ...fresh(), upgrades: { 'critical-power': 3 } }).damage).toBe(87)
-    expect(resolveArcadeEffect([match('juggernaut')], { ...fresh(), upgrades: { 'arcane-knowledge': 3 } }).damage).toBe(62)
+    expect(resolveArcadeEffect([match('phantom-assassin')], { ...fresh(), upgrades: { 'critical-power': 3 } }).damage).toBe(123)
+    expect(resolveArcadeEffect([match('juggernaut')], { ...fresh(), upgrades: { 'arcane-knowledge': 3 } }).damage).toBe(48)
     const hunter = { ...fresh(), upgrades: { 'roshan-hunter': 3 } }
     expect(resolveArcadeEffect([match('juggernaut')], hunter).damage).toBe(48)
-    expect(resolveArcadeEffect([match('juggernaut')], { ...hunter, stageConfig: getStageConfig(5) }).damage).toBe(62)
+    expect(resolveArcadeEffect([match('juggernaut')], { ...hunter, stageConfig: getStageConfig(5) }).damage).toBe(84)
     expect(resolveArcadeEffect([match('juggernaut')], { ...fresh(), stageConfig: getStageConfig(3, 'thick-hide') }).damage).toBe(43)
   })
   it('retains a prepared rune through reload and resets Second Wind next stage', async () => {
@@ -327,6 +327,6 @@ describe('additional invariants', () => {
     await restored.persist.rehydrate()
     expect(restored.getState().run.preparedRune).toBe('haste')
     restored.getState().nextStage(seededRandom(4))
-    expect(restored.getState().run.battle).toMatchObject({ secondWindUsed: false, spins: 25 })
+    expect(restored.getState().run.battle).toMatchObject({ secondWindUsed: false, spins: 28 })
   })
 })

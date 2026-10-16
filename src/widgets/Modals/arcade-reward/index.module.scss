@@ -73,3 +73,27 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+.victory {
+  justify-items: center;
+  padding: rem(16px) 0;
+  animation: victory-in 0.3s ease-out both;
+  text-align: center;
+  color: var(--color-primary-hover);
+}
+
+@keyframes victory-in {
+  from {
+    opacity: 0;
+    transform: translateY(rem(8px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .victory { animation: none; }
+}

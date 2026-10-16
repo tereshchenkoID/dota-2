@@ -30,8 +30,15 @@ const Section = () => {
         <Logo />
         <nav className={styles.nav}>
           <Link
-            className={clsx(styles.link, pathname === '/' && styles.active)}
             href="/#games"
+            className={
+              clsx(
+                styles.link,
+                {
+                  [styles.active]: pathname === '/',
+                }
+              )
+            }
           >
             {t('nav.games')}
           </Link>
@@ -92,8 +99,8 @@ const Section = () => {
             <Languages />
           </div>
           <Button
-            className={styles.control}
-            color="icon"
+            color="alt"
+            square={true}
             aria-label={t('ui.menu')}
             aria-haspopup="dialog"
             aria-expanded={active === 'profile'}
@@ -101,7 +108,7 @@ const Section = () => {
           >
             <Icon
               name="menu"
-              size={23}
+              size={22}
             />
           </Button>
         </div>
