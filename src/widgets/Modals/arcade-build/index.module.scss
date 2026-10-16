@@ -1,0 +1,42 @@
+.block,
+.groups,
+.group,
+.details {
+  display: grid;
+  gap: rem(16px);
+  min-width: 0;
+}
+
+.group {
+  padding: rem(16px);
+  border: rem(1px) solid var(--color-border-subtle);
+  border-radius: var(--border-radius-default);
+  background: var(--color-surface-raised);
+}
+
+.list {
+  display: grid;
+  gap: rem(12px);
+  margin: 0;
+}
+
+.row {
+  @include flex(space-between, baseline);
+
+  gap: rem(12px);
+}
+
+.upgrade {
+  @include flex(null, flex-start);
+
+  gap: rem(12px);
+  padding-bottom: rem(16px);
+  border-bottom: rem(1px) solid var(--color-border-subtle);
+  color: var(--color-link);
+}
+
+@include tab-s {
+  .groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

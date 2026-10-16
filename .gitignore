@@ -3,4 +3,6 @@ node_modules/
 out/
 coverage/
 
+reports/
+
 .DS_Store
