@@ -1,0 +1,6 @@
+.actions {
+  @include flex(flex-end, null, null, wrap);
+
+  gap: rem(12px);
+  margin-top: rem(32px);
+}

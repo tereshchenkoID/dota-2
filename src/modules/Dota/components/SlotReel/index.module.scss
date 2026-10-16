@@ -1,0 +1,82 @@
+.reel {
+  --reel-gap: #{rem(6px)};
+
+  container-type: inline-size;
+  min-width: 0;
+}
+
+.window {
+  position: relative;
+  height: calc(300cqw / var(--symbol-ratio, 1.22) + var(--reel-gap) * 2);
+  background: #080e14;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--reel-gap);
+  position: relative;
+  will-change: transform;
+}
+
+.rolling .track {
+  position: relative;
+  animation: roll 0.26s linear infinite;
+  filter: blur(rem(0.7px));
+}
+
+.stopped .track {
+  position: relative;
+  animation: settle 0.22s ease-out;
+}
+
+.window::after {
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 0 rem(8px) rem(12px) #0005,
+    inset 0 rem(-8px) rem(12px) #0005;
+  content: "";
+  pointer-events: none;
+}
+
+@keyframes roll {
+  from {
+    transform: translateY(calc(-50% - var(--reel-gap) / 2));
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes settle {
+  0% {
+    transform: translateY(rem(-14px));
+  }
+
+  65% {
+    transform: translateY(rem(4px));
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@include mob-m {
+  .reel {
+    --reel-gap: #{rem(8px)};
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rolling .track,
+  .stopped .track {
+  position: relative;
+    animation: none;
+    filter: none;
+    will-change: auto;
+  }
+}

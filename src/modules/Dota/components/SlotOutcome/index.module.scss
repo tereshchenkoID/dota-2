@@ -1,0 +1,138 @@
+.overlay {
+  @include flex(center, center);
+
+  position: absolute;
+  inset: 0;
+  padding: rem(8px);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.panel {
+  display: grid;
+  gap: rem(8px);
+  padding: rem(12px);
+  border: rem(1px) solid #d8be7c80;
+  width: min(100%, rem(440px));
+  max-height: 100%;
+  background: linear-gradient(120deg, #0b141bc4, #111b24b0);
+  box-shadow: 0 rem(8px) rem(28px) #0005, inset 0 rem(1px) #fff1;
+  overflow: auto;
+  animation: reveal 0.24s ease-out both;
+  text-align: center;
+  pointer-events: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #b49c68 transparent;
+}
+
+.compact {
+  width: auto;
+  border-color: #a5b8c54d;
+}
+
+.combinations {
+  @include reset-list;
+
+  display: grid;
+  gap: rem(4px);
+  font-family: var(--font-game), Arial, sans-serif;
+  font-size: rem(12px);
+  line-height: 1.3;
+
+  .item {
+    @include flex(center, center);
+
+    gap: rem(8px);
+    color: var(--color-win-line);
+  }
+
+  .fill {
+    @include size(rem(6px));
+
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-win-line);
+  }
+}
+
+.ability {
+  @include flex(center, center, null, wrap);
+
+  gap: rem(8px);
+  color: #f3dca6;
+
+  .glyph {
+    flex-shrink: 0;
+  }
+
+  .value {
+    font-family: var(--font-display);
+    font-size: rem(12px);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+  }
+
+  .value {
+    font-family: var(--font-game), Arial, sans-serif;
+    font-size: rem(20px);
+    font-weight: var(--font-weight-bold);
+    color: #ffe4a4;
+  }
+}
+
+.healing,
+.message {
+  @include flex(center, center);
+
+  gap: rem(8px);
+  font-family: var(--font-game), Arial, sans-serif;
+  font-size: rem(14px);
+  line-height: 1.4;
+  color: #e6e3d9;
+
+  .glyph {
+    flex-shrink: 0;
+  }
+}
+
+.healing {
+  color: #b7efa0;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(rem(4px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include mob-m {
+  .panel {
+    gap: rem(12px);
+    padding: rem(20px) rem(24px);
+  }
+
+  .combinations,
+  .message {
+    font-size: rem(16px);
+  }
+
+  .ability .value {
+    font-size: rem(18px);
+  }
+
+  .ability .value {
+    font-size: rem(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}

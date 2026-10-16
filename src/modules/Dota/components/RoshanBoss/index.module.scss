@@ -1,0 +1,411 @@
+.boss {
+  position: relative;
+  border: rem(1px) solid #5c493733;
+  border-radius: rem(8px);
+  min-height: rem(325px);
+  background: #101817;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bossArt,
+.hurt {
+  position: absolute;
+
+  @include size(100%);
+
+  object-fit: cover;
+  object-position: 50% 30%;
+  z-index: -1;
+}
+
+.bossTop {
+  display: flex;
+  justify-content: space-between;
+  padding: rem(20px);
+}
+
+.raidBadge,
+.phaseBadge {
+  padding: rem(8px) rem(10px);
+  border: rem(1px) solid #ffffff16;
+  border-radius: rem(3px);
+  background: #111817b8;
+  font-size: rem(12px);
+  letter-spacing: rem(1.8px);
+}
+
+.raidBadge {
+  @include flex(null, center);
+
+  gap: rem(8px);
+  color: #b9c1b6;
+}
+
+.raidBadge .fill {
+  border-radius: 50%;
+
+  @include size(rem(5px));
+
+  background: #92b787;
+  box-shadow: 0 0 rem(9px) #8ba37d;
+}
+
+.phaseBadge {
+  color: var(--color-gold);
+}
+
+.bossInfo {
+  padding: rem(140px) rem(24px) rem(22px);
+  background: linear-gradient(transparent, #0d1413ed);
+  text-align: center;
+}
+
+.bossLabel {
+  font-size: rem(12px);
+  letter-spacing: rem(3.5px);
+  color: #b7a581;
+}
+
+.bossInfo .title {
+  font: rem(36px) var(--font-display);
+  letter-spacing: rem(9px);
+  margin: rem(6px) 0 rem(4px);
+  text-shadow: 0 rem(2px) rem(16px) #000;
+}
+
+.bossInfo .description {
+  font: italic rem(12px) var(--font-display);
+  color: #aaa793;
+}
+
+.hpLabel {
+  @include flex(space-between, center);
+
+  margin-top: rem(20px);
+  font-size: rem(12px);
+}
+
+.hpLabel > .label {
+  color: #cd5b46;
+}
+
+.hpLabel .value {
+  font-size: rem(12px);
+  letter-spacing: rem(1px);
+}
+
+.hpLabel .caption {
+  font-weight: var(--font-weight-regular);
+  color: #858a80;
+}
+
+.bossHealth {
+  margin-top: rem(8px);
+  padding: rem(2px);
+  border-radius: rem(2px);
+  height: rem(8px);
+  background: #080d0c;
+  box-shadow: 0 0 0 rem(1px) #ffffff12;
+}
+
+.bossHealth .fill {
+  display: block;
+
+  @include size(var(--health), 100%);
+
+  background: linear-gradient(90deg, #802f2b, #d65a41);
+  box-shadow: 0 0 rem(12px) #d8563c33;
+
+  @include transition(width, 0.5s);
+}
+
+.attackInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: rem(10px);
+  margin-top: rem(12px);
+  font-size: rem(12px);
+  color: #838b80;
+}
+
+.attackInfo .label:first-child {
+  color: #c3a47b;
+}
+
+.phase2 {
+  box-shadow: inset 0 0 rem(70px) #c76d2520;
+}
+
+.phase2 .phaseBadge {
+  color: #f8a55c;
+}
+
+.phase3 {
+  box-shadow: inset 0 0 rem(70px) #db382738;
+}
+
+.phase3 .bossArt,
+.phase3 .hurt {
+  filter: sepia(0.2) saturate(1.5);
+}
+
+.phase3 .phaseBadge {
+  color: #ff795c;
+}
+
+.hurt {
+  animation: hurt 0.4s ease-out;
+}
+
+.damagePopup {
+  position: absolute;
+  top: 35%;
+  left: 47%;
+  animation: damage 1.1s forwards;
+  color: #f0bb7b;
+  font: var(--font-weight-bold) rem(38px) var(--font-display);
+  text-shadow: 0 rem(2px) rem(10px) #000;
+  pointer-events: none;
+}
+
+@keyframes hurt {
+  25%,
+  75% {
+    transform: translateX(rem(4px));
+    filter: brightness(1.5);
+  }
+
+  50% {
+    transform: translateX(rem(-4px));
+  }
+}
+
+@keyframes damage {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(rem(-65px));
+  }
+}
+
+@include tab-l {
+  .boss {
+    height: 100%;
+    min-height: rem(470px);
+  }
+
+  .bossInfo {
+    padding: rem(260px) rem(30px) rem(26px);
+  }
+
+  .bossArt,
+  .hurt {
+    object-position: 50% 15%;
+    object-fit: cover;
+  }
+
+  .bossInfo .title {
+    font-size: rem(44px);
+  }
+}
+
+.bossInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+@include tab-l {
+  .bossInfo {
+    padding-top: rem(160px);
+  }
+}
+
+.boss {
+  border-radius: 0;
+  min-height: rem(370px);
+  background: #070e13;
+  border-color: #7b899340;
+}
+
+.boss::after {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 rem(70px) #050b12b3;
+  z-index: 1;
+  content: "";
+  pointer-events: none;
+}
+
+.bossArt,
+.hurt {
+  object-position: 50% 25%;
+  object-fit: cover;
+}
+
+.bossTop {
+  position: relative;
+  padding: rem(16px);
+  z-index: 2;
+}
+
+.raidBadge,
+.phaseBadge {
+  border-radius: 0;
+  background: #0c141bd9;
+  letter-spacing: rem(1.3px);
+}
+
+.bossInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: rem(110px) rem(22px) rem(20px);
+  width: 100%;
+  background: linear-gradient(transparent, #071019e8 38%, #070e15fa);
+  z-index: 2;
+}
+
+.bossLabel {
+  font-size: rem(12px);
+  letter-spacing: rem(3px);
+}
+
+.bossInfo .title {
+  font-size: rem(32px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: rem(5px);
+}
+
+.bossInfo .description {
+  font-family: var(--font-game), Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: rem(1px);
+  color: #9ca7a5;
+}
+
+.hpLabel .value {
+  font-size: rem(13px);
+}
+
+.bossHealth {
+  border-radius: 0;
+  height: rem(10px);
+}
+
+.attackInfo {
+  font-size: rem(12px);
+}
+
+.damagePopup {
+  top: 38%;
+  left: 42%;
+  z-index: 4;
+  font-family: var(--font-game), Arial, sans-serif;
+  font-size: rem(46px);
+  color: #fff0cb;
+  text-shadow:
+    0 rem(2px) rem(3px) #000,
+    0 0 rem(18px) #fb6e33;
+}
+
+.impactEffect {
+  position: absolute;
+  inset: 15% 8% 35%;
+  background: radial-gradient(ellipse, #ffd29277, transparent 60%);
+  overflow: hidden;
+  z-index: 3;
+  animation: impact-glow 0.55s ease-out forwards;
+  pointer-events: none;
+}
+
+.impactEffect .fill {
+  position: absolute;
+  top: 45%;
+  left: 7%;
+
+  @include size(90%, rem(4px));
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #f1aa6b,
+    #fff7d8,
+    #e44e2b,
+    transparent
+  );
+  box-shadow: 0 0 rem(16px) #ff6e2d;
+  animation: slash 0.5s ease-out forwards;
+  transform: rotate(-36deg);
+}
+
+.impactEffect .fill:nth-child(2) {
+  top: 58%;
+  left: 14%;
+  height: rem(2px);
+  animation-delay: 0.06s;
+  transform: rotate(-36deg);
+}
+
+.impactEffect .fill:nth-child(3) {
+  top: 38%;
+  left: 25%;
+
+  @include size(70%, rem(2px));
+
+  transform: rotate(45deg);
+  animation-delay: 0.1s;
+}
+
+@keyframes slash {
+  0% {
+    opacity: 0;
+    scale: 0.2 1;
+  }
+
+  30% {
+    opacity: 1;
+    scale: 1 1;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 1.15 1;
+  }
+}
+
+@keyframes impact-glow {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@include tab-l {
+  .boss {
+    min-height: rem(430px);
+  }
+
+  .bossInfo .title {
+    font-size: rem(38px);
+  }
+
+  .bossInfo {
+    padding: rem(100px) rem(24px) rem(24px);
+  }
+}
+
+.attackInfo > .label:first-child {
+  @include flex(null, center);
+
+  gap: rem(4px);
+}

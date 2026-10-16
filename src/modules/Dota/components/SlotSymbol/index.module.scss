@@ -1,0 +1,45 @@
+.symbol {
+  @include transition(border-color);
+
+  display: grid;
+  flex: 0 0 auto;
+  position: relative;
+  aspect-ratio: var(--symbol-ratio, 0.72);
+  border: rem(1px) solid #7b899329;
+  min-width: 0;
+  background: #0c1219;
+  box-shadow: inset 0 0 rem(14px) #0008;
+  overflow: hidden;
+
+  .image {
+    @include transition((filter, transform));
+    @include size(100%);
+
+    min-height: 0;
+    object-fit: cover;
+  }
+
+  &[data-symbol-type="item"] .image {
+    padding: rem(4px);
+    background: radial-gradient(ellipse, #33445044, transparent 70%);
+    object-fit: contain;
+  }
+}
+
+.winning {
+  border-color: var(--color-symbol);
+  box-shadow: inset 0 0 rem(20px)
+    color-mix(in srgb, var(--color-symbol) 25%, transparent);
+  animation: win 1s ease-in-out 3;
+
+  .image {
+    filter: brightness(1.25);
+  }
+}
+
+@keyframes win {
+  50% {
+    box-shadow: inset 0 0 rem(30px)
+      color-mix(in srgb, var(--color-symbol) 50%, transparent);
+  }
+}

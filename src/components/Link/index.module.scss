@@ -1,0 +1,8 @@
+.link {
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: rem(2px) solid var(--color-primary-hover);
+    outline-offset: rem(4px);
+  }
+}

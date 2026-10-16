@@ -1,0 +1,46 @@
+.block {
+  margin-top: rem(48px);
+  width: 100%;
+  background-color: var(--color-material);
+  border-top: rem(1px) solid
+    color-mix(in srgb, var(--color-border) 18.8%, transparent);
+}
+
+.container {
+  @include flex(space-between, flex-start, column, wrap);
+
+  gap: rem(24px);
+  margin: auto;
+  padding: rem(32px) rem(20px);
+  max-width: var(--max-width);
+}
+
+.item {
+  width: 100%;
+}
+
+.control {
+  justify-content: flex-start;
+  padding-inline: 0;
+}
+
+@include tab-s {
+  .container {
+    flex-direction: row;
+    align-items: center;
+    padding: rem(28px) rem(24px);
+  }
+
+  .item {
+    width: auto;
+  }
+
+  .control {
+    justify-content: center;
+    padding-inline: rem(22px);
+  }
+}
+
+.brand .description {
+  margin-top: rem(12px);
+}

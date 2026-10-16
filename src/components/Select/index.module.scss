@@ -1,0 +1,119 @@
+.block {
+  flex-shrink: 0;
+  position: relative;
+
+  &.open {
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.trigger {
+  @include flex(space-between, center);
+  @include transition((border-color, background), 0.2s);
+
+  gap: rem(6px);
+  padding: rem(8px);
+  border: rem(1px) solid var(--color-border);
+  border-radius: rem(9px);
+  min-height: rem(40px);
+  background: var(--color-surface-raised);
+  font-size: rem(15px);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  cursor: pointer;
+
+  @include hover {
+    &:hover {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-hover);
+    }
+  }
+
+  @include mob-m {
+    gap: rem(8px);
+    padding: rem(8px) rem(12px);
+    min-height: rem(42px);
+  }
+
+  &:focus-visible {
+    outline: rem(2px) solid var(--color-link);
+    outline-offset: rem(4px);
+  }
+}
+
+.arrow {
+  @include transition(transform);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + rem(9px));
+  inset-inline-end: var(--shift, 0);
+  padding: rem(6px);
+  border: rem(1px) solid var(--color-border);
+  border-radius: rem(12px);
+  width: rem(232px);
+  max-width: calc(100vw - rem(24px));
+  background: var(--color-surface);
+  box-shadow: 0 rem(18px) rem(48px)
+    color-mix(in srgb, var(--color-bg) 60%, transparent);
+  z-index: 200;
+  animation: open-menu 0.15s ease-out;
+}
+
+.option {
+  @include flex(null, center);
+
+  gap: rem(12px);
+  padding: rem(10px);
+  border: 0;
+  border-radius: rem(6px);
+  width: 100%;
+  background-color: transparent;
+  text-align: start;
+  color: var(--color-text);
+  cursor: pointer;
+
+  .glyph {
+    margin-left: auto;
+    color: var(--color-link);
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: var(--color-surface-hover);
+  }
+
+  &[aria-selected="true"] {
+    background-color: color-mix(in srgb, var(--color-primary) 11%, transparent);
+    color: var(--color-text);
+  }
+}
+
+.code {
+  @include size(rem(34px), rem(28px));
+
+  display: grid;
+  border: rem(1px) solid color-mix(in srgb, var(--color-border) 32.9%, transparent);
+  border-radius: rem(4px);
+  background-color: var(--color-surface-input);
+  font-size: rem(12px);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-link);
+  place-items: center;
+}
+
+@keyframes open-menu {
+  from {
+    opacity: 0;
+    transform: translateY(rem(-5px));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

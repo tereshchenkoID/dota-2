@@ -1,0 +1,27 @@
+.block {
+  margin: 0;
+  font-weight: var(--font-weight-heading);
+  line-height: 1.15;
+  color: var(--color-text);
+  letter-spacing: rem(-0.8px);
+
+  &.size-1 {
+    font-size: clamp(rem(32px), 4vw, rem(56px));
+  }
+
+  &.size-2 {
+    font-size: clamp(rem(25px), 3vw, rem(34px));
+  }
+
+  &.size-3 {
+    font-size: rem(24px);
+  }
+
+  &.size-4 {
+    font-size: rem(20px);
+  }
+
+  &.size-5 {
+    font-size: rem(16px);
+  }
+}

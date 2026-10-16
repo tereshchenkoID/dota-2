@@ -1,0 +1,177 @@
+.page {
+  margin: auto;
+  padding: rem(44px) rem(20px);
+  max-width: var(--max-width);
+}
+
+.intro {
+  display: grid;
+  gap: rem(20px);
+  padding: rem(14px) 0 rem(46px);
+  max-width: rem(850px);
+
+  .title {
+    max-width: rem(800px);
+  }
+
+  > .description:first-child {
+    letter-spacing: rem(2px);
+    text-transform: uppercase;
+  }
+}
+
+.sectionHeading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: rem(16px);
+  margin-bottom: rem(24px);
+}
+
+.gameCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: rem(1px) solid color-mix(in srgb, var(--color-border) 27.1%, transparent);
+  border-radius: rem(16px);
+  background: var(--color-surface);
+  box-shadow: 0 rem(20px) rem(60px)
+    color-mix(in srgb, var(--color-bg) 40%, transparent);
+  overflow: hidden;
+
+  @include transition((border-color, transform), 0.2s);
+
+  text-decoration: none;
+
+  &:hover {
+    border-color: var(--color-primary-hover);
+    transform: translateY(rem(-3px));
+  }
+}
+
+.art {
+  position: relative;
+  min-height: rem(260px);
+  overflow: hidden;
+
+  .image {
+    position: absolute;
+
+    @include size(100%);
+
+    object-fit: cover;
+    object-position: 50% 35%;
+  }
+
+  &::after {
+    position: absolute;
+    inset: 50% 0 0;
+    background: linear-gradient(transparent, var(--color-surface-input));
+    content: "";
+  }
+}
+
+.badge {
+  position: absolute;
+  top: rem(20px);
+  left: rem(20px);
+  padding: rem(8px) rem(12px);
+  border: rem(1px) solid
+    color-mix(in srgb, var(--color-link-hover) 36.1%, transparent);
+  border-radius: rem(20px);
+  background: color-mix(in srgb, var(--color-surface-input) 78.8%, transparent);
+  z-index: 1;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(18px);
+  padding: rem(28px);
+}
+
+.dotaMark {
+  @include size(rem(38px));
+
+  object-fit: contain;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(10px);
+
+  .label {
+    padding: rem(8px) rem(12px);
+    border-radius: rem(6px);
+    background: var(--color-surface-raised);
+  }
+}
+
+.play {
+  @include flex(space-between, center);
+
+  gap: rem(30px);
+  margin-top: rem(8px);
+  padding: rem(16px) rem(20px);
+  border-radius: var(--border-radius-default);
+  width: 100%;
+  background: var(--color-primary);
+  font-size: rem(18px);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-surface-input);
+}
+
+.principles {
+  display: grid;
+  gap: rem(28px);
+  margin-top: rem(46px);
+
+  > .group {
+    display: grid;
+    gap: rem(12px);
+  }
+}
+
+@include tab-s {
+  .page {
+    padding: rem(50px) rem(48px);
+  }
+
+  .gameCard {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .art {
+    min-height: rem(440px);
+  }
+
+  .cardContent {
+    padding: rem(38px);
+  }
+
+  .principles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: rem(32px);
+  }
+}
+
+.upcoming {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: rem(24px);
+  margin-top: rem(24px);
+}
+
+@include tab-s {
+  .upcoming {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include desk-s {
+  .upcoming {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,149 @@
+.guide {
+  min-width: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #dce5f5;
+}
+
+.guideHeading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: rem(16px);
+  margin-bottom: rem(24px);
+
+  .title {
+    margin-top: rem(8px);
+    font-family: Arial, sans-serif;
+    font-size: rem(27px);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.25;
+  }
+
+  > .description {
+    font-size: rem(15px);
+    color: #96a7c4;
+  }
+}
+
+.eyebrow {
+  font-size: rem(12px);
+  letter-spacing: rem(1.5px);
+  color: #a8baff;
+}
+
+.heroes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: rem(22px) rem(16px);
+}
+
+.hero {
+  @include flex(null, flex-start, column);
+
+  gap: rem(12px);
+  min-width: 0;
+
+  .image {
+    flex-shrink: 0;
+    border: rem(1px) solid #657aa34d;
+    border-radius: rem(6px);
+
+    @include size(rem(54px), rem(58px));
+
+    object-fit: cover;
+  }
+
+  > .group {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .title {
+    font-size: rem(16px);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+    color: #dde6fa;
+  }
+
+  .description,.caption {
+    display: block;
+    margin-top: rem(4px);
+    font-size: rem(14px);
+    line-height: 1.6;
+    color: #9daecb;
+  }
+
+  .caption {
+    color: #b2c5fc;
+  }
+}
+
+.sectionTitle {
+  margin: rem(30px) 0 rem(16px);
+  font-size: rem(16px);
+  color: #bccbff;
+  letter-spacing: rem(1px);
+}
+
+.rules {
+  font-size: rem(16px);
+  line-height: 1.75;
+  color: #aab9d3;
+}
+
+.lines {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: rem(8px);
+  margin: rem(22px) 0;
+
+  > .group {
+    padding: rem(4px);
+    border: rem(1px) solid #7184ad36;
+    border-radius: rem(6px);
+    min-width: 0;
+    background: #10192b;
+    text-align: center;
+  }
+
+  .caption {
+    font-size: rem(12px);
+    color: #a7badb;
+    overflow-wrap: anywhere;
+  }
+
+  .glyph {
+    width: 100%;
+  }
+}
+
+.items {
+  display: grid;
+  gap: rem(24px);
+  margin-top: rem(20px);
+}
+
+@include mob-m {
+  .heroes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero {
+    flex-direction: row;
+  }
+
+  .hero .image {
+    @include size(rem(48px), rem(54px));
+  }
+}
+
+@include tab-s {
+  .heroes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

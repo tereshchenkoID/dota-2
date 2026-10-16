@@ -1,0 +1,9 @@
+@use "../helpers/mixins/rem-converter" as *;
+
+$screen-desk-m: rem(1440px);
+$screen-desk-s: rem(1280px);
+$screen-tab-l: rem(1024px);
+$screen-tab-m: rem(992px);
+$screen-tab-s: rem(768px);
+$screen-mob-m: rem(560px);
+$screen-mob-s: rem(360px);

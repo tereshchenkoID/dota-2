@@ -1,0 +1,189 @@
+.block {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--color-material);
+  border-bottom: rem(1px) solid var(--color-border-subtle);
+  z-index: $z-index-8;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: rem(12px);
+  margin: auto;
+  padding: rem(16px);
+  max-width: var(--max-width);
+}
+
+.nav {
+  @include flex(center, center);
+
+  gap: rem(24px);
+
+  .link,.control {
+    padding: rem(12px) 0;
+    background: none;
+    font-size: rem(14px);
+    line-height: 1.5;
+    text-decoration: none;
+    color: var(--color-sub-text);
+    white-space: nowrap;
+  }
+
+  .active {
+    border-bottom: rem(2px) solid var(--color-primary-hover);
+    color: var(--color-text);
+  }
+}
+
+.account {
+  @include flex(null, center);
+
+  gap: rem(16px);
+}
+
+.level {
+  gap: rem(12px);
+  padding: 0;
+  background: none;
+  text-align: left;
+  color: var(--color-text);
+
+  @include flex(null, center);
+}
+
+.badge {
+  display: grid;
+  border: rem(1px) solid var(--color-border);
+  border-radius: rem(8px);
+
+  @include size(rem(40px), rem(44px));
+
+  background: var(--color-surface-hover);
+  font-size: rem(20px);
+  color: var(--color-link-hover);
+  place-items: center;
+}
+
+.details {
+  font-size: rem(12px);
+  white-space: nowrap;
+}
+
+.track {
+  display: block;
+  margin-top: rem(8px);
+  border-radius: rem(4px);
+
+  @include size(rem(88px), rem(4px));
+
+  background: var(--color-surface-hover);
+  overflow: hidden;
+
+  .fill {
+    display: block;
+
+    @include size(var(--progress), 100%);
+
+    background: var(--color-primary-hover);
+  }
+}
+
+.gold {
+  @include flex(null, center);
+
+  gap: rem(8px);
+  font-size: rem(14px);
+  color: var(--color-link-hover);
+  white-space: nowrap;
+}
+
+.nav,
+.details,
+.gold,
+.language {
+  display: none;
+}
+
+.account {
+  gap: rem(8px);
+}
+
+.badge {
+  width: rem(36px);
+}
+
+@include mob-m {
+  .inner {
+    gap: rem(16px);
+  }
+
+  .account {
+    gap: rem(12px);
+  }
+
+  .badge {
+    width: rem(40px);
+  }
+
+  .gold {
+    display: flex;
+  }
+
+  .language {
+    display: block;
+  }
+}
+
+@include tab-s {
+  .inner {
+    grid-template-columns: auto 1fr auto;
+    padding: rem(20px) rem(24px);
+  }
+
+  .nav {
+    display: flex;
+    gap: rem(12px);
+
+    .link,.control {
+      font-size: rem(12px);
+    }
+  }
+}
+
+@include tab-l {
+  .inner {
+    gap: rem(24px);
+  }
+
+  .nav {
+    gap: rem(16px);
+
+    .link,.control {
+      font-size: rem(14px);
+    }
+  }
+}
+
+@include desk-s {
+  .inner {
+    gap: rem(32px);
+    padding: rem(24px) rem(32px);
+  }
+
+  .account {
+    gap: rem(16px);
+  }
+
+  .nav {
+    gap: rem(24px);
+  }
+}
+
+@include desk-m {
+  .details {
+    display: block;
+  }
+}

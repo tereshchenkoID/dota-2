@@ -1,0 +1,54 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  @include size(100%);
+
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
+
+  .path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .point {
+    fill: #fff8dd;
+    stroke: var(--color-win-line);
+    stroke-width: 2;
+  }
+}
+
+.outline {
+  opacity: 0.85;
+  stroke: #050a10;
+  stroke-width: 8;
+}
+
+.trace {
+  animation: draw 0.55s ease-out both;
+  filter: drop-shadow(0 0 rem(4px) var(--color-win-line));
+  stroke: var(--color-win-line);
+  stroke-dasharray: 1;
+  stroke-width: 3;
+}
+
+@keyframes draw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace {
+    animation: none;
+  }
+}

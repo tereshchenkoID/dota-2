@@ -1,0 +1,208 @@
+.viewport {
+  --color-gold: #c5a66a;
+  --color-red: #d25535;
+  --color-line: #e0e7e712;
+  --font-display: var(--font-game-display), georgia, serif;
+  --symbol-ratio: 1.02;
+
+  position: relative;
+  border: rem(1px) solid #59636b;
+  background: #131b22 url("/assets/ui/dota-background.jpg") center top/cover;
+  box-shadow: 0 rem(28px) rem(70px) #0008;
+  font-family: var(--font-game), Arial, sans-serif;
+  color: #e4e2dc;
+  isolation: isolate;
+}
+
+.toolbar {
+  @include flex(space-between, center);
+
+  gap: rem(6px);
+  padding: rem(12px) rem(10px);
+  background: linear-gradient(110deg, #24313aeb, #12191ee8);
+  border-bottom: rem(1px) solid #83929b35;
+}
+
+.gameBrand {
+  @include flex(null, center);
+
+  gap: rem(8px);
+  min-width: 0;
+}
+
+.gameBrand .image {
+  @include size(rem(22px), rem(27px));
+
+  object-fit: contain;
+}
+
+.gameBrand .title {
+  font-family: var(--font-display);
+  font-size: rem(16px);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: rem(1px);
+  color: #f1eeea;
+}
+
+.gameBrand .label {
+  display: none;
+  margin-top: rem(4px);
+  font-size: rem(12px);
+  color: #8d9ca5;
+  letter-spacing: rem(1.7px);
+}
+
+.toolbarActions {
+  display: flex;
+  gap: rem(4px);
+}
+
+.toolbarActions .control {
+  display: grid;
+  border: rem(1px) solid #75818b45;
+
+  @include size(rem(34px), rem(40px));
+
+  background: #0c131950;
+
+  @include transition((background, border-color), 0.2s);
+
+  color: #c8d1d6;
+  place-items: center;
+  font:
+    rem(18px) Arial,
+    sans-serif;
+}
+
+.toolbarActions .control:hover {
+  background: #778b9b26;
+  border-color: #b7c6cd;
+}
+
+.toolbarActions .control[aria-pressed="true"] {
+  border-color: #c4a76a;
+  color: #e7c98b;
+}
+
+.viewportBody {
+  padding: rem(10px);
+  min-width: 0;
+}
+
+.expanded {
+  position: fixed;
+  inset: 0;
+
+  @include size(100%, 100dvh);
+
+  z-index: 100;
+}
+
+.immersive,
+.viewport:fullscreen {
+  --symbol-ratio: 1.02;
+
+  display: flex;
+  flex-direction: column;
+  border: 0;
+
+  @include size(100%, 100dvh);
+
+  overflow: auto;
+}
+
+.immersive .viewportBody {
+  flex: 1;
+  margin: auto;
+  padding: clamp(rem(12px), 2.5vh, rem(28px)) clamp(rem(12px), 3vw, rem(48px));
+  width: 100%;
+  max-width: rem(1600px);
+  min-height: 0;
+}
+
+.immersive [data-game-arena] {
+  align-items: stretch;
+  min-height: 100%;
+}
+
+.viewport:fullscreen::backdrop {
+  background: #0b1015;
+}
+
+.toolbarActions .control:first-child {
+  display: none;
+}
+
+@include mob-m {
+  .toolbar {
+    gap: rem(12px);
+    padding: rem(16px) rem(18px);
+  }
+
+  .gameBrand {
+    gap: rem(12px);
+  }
+
+  .gameBrand .image {
+    @include size(rem(30px), rem(34px));
+  }
+
+  .gameBrand .title {
+    letter-spacing: rem(2px);
+  }
+
+  .gameBrand .label {
+    display: block;
+  }
+
+  .toolbarActions .control {
+    @include size(rem(34px));
+
+    font-size: rem(20px);
+  }
+
+  .toolbarActions .control:first-child {
+    display: grid;
+  }
+
+  .viewportBody {
+    padding: rem(16px);
+  }
+
+  .immersive {
+    --symbol-ratio: 1.5;
+  }
+}
+
+@include tab-l {
+  .viewportBody {
+    padding: rem(24px);
+  }
+
+  .immersive [data-game-arena] {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  }
+}
+
+@media (min-width: $screen-tab-l) and (height >= rem(900px)) {
+  .immersive {
+    --symbol-ratio: 1.12;
+  }
+}
+
+.toolbarActions .control {
+  display: grid;
+  place-items: center;
+}
+
+@include mob-m {
+  .viewport {
+    --symbol-ratio: 1.22;
+  }
+
+  .immersive,
+  .viewport:fullscreen {
+    --symbol-ratio: 1.15;
+  }
+}

@@ -1,0 +1,35 @@
+.guide {
+  display: grid;
+  gap: rem(24px);
+}
+
+.steps {
+  display: grid;
+  gap: rem(16px);
+}
+
+.step {
+  @include flex(null, flex-start);
+
+  gap: rem(16px);
+  padding: rem(16px);
+  border: rem(1px) solid var(--color-border-subtle);
+  border-radius: var(--border-radius-default);
+  background: var(--color-surface-input);
+
+  .title {
+    margin-bottom: rem(8px);
+  }
+}
+
+.icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: var(--border-radius-default);
+
+  @include size(rem(40px));
+
+  background: var(--color-surface-raised);
+  color: var(--color-link);
+}

@@ -1,0 +1,39 @@
+.loader {
+  @include flex(center, center, column);
+
+  gap: rem(20px);
+  padding: rem(48px) rem(24px);
+  border: rem(1px) solid var(--color-border);
+  min-height: rem(480px);
+  background: radial-gradient(ellipse at top, var(--color-surface-raised), var(--color-surface) 70%);
+  text-align: center;
+
+  > .icon {
+    color: var(--color-primary-hover);
+  }
+
+  > .title {
+    font-size: rem(24px);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: rem(2px);
+  }
+}
+
+.track {
+  border-radius: var(--border-radius-full);
+
+  @include size(min(100%, rem(320px)), rem(8px));
+
+  background: var(--color-surface-hover);
+  overflow: hidden;
+
+  .fill {
+    @include transition(width);
+
+    display: block;
+
+    @include size(var(--progress), 100%);
+
+    background: var(--color-primary);
+  }
+}

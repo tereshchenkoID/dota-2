@@ -1,0 +1,23 @@
+.log {
+  padding: rem(24px);
+  border: rem(1px) solid #6f81a52b;
+  border-radius: rem(12px);
+  min-width: 0;
+  background: #171f31;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: rem(80px) 1fr;
+  gap: rem(12px);
+  padding: rem(16px) 0;
+  border-bottom: rem(1px) solid #7a8baa1c;
+}
+
+.entry:last-child {
+  border: 0;
+}
+
+.empty {
+  margin-top: rem(22px);
+}
