@@ -138,7 +138,6 @@
 @include tab-s {
   .inner {
     grid-template-columns: auto 1fr auto;
-    padding: rem(20px) rem(24px);
   }
 
   .nav {
@@ -171,7 +170,6 @@
 @include desk-s {
   .inner {
     gap: rem(32px);
-    padding: rem(24px) rem(32px);
   }
 
   .account {
