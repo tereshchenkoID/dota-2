@@ -1,57 +1,50 @@
 .stats {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 0.6fr;
-  gap: rem(8px);
-  padding: rem(18px) rem(10px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: rem(12px);
+  padding: rem(12px);
   border: rem(1px) solid var(--color-line);
-  border-radius: rem(5px);
-  background: #181e1cc9;
+  min-width: 0;
+  background: linear-gradient(110deg, #1c2933ed, #111c25f5);
 }
 
-.stats > .group {
-  padding: 0 rem(8px);
-  border-right: rem(1px) solid var(--color-line);
+.group {
   min-width: 0;
 }
 
-.stats > .group:last-child {
-  border: 0;
-}
+.label {
+  @include flex(null, center);
 
-.stats .label {
-  display: block;
-  font-size: rem(14px);
-  color: #a6b496;
-}
-
-.stats .label .caption {
-  display: block;
+  gap: rem(4px);
   font-size: rem(12px);
-  line-height: 1.7;
-  color: #8e978b;
-  letter-spacing: rem(0.7px);
+  color: #a2afb4;
 }
 
-.stats .value {
-  font: rem(21px) var(--font-display);
+.caption {
+  font-size: inherit;
+  line-height: 1.4;
+}
+
+.value {
   display: block;
-  margin-top: rem(8px);
+  margin-top: rem(4px);
+  font-family: var(--font-game), Arial, sans-serif;
+  font-size: rem(24px);
+  line-height: 1.2;
 }
 
-.stats .value .caption {
-  font:
-    rem(10px) Arial,
-    sans-serif;
-  color: #778471;
+.value .caption {
+  font-size: rem(14px);
+  color: #858a80;
 }
 
-.healthStat > .label {
+.healthStat .label {
   color: #9fb789;
 }
 
 .healthTrack {
-  margin-top: rem(8px);
-  height: rem(3px);
+  margin-top: rem(4px);
+  height: rem(4px);
   background: #0e1410;
 }
 
@@ -59,76 +52,31 @@
   display: block;
 
   @include size(var(--health), 100%);
+  @include transition(width, 0.4s);
 
   background: #8ea676;
-
-  @include transition(width, 0.4s);
-}
-
-@include tab-s {
-  .stats {
-    gap: rem(20px);
-    padding: rem(20px) rem(16px);
-  }
-
-  .stats .label .caption {
-    display: inline;
-    margin-left: rem(6px);
-    font-size: rem(12px);
-  }
-
-  .stats .value {
-    font-size: rem(24px);
-  }
 }
 
 .lastAbility {
-  display: flex;
-  grid-column: 1/-1;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between, center);
+
+  grid-column: 1 / -1;
   gap: rem(8px);
-  margin-top: rem(6px);
-  padding: rem(12px) rem(8px) 0;
+  margin: 0;
+  padding-top: rem(8px);
   border-top: rem(1px) solid var(--color-line);
 }
 
-.stats .lastAbility > .label {
+.lastAbility .label {
   font-size: rem(12px);
-  letter-spacing: rem(1px);
   color: #85927d;
 }
 
-.stats .lastAbility > .value {
+.lastAbility .value {
   margin: 0;
+  font-size: rem(14px);
   text-align: right;
   color: var(--color-gold);
-  font: italic rem(11px) var(--font-display);
-}
-
-.stats {
-  gap: rem(8px);
-  padding: rem(16px) rem(10px);
-  border: rem(1px) solid #788b9c33;
-  border-radius: 0;
-  background: linear-gradient(110deg, #1c2933ed, #111c25f5);
-}
-
-.stats .label .caption {
-  font-size: rem(12px);
-  color: #a2afb4;
-}
-
-.stats .value {
-  font-family: var(--font-game), Arial, sans-serif;
-  font-size: rem(23px);
-}
-
-.stats .lastAbility > .value {
-  font-family: var(--font-game), Arial, sans-serif;
-  font-size: rem(12px);
-  color: #d1bf91;
-  font-style: normal;
 }
 
 .healed {
@@ -138,7 +86,7 @@
 @keyframes health-glow {
   from {
     color: #d1ffad;
-    filter: drop-shadow(0 0 rem(7px) #9de878);
+    filter: drop-shadow(0 0 rem(8px) #9de878);
   }
 
   to {
@@ -146,41 +94,47 @@
   }
 }
 
-.stats {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: rem(20px) rem(12px);
-}
-
-.stats .label .caption {
-  display: block;
-  margin: rem(4px) 0 0;
-  font-size: rem(12px);
-  letter-spacing: 0;
-}
-
-.stats .value {
-  font-size: rem(28px);
-}
-
-.stats .lastAbility > .label {
-  font-size: rem(12px);
-  letter-spacing: 0;
-}
-
-.stats .lastAbility > .value {
-  font-size: rem(15px);
-}
-
-.stats .value .caption {
-  font-size: rem(14px);
-}
-
 @include tab-s {
   .stats {
     grid-template-columns: 1.3fr 1fr 1fr 0.7fr;
+    gap: rem(20px) rem(12px);
+    padding: rem(16px) rem(12px);
   }
 
-  .stats > .group {
-    padding: 0 rem(8px);
+  .group {
+    padding-inline: rem(8px);
+    border-right: rem(1px) solid var(--color-line);
+  }
+
+  .shield {
+    border-right: 0;
+  }
+
+  .label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .value {
+    margin-top: rem(8px);
+    font-size: rem(28px);
+  }
+
+  .healthTrack {
+    margin-top: rem(8px);
+  }
+
+  .lastAbility {
+    padding: rem(12px) rem(8px) 0;
+  }
+
+  .lastAbility .value {
+    font-size: rem(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .healed {
+    animation: none;
   }
 }

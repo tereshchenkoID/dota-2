@@ -56,15 +56,16 @@
   width: rem(6px);
   z-index: $z-index-1;
   color: #c49d5d;
-  place-items: center;
+  place-content: center;
 }
 
 .controls {
   display: grid;
   grid-template-columns: rem(64px) minmax(0, 1fr);
+  align-items: center;
   gap: rem(8px);
-  margin-top: rem(16px);
-  padding: rem(4px) rem(8px) rem(16px);
+  margin-top: rem(8px);
+  padding: 0 0 rem(8px);
   border-bottom: rem(1px) solid #ffffff0b;
 }
 
@@ -75,7 +76,9 @@
   border-right: rem(1px) solid #ffffff12;
 
   .value {
-    font: rem(34px) var(--font-display);
+    font-family: var(--font-display);
+    font-size: rem(28px);
+    line-height: 1;
     color: #e8ddc6;
   }
 
@@ -171,7 +174,13 @@
 
   .controls {
     grid-template-columns: rem(124px) minmax(0, 1fr);
+    margin-top: rem(16px);
     padding-top: rem(12px);
+    padding-bottom: rem(16px);
+  }
+
+  .remaining .value {
+    font-size: rem(34px);
   }
 
   .machineFooter {

@@ -2,11 +2,11 @@
   @include flex(center, center);
   @include transition((filter, transform));
 
-  padding: rem(12px);
+  padding: rem(8px) rem(12px);
   border: rem(1px) solid #ec825c88;
   width: 100%;
   min-width: 0;
-  min-height: rem(60px);
+  min-height: rem(44px);
   background: linear-gradient(115deg, #97412d, #cb5b36 65%, #b2442c);
   box-shadow: 0 rem(4px) rem(20px) #b33e252e, inset 0 rem(1px) #ffc3a63d;
   font-family: var(--font-game), Arial, sans-serif;
@@ -40,6 +40,7 @@
 @include mob-m {
   .spinButton {
     padding-inline: rem(24px);
+    min-height: rem(60px);
     font-size: rem(20px);
     letter-spacing: rem(4px);
   }

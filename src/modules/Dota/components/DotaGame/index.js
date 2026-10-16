@@ -30,8 +30,12 @@ const DotaGame = () => {
           spinning={spinning}
         />
         <div className={styles.playerSide}>
-          <SlotMachine onNew={() => open('restart')} />
-          <BattleStats run={run} />
+          <div className={styles.health}>
+            <BattleStats run={run} />
+          </div>
+          <div className={styles.machine}>
+            <SlotMachine onNew={() => open('restart')} />
+          </div>
         </div>
       </div>
     </GameViewport>

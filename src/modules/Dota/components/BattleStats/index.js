@@ -38,7 +38,7 @@ const BattleStats = ({ run, maxHp = 100, feedback }) => {
           </small>
         </b>
         <div
-          className={clsx(styles.healthTrack, styles.group)}
+          className={styles.healthTrack}
           role="progressbar"
           aria-label={t('game.hp')}
           aria-valuenow={run.hp}
@@ -81,7 +81,7 @@ const BattleStats = ({ run, maxHp = 100, feedback }) => {
           {number(run.totalDamage)}
         </b>
       </div>
-      <div className={styles.group}>
+      <div className={clsx(styles.group, styles.shield)}>
         <span className={styles.label}>
           <Icon
             name="shield"

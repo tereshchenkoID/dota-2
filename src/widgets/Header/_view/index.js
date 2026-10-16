@@ -26,7 +26,7 @@ const Section = () => {
 
   return (
     <header className={styles.block}>
-      <div className={styles.inner}>
+      <div className={styles.container}>
         <Logo />
         <nav className={styles.nav}>
           <Link

@@ -11,6 +11,19 @@
   min-width: 0;
 }
 
+.health,
+.machine {
+  min-width: 0;
+}
+
+.health {
+  order: 1;
+}
+
+.machine {
+  order: 0;
+}
+
 @include tab-l {
   .arena {
     grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr);
@@ -19,5 +32,13 @@
 
   .playerSide {
     justify-content: space-between;
+  }
+
+  .health {
+    order: 0;
+  }
+
+  .machine {
+    order: 1;
   }
 }

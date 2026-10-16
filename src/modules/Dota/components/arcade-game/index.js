@@ -114,7 +114,7 @@ run.status !== 'fighting' &&
             />
           </div>
           <div className={DOTA_ARENA_STYLES.playerSide}>
-            <div className={styles.health}>
+            <div className={DOTA_ARENA_STYLES.health}>
               <BattleStats
                 run={run.battle}
                 maxHp={run.maxHp}
@@ -124,7 +124,7 @@ run.status !== 'fighting' &&
                 }
               />
             </div>
-            <div className={styles.machine}>
+            <div className={DOTA_ARENA_STYLES.machine}>
               <SlotMachine
                 store={useArcadeStore}
                 onNew={() => open('arcade-restart')}

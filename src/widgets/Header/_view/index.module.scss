@@ -7,7 +7,14 @@
   z-index: $z-index-8;
 }
 
-.inner {
+.nav,
+.details,
+.gold,
+.language {
+  display: none;
+}
+
+.container {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
@@ -15,17 +22,43 @@
   margin-inline: auto;
   padding: rem(16px);
   max-width: var(--max-width);
+
+  @include mob-m {
+    gap: rem(16px);
+  }
+
+  @include tab-s {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  @include tab-l {
+    gap: rem(24px);
+  }
+
+  @include desk-s {
+    gap: rem(32px);
+  }
 }
 
 .nav {
-  @include flex(center, center);
+  @include tab-s {
+    @include flex(center, center);
 
-  gap: rem(24px);
-
-  &.active {
-    border-bottom: rem(2px) solid var(--color-primary-hover);
-    color: var(--color-text);
+    gap: rem(12px);
   }
+
+  @include tab-l {
+    gap: rem(16px);
+  }
+
+  @include desk-s {
+    gap: rem(24px);
+  }
+}
+
+.active {
+  border-bottom: rem(2px) solid var(--color-primary-hover);
+  color: var(--color-text);
 }
 
 .link,
@@ -56,20 +89,24 @@
 }
 
 .badge {
-  @include size(rem(40px), rem(44px));
+  @include size(rem(42px));
 
   display: grid;
+  place-items: center;
   border: rem(1px) solid var(--color-border);
   border-radius: rem(8px);
   background: var(--color-surface-hover);
   font-size: rem(20px);
   color: var(--color-link-hover);
-  place-items: center;
 }
 
 .details {
   font-size: rem(12px);
   white-space: nowrap;
+
+  @include desk-m {
+    display: block;
+  }
 }
 
 .track {
@@ -90,99 +127,20 @@
 }
 
 .gold {
-  @include flex(null, center);
-
   gap: rem(8px);
   font-size: rem(14px);
   color: var(--color-link-hover);
   white-space: nowrap;
+
+  @include mob-m {
+    @include flex(null, center);
+  }
 }
 
-.nav,
-.details,
-.gold,
 .language {
-  display: none;
-}
+  display: block;
 
-.account {
-  gap: rem(8px);
-}
-
-.badge {
-  width: rem(36px);
-}
-
-@include mob-m {
-  .inner {
-    gap: rem(16px);
-  }
-
-  .account {
-    gap: rem(12px);
-  }
-
-  .badge {
-    width: rem(40px);
-  }
-
-  .gold {
-    display: flex;
-  }
-
-  .language {
-    display: block;
-  }
-}
-
-@include tab-s {
-  .inner {
-    grid-template-columns: auto 1fr auto;
-  }
-
-  .nav {
-    @include flex;
-
-    gap: rem(12px);
-  }
-
-  .link,
-  .control {
-    font-size: rem(12px);
-  }
-}
-
-@include tab-l {
-  .inner {
-    gap: rem(24px);
-  }
-
-  .nav {
-    gap: rem(16px);
-  }
-
-  .link,
-  .control {
-    font-size: rem(14px);
-  }
-}
-
-@include desk-s {
-  .inner {
-    gap: rem(32px);
-  }
-
-  .account {
-    gap: rem(16px);
-  }
-
-  .nav {
-    gap: rem(24px);
-  }
-}
-
-@include desk-m {
-  .details {
+  @include mob-m {
     display: block;
   }
 }
