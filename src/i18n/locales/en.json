@@ -445,5 +445,30 @@
     },
     "notAvailable": "—",
     "durationLabel": "Duration"
+  },
+  "buildImpact": {
+    "title": "See your build at work",
+    "highest": "Highest upgrade level",
+    "levels": "Highest upgrade {highest}/{max} · Total levels {total}/{capacity}",
+    "levelHint": "Upgrade level is separate from stage. One reward gives one level: at least {max} victories for one maximum upgrade, {capacity} for all ten, before rune choices. This is a technical cap, not a typical run milestone.",
+    "health": "Maximum HP: {base} → {value}",
+    "spins": "Stage starting spins: {base} → {value} (before runes)",
+    "preview": "Same combination, with and without your build",
+    "matchSize": "Preview combination size",
+    "match": "{count}×",
+    "damage": "{base} → {value} · build +{bonus} · rune +{rune}",
+    "previewHint": "Hero examples use this Roshan, your build and active rune, without items. Item examples use your permanent build. Damage is not capped by remaining boss HP. These are comparisons, not predictions.",
+    "tracked": "Measured damage this run: {total}",
+    "trackedHint": "Damage sources add up to HP actually removed. Older damage before tracking started is excluded. This is an attribution breakdown, not a replay of a run without upgrades.",
+    "buildBonus": "Build +{value}",
+    "runeBonus": "Rune +{value}",
+    "baseDamage": "Base {value}",
+    "items": "Item effects with your build",
+    "itemStats": {
+      "damage": "Damage {base} → {value}",
+      "healing": "Healing {base} → {value} HP",
+      "extraSpins": "Bonus spins {base} → {value}",
+      "shields": "Blocks {base} → {value}"
+    }
   }
 }

@@ -2,6 +2,7 @@ import { createRun } from '@/modules/Dota/engine/battle'
 import { findCombinations } from '@/modules/Dota/engine/combinations'
 
 import { ARCADE_CONFIG } from './arcade-config'
+import { EMPTY_DAMAGE_SOURCES, getCappedDamageBreakdown } from './build-impact'
 import { resolveArcadeEffect } from './effect-resolver'
 import { chooseModifier } from './modifiers'
 import { generateRewardChoices, REWARDS } from './reward-generator'
@@ -60,6 +61,7 @@ export function createArcadeRun({ id, seed, now = new Date().toISOString(), reco
     activeRune: null,
     stageConfig: null,
     totalDamage: 0,
+    damageSources: { ...EMPTY_DAMAGE_SOURCES },
     totalSpins: 0,
     defeatedBosses: 0,
     startedAt: now,
@@ -145,17 +147,14 @@ export function resolveArcadeTurn(run, grid, now = new Date().toISOString(), rew
     lastAttack: 0,
     lastBlockSource: null,
     secondWindTriggered: false,
-    lastBreakdown: {
-      base: Math.min(dealt, effect.breakdown.base),
-      upgrades: Math.min(Math.max(0, dealt - effect.breakdown.base), effect.breakdown.upgrades),
-      rune: Math.max(0, dealt - effect.breakdown.base - effect.breakdown.upgrades),
-    },
+    lastBreakdown: getCappedDamageBreakdown(effect, dealt),
   }
   let next = {
     ...run,
     battle: nextBattle,
     totalDamage: run.totalDamage + dealt,
     totalSpins: run.totalSpins + 1,
+    damageSources: Object.fromEntries(Object.keys(EMPTY_DAMAGE_SOURCES).map((key) => [key, (run.damageSources?.[key] || 0) + nextBattle.lastBreakdown[key]])),
   }
   // A killing blow wins before Roshan can retaliate, as in Classic.
   if (!nextBattle.bossHp) {

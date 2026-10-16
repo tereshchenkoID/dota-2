@@ -22,6 +22,11 @@ const PRIORITIES = {
 // Decisions use completed battle observations, visible HP, build and next stage
 // preview only. Combat/modifier streams are paired across all strategies.
 export function chooseReward(run, strategy, random) {
+  if (strategy.startsWith('focus:')) {
+    const target = strategy.slice(6)
+    if (run.choices.includes(target)) return target
+    return chooseReward(run, 'adaptive', random)
+  }
   if (strategy === 'random') return run.choices[Math.floor(random() * run.choices.length)]
   const health = run.battle.hp / run.maxHp
   const nextStage = getStageConfig(run.stage + 1)
@@ -58,6 +63,9 @@ export function simulate({ runs = 10000, seed = 20261016, strategies = STRATEGIE
     const stages = [], distribution = {}, offered = {}, selected = {}, runes = {}
     let totalSpins = 0, totalDamage = 0, totalUpgrades = 0, choices = 0, emptySpins = 0, hp = 0, spins = 0, censored = 0
     const perRun = []
+    const highestLevels = [], firstMaxStages = [], firstMaxSeconds = []
+    const maxedById = Object.fromEntries(UPGRADES.map((entry) => [entry.id, 0]))
+    let allMaxed = 0
     for (let index = 0; index < runs; index++) {
       const runSeed = (seed + Math.imul(index, 7919)) >>> 0
       const randomChoice = seededRandom(runSeed ^ 0xdeadbeef)
@@ -65,6 +73,7 @@ export function simulate({ runs = 10000, seed = 20261016, strategies = STRATEGIE
       let combat = stageRandom(1, 13)
       let run = createArcadeRun({ id: `sim-${index}`, seed: runSeed, now: '2026-01-01T00:00:00.000Z' }, stageRandom(1, 29))
       let rune = null, acquired = 0
+      let firstMax = null
       while (run.status !== 'defeated' && run.stage <= 500) {
         if (run.status === 'fighting') {
           run = resolveArcadeTurn(run, generateGrid(combat), '2026-01-01T00:00:00.000Z', { disabledIds })
@@ -83,6 +92,7 @@ export function simulate({ runs = 10000, seed = 20261016, strategies = STRATEGIE
           choices++
           acquired += Number(REWARDS.find((entry) => entry.id === id).type !== 'rune')
           run = applyUpgrade(run, id)
+          if (!firstMax && UPGRADES.some((entry) => run.upgrades[entry.id] >= entry.maxLevel)) firstMax = { stage: run.stage, seconds: run.totalSpins * ARCADE_CONFIG.spinSeconds + (run.defeatedBosses || 0) * ARCADE_CONFIG.choiceSeconds }
           rune = run.preparedRune
         } else if (run.status === 'transitioning') {
           run = startNextArcadeStage(run, stageRandom(run.stage + 1, 29))
@@ -90,6 +100,13 @@ export function simulate({ runs = 10000, seed = 20261016, strategies = STRATEGIE
         } else throw new Error(`Unexpected state ${run.status}`)
       }
       stages.push(run.maxStage)
+      highestLevels.push(Math.max(0, ...Object.values(run.upgrades)))
+      for (const entry of UPGRADES) maxedById[entry.id] += Number(run.upgrades[entry.id] >= entry.maxLevel)
+      allMaxed += Number(UPGRADES.every((entry) => run.upgrades[entry.id] >= entry.maxLevel))
+      if (firstMax) {
+        firstMaxStages.push(firstMax.stage)
+        firstMaxSeconds.push(firstMax.seconds)
+      }
       perRun.push(run.maxStage)
       distribution[run.maxStage] = (distribution[run.maxStage] || 0) + 1
       totalSpins += run.totalSpins
@@ -107,6 +124,19 @@ export function simulate({ runs = 10000, seed = 20261016, strategies = STRATEGIE
       reach10: stages.filter((stage) => stage >= 10).length / runs,
       reach15: stages.filter((stage) => stage >= 15).length / runs,
       reach30: stages.filter((stage) => stage >= 30).length / runs,
+      clear30: stages.filter((stage) => stage >= 31).length / runs,
+      progression: {
+        meanHighestLevel: highestLevels.reduce((sum, value) => sum + value, 0) / runs,
+        maximumLevelSeen: highestLevels.reduce((max, level) => Math.max(max, level), 0),
+        reachLevel10: highestLevels.filter((level) => level >= 10).length / runs,
+        reachLevel20: highestLevels.filter((level) => level >= 20).length / runs,
+        reachLevel30: firstMaxStages.length / runs,
+        allMaxedRate: allMaxed / runs,
+        maxedById,
+        firstMaxMeanStage: firstMaxStages.length ? firstMaxStages.reduce((sum, value) => sum + value, 0) / firstMaxStages.length : null,
+        firstMaxMeanEstimatedSeconds: firstMaxSeconds.length ? firstMaxSeconds.reduce((sum, value) => sum + value, 0) / firstMaxSeconds.length : null,
+        zeroHitUpper95: firstMaxStages.length ? null : 1 - 0.05 ** (1 / runs),
+      },
       maxStage: stages.at(-1),
       meanSpins: totalSpins / runs,
       meanUpgrades: totalUpgrades / runs,
@@ -127,9 +157,14 @@ export function simulate({ runs = 10000, seed = 20261016, strategies = STRATEGIE
 
 export function formatReport(report) {
   let result = `# Arcade progression simulation\n\n${report.runsPerStrategy} runs per strategy. Seed ${report.seed}. Combat and modifier streams paired by run and stage across strategies.\n\n| Strategy | Mean | Median | Stage 5 | Stage 10 | Stage 15 | Stage 30 | Upgrades | Damage | Duration* | HP loss | Spins loss |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n`
-  const percent = (value) => `${(value * 100).toFixed(1)}%`
+  const percent = (value) => `${(value * 100).toFixed(2)}%`
   for (const [id, value] of Object.entries(report.strategies)) result += `| ${id} | ${value.meanStage.toFixed(2)} | ${value.medianStage} | ${percent(value.reach5)} | ${percent(value.reach10)} | ${percent(value.reach15)} | ${percent(value.reach30)} | ${value.meanUpgrades.toFixed(2)} | ${value.meanDamage.toFixed(0)} | ${value.estimatedMeanSeconds.toFixed(0)} s | ${percent(value.hpDefeatRate)} | ${percent(value.spinsDefeatRate)} |\n`
   result += '\n*Duration estimates animation plus 8 seconds per choice; it is not measured human play time. Rune clear rates are observational, not causal. Stage 500 is a simulation guard only; censored runs are reported separately.\n'
+  result += '\n## Maximum upgrade attainability\n\nLevel means the highest single permanent upgrade, not stage or the total build. Zero hits are not proof of impossibility. The one-sided 95% bound assumes independent sampled runs under this particular policy.\n\n| Policy | Clear stage 30 | Mean highest level | Highest seen | Level 10 | Level 20 | Level 30 | All ten maxed | Zero-hit upper 95% |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n'
+  for (const [id, value] of Object.entries(report.strategies)) {
+    const progression = value.progression
+    result += `| ${id} | ${percent(value.clear30)} | ${progression.meanHighestLevel.toFixed(2)} | ${progression.maximumLevelSeen} | ${percent(progression.reachLevel10)} | ${percent(progression.reachLevel20)} | ${percent(progression.reachLevel30)} | ${percent(progression.allMaxedRate)} | ${progression.zeroHitUpper95 === null ? '—' : `${(progression.zeroHitUpper95 * 100).toFixed(3)}%`} |\n`
+  }
   for (const [id, value] of Object.entries(report.strategies)) {
     result += `\n## ${id}\n\nEmpty spins: ${percent(value.emptySpinRate)}. Max stage: ${value.maxStage}. Censored: ${value.censored}.\n\nDistribution: ${JSON.stringify(value.distribution)}\n\n| Reward | Offered | Chosen | Pick rate |\n|---|---:|---:|---:|\n`
     for (const [key, data] of Object.entries(value.rewards)) result += `| ${key} | ${data.offered} | ${data.selected} | ${percent(data.selectionRate)} |\n`

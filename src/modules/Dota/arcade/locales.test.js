@@ -6,7 +6,7 @@ import { REWARDS } from './reward-generator'
 
 const read = (locale) => {
   const messages = JSON.parse(readFileSync(new URL(`../../../i18n/locales/${locale}.json`, import.meta.url), 'utf8'))
-  return { gauntlet: messages.gauntlet, progression: messages.progression }
+  return { gauntlet: messages.gauntlet, progression: messages.progression, buildImpact: messages.buildImpact }
 }
 const flatten = (value, prefix = '') => Object.entries(value).flatMap(([key, entry]) => typeof entry === 'object' ? flatten(entry, `${prefix}${key}.`) : [[`${prefix}${key}`, entry]])
 

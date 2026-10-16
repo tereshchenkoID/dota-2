@@ -76,8 +76,15 @@ export function normalizeArcadeState(persisted, version = 2) {
   if (source.status === 'fighting' && (!battle.hp || !battle.bossHp || !battle.spins)) return empty
   const rune = RUNES.find((entry) => entry.id === source.activeRune?.id)
   const remaining = Math.floor(numeric(source.activeRune?.remaining, 0, rune?.duration || 0))
+  let untracked = numeric(source.totalDamage)
+  const damageSources = Object.fromEntries(['base', 'upgrades', 'rune'].map((key) => {
+    const value = numeric(source.damageSources?.[key], 0, untracked)
+    untracked -= value
+    return [key, value]
+  }))
   const run = {
     ...source, stage, upgrades, stageConfig, battle, maxHp,
+    damageSources,
     maxStage: Math.max(stage, Math.floor(numeric(source.maxStage, stage))),
     seed: numeric(source.seed) >>> 0,
     recordAtStart: numeric(source.recordAtStart, stats.bestStage),

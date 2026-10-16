@@ -138,8 +138,26 @@
 }
 
 .breakdown {
+  @include flex(center, center, null, wrap);
+
+  gap: rem(4px) rem(8px);
   margin: 0;
-  font-size: rem(12px);
+  font-size: rem(14px);
   line-height: 1.4;
   color: var(--color-gold);
+}
+
+.build,
+.rune {
+  padding: rem(4px) rem(8px);
+  border: rem(1px) solid currentcolor;
+  background: var(--color-surface-input);
+}
+
+.build {
+  color: var(--color-gold);
+}
+
+.rune {
+  color: var(--color-primary-hover);
 }

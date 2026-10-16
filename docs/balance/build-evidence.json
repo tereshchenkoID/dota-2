@@ -1,0 +1,1165 @@
+{
+  "seed": 20261016,
+  "config": {
+    "playerHp": 100,
+    "spins": 22,
+    "baseHp": 500,
+    "hpGrowth": [
+      20,
+      25,
+      35,
+      45
+    ],
+    "eliteInterval": 5,
+    "eliteHpBonus": 0.12,
+    "eliteHpGrowth": 0.02,
+    "eliteDamageBonus": 0.15,
+    "baseDamage": 4,
+    "damageGrowth": [
+      0.05,
+      0.1,
+      0.15,
+      0.2
+    ],
+    "endlessStage": 30,
+    "endlessHpGrowth": 140,
+    "endlessDamageGrowth": 0.65,
+    "attackInterval": 3,
+    "maxTurns": 100,
+    "maxExtraSpins": 8,
+    "maxShields": 32,
+    "rarityWeights": {
+      "common": 6,
+      "rare": 3,
+      "epic": 1
+    },
+    "spinSeconds": 1.45,
+    "choiceSeconds": 8
+  },
+  "upgrades": [
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "blade-mastery",
+      "type": "offense",
+      "rarity": "rare",
+      "icon": "swords",
+      "effect": "heroBonus",
+      "value": 0.15,
+      "nameKey": "gauntlet.upgrades.blade-mastery.name",
+      "descriptionKey": "gauntlet.upgrades.blade-mastery.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "critical-power",
+      "type": "offense",
+      "rarity": "rare",
+      "icon": "crosshair",
+      "effect": "criticalBonus",
+      "value": 0.35,
+      "nameKey": "gauntlet.upgrades.critical-power.name",
+      "descriptionKey": "gauntlet.upgrades.critical-power.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "arcane-knowledge",
+      "type": "offense",
+      "rarity": "rare",
+      "icon": "sparkles",
+      "effect": "abilityBonus",
+      "value": 0.25,
+      "nameKey": "gauntlet.upgrades.arcane-knowledge.name",
+      "descriptionKey": "gauntlet.upgrades.arcane-knowledge.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "fortified-armor",
+      "type": "defense",
+      "rarity": "common",
+      "icon": "shield",
+      "effect": "shields",
+      "value": 1,
+      "nameKey": "gauntlet.upgrades.fortified-armor.name",
+      "descriptionKey": "gauntlet.upgrades.fortified-armor.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "extra-charges",
+      "type": "utility",
+      "rarity": "rare",
+      "icon": "battery-plus",
+      "effect": "spins",
+      "value": 2,
+      "nameKey": "gauntlet.upgrades.extra-charges.name",
+      "descriptionKey": "gauntlet.upgrades.extra-charges.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "vitality",
+      "type": "defense",
+      "rarity": "common",
+      "icon": "heart",
+      "effect": "maxHp",
+      "value": 20,
+      "nameKey": "gauntlet.upgrades.vitality.name",
+      "descriptionKey": "gauntlet.upgrades.vitality.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "battle-recovery",
+      "type": "defense",
+      "rarity": "common",
+      "icon": "heart-pulse",
+      "effect": "recovery",
+      "value": 12,
+      "nameKey": "gauntlet.upgrades.battle-recovery.name",
+      "descriptionKey": "gauntlet.upgrades.battle-recovery.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "artifact-mastery",
+      "type": "utility",
+      "rarity": "rare",
+      "icon": "gem",
+      "effect": "artifactBonus",
+      "value": 0.25,
+      "nameKey": "gauntlet.upgrades.artifact-mastery.name",
+      "descriptionKey": "gauntlet.upgrades.artifact-mastery.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "roshan-hunter",
+      "type": "offense",
+      "rarity": "rare",
+      "icon": "scan-eye",
+      "effect": "eliteBonus",
+      "value": 0.25,
+      "nameKey": "gauntlet.upgrades.roshan-hunter.name",
+      "descriptionKey": "gauntlet.upgrades.roshan-hunter.description"
+    },
+    {
+      "maxLevel": 30,
+      "minStage": 1,
+      "id": "second-wind",
+      "type": "defense",
+      "rarity": "epic",
+      "icon": "wind",
+      "effect": "reviveHp",
+      "value": 20,
+      "nameKey": "gauntlet.upgrades.second-wind.name",
+      "descriptionKey": "gauntlet.upgrades.second-wind.description"
+    }
+  ],
+  "runes": [
+    {
+      "id": "double-damage",
+      "rarity": "epic",
+      "icon": "swords",
+      "durationType": "spins",
+      "duration": 6,
+      "effects": {
+        "damageMultiplier": 2
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.double-damage.name",
+      "descriptionKey": "gauntlet.runes.double-damage.description"
+    },
+    {
+      "id": "regeneration",
+      "rarity": "common",
+      "icon": "heart-pulse",
+      "durationType": "entry",
+      "duration": 1,
+      "effects": {
+        "healing": 50
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.regeneration.name",
+      "descriptionKey": "gauntlet.runes.regeneration.description"
+    },
+    {
+      "id": "haste",
+      "rarity": "rare",
+      "icon": "wind",
+      "durationType": "entry",
+      "duration": 1,
+      "effects": {
+        "spins": 6
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.haste.name",
+      "descriptionKey": "gauntlet.runes.haste.description"
+    },
+    {
+      "id": "arcane",
+      "rarity": "rare",
+      "icon": "sparkles",
+      "durationType": "spins",
+      "duration": 8,
+      "effects": {
+        "abilityBonus": 0.75
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.arcane.name",
+      "descriptionKey": "gauntlet.runes.arcane.description"
+    },
+    {
+      "id": "invisibility",
+      "rarity": "common",
+      "icon": "ghost",
+      "durationType": "attacks",
+      "duration": 2,
+      "effects": {
+        "blocks": 1,
+        "healing": 15
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.invisibility.name",
+      "descriptionKey": "gauntlet.runes.invisibility.description"
+    },
+    {
+      "id": "shield",
+      "rarity": "common",
+      "icon": "shield-plus",
+      "durationType": "entry",
+      "duration": 1,
+      "effects": {
+        "shields": 4
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.shield.name",
+      "descriptionKey": "gauntlet.runes.shield.description"
+    },
+    {
+      "id": "illusion",
+      "rarity": "rare",
+      "icon": "copy",
+      "durationType": "spins",
+      "duration": 5,
+      "effects": {
+        "heroEcho": 0.75
+      },
+      "type": "rune",
+      "maxLevel": 1,
+      "minStage": 1,
+      "nameKey": "gauntlet.runes.illusion.name",
+      "descriptionKey": "gauntlet.runes.illusion.description"
+    }
+  ],
+  "runsPerStrategy": 10000,
+  "strategies": {
+    "random": {
+      "meanStage": 9.8185,
+      "medianStage": 9,
+      "reach30": 0.0054,
+      "clear30": 0.0047,
+      "meanUpgrades": 6.1642,
+      "progression": {
+        "meanHighestLevel": 2.1058,
+        "maximumLevelSeen": 8,
+        "reachLevel10": 0,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "damage": {
+      "meanStage": 7.8189,
+      "medianStage": 8,
+      "reach30": 0,
+      "clear30": 0,
+      "meanUpgrades": 4.7989,
+      "progression": {
+        "meanHighestLevel": 2.1282,
+        "maximumLevelSeen": 7,
+        "reachLevel10": 0,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "defense": {
+      "meanStage": 8.7255,
+      "medianStage": 9,
+      "reach30": 0,
+      "clear30": 0,
+      "meanUpgrades": 6.9392,
+      "progression": {
+        "meanHighestLevel": 3.3729,
+        "maximumLevelSeen": 11,
+        "reachLevel10": 0.0002,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "utility": {
+      "meanStage": 7.7735,
+      "medianStage": 8,
+      "reach30": 0,
+      "clear30": 0,
+      "meanUpgrades": 3.2218,
+      "progression": {
+        "meanHighestLevel": 2.06,
+        "maximumLevelSeen": 8,
+        "reachLevel10": 0,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "balanced": {
+      "meanStage": 13.0175,
+      "medianStage": 10,
+      "reach30": 0.0843,
+      "clear30": 0.0783,
+      "meanUpgrades": 11.7605,
+      "progression": {
+        "meanHighestLevel": 3.1661,
+        "maximumLevelSeen": 14,
+        "reachLevel10": 0.011,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "adaptive": {
+      "meanStage": 14.415,
+      "medianStage": 12,
+      "reach30": 0.1166,
+      "clear30": 0.1126,
+      "meanUpgrades": 12.5504,
+      "progression": {
+        "meanHighestLevel": 3.1247,
+        "maximumLevelSeen": 13,
+        "reachLevel10": 0.0046,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    }
+  },
+  "focus": {
+    "focus:blade-mastery": {
+      "meanStage": 14.8978,
+      "reach30": 0.1388,
+      "progression": {
+        "meanHighestLevel": 3.5881,
+        "maximumLevelSeen": 15,
+        "reachLevel10": 0.03,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:critical-power": {
+      "meanStage": 13.5786,
+      "reach30": 0.0956,
+      "progression": {
+        "meanHighestLevel": 3.0172,
+        "maximumLevelSeen": 13,
+        "reachLevel10": 0.0032,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:arcane-knowledge": {
+      "meanStage": 14.8746,
+      "reach30": 0.1329,
+      "progression": {
+        "meanHighestLevel": 3.2135,
+        "maximumLevelSeen": 13,
+        "reachLevel10": 0.0073,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:fortified-armor": {
+      "meanStage": 12.6604,
+      "reach30": 0.0615,
+      "progression": {
+        "meanHighestLevel": 4.3522,
+        "maximumLevelSeen": 20,
+        "reachLevel10": 0.073,
+        "reachLevel20": 0.0001,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:extra-charges": {
+      "meanStage": 13.7615,
+      "reach30": 0.1074,
+      "progression": {
+        "meanHighestLevel": 3.3685,
+        "maximumLevelSeen": 14,
+        "reachLevel10": 0.0149,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:vitality": {
+      "meanStage": 11.5379,
+      "reach30": 0.0262,
+      "progression": {
+        "meanHighestLevel": 3.9352,
+        "maximumLevelSeen": 18,
+        "reachLevel10": 0.0318,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:battle-recovery": {
+      "meanStage": 12.9868,
+      "reach30": 0.0647,
+      "progression": {
+        "meanHighestLevel": 4.4534,
+        "maximumLevelSeen": 18,
+        "reachLevel10": 0.0797,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:artifact-mastery": {
+      "meanStage": 11.6836,
+      "reach30": 0.0432,
+      "progression": {
+        "meanHighestLevel": 3.0297,
+        "maximumLevelSeen": 13,
+        "reachLevel10": 0.003,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:roshan-hunter": {
+      "meanStage": 13.0276,
+      "reach30": 0.076,
+      "progression": {
+        "meanHighestLevel": 2.9109,
+        "maximumLevelSeen": 11,
+        "reachLevel10": 0.0013,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    },
+    "focus:second-wind": {
+      "meanStage": 14.2519,
+      "reach30": 0.111,
+      "progression": {
+        "meanHighestLevel": 3.0619,
+        "maximumLevelSeen": 12,
+        "reachLevel10": 0.0036,
+        "reachLevel20": 0,
+        "reachLevel30": 0,
+        "allMaxedRate": 0,
+        "maxedById": {
+          "blade-mastery": 0,
+          "critical-power": 0,
+          "arcane-knowledge": 0,
+          "fortified-armor": 0,
+          "extra-charges": 0,
+          "vitality": 0,
+          "battle-recovery": 0,
+          "artifact-mastery": 0,
+          "roshan-hunter": 0,
+          "second-wind": 0
+        },
+        "firstMaxMeanStage": null,
+        "firstMaxMeanEstimatedSeconds": null,
+        "zeroHitUpper95": 0.00029952835977664627
+      },
+      "censored": 0
+    }
+  },
+  "benchmark": {
+    "runsPerBuildStage": 10000,
+    "seed": 20261016,
+    "note": "Controlled single-stage benchmark. Same combat/modifier seeds, full build-specific HP, no rune, equal permanent-level budget among builds. Baseline intentionally has zero upgrades. Recovery between earlier stages and reward availability are not modeled; this measures combat strength, not the chance of acquiring this exact build in a real run. All groups retain the real stage modifier. Differences are paired by run; 95% intervals describe Monte Carlo sampling only.",
+    "results": [
+      {
+        "stage": 10,
+        "budget": 0,
+        "name": "baseline",
+        "upgrades": {},
+        "clearRate": 0.7672,
+        "pairedClearDelta": 0,
+        "confidence95": 0,
+        "meanTurns": 16.3333,
+        "hpLossRate": 0.0037,
+        "spinsLossRate": 0.2291
+      },
+      {
+        "stage": 10,
+        "budget": 9,
+        "name": "damage",
+        "upgrades": {
+          "blade-mastery": 3,
+          "critical-power": 2,
+          "arcane-knowledge": 2,
+          "roshan-hunter": 2
+        },
+        "clearRate": 0.9901,
+        "pairedClearDelta": 0.2229,
+        "confidence95": 0.008157766604286415,
+        "meanTurns": 7.8315,
+        "hpLossRate": 0.0004,
+        "spinsLossRate": 0.0095
+      },
+      {
+        "stage": 10,
+        "budget": 9,
+        "name": "defense",
+        "upgrades": {
+          "vitality": 3,
+          "fortified-armor": 2,
+          "battle-recovery": 2,
+          "second-wind": 2
+        },
+        "clearRate": 0.7682,
+        "pairedClearDelta": 0.001,
+        "confidence95": 0.0006195274178130758,
+        "meanTurns": 16.3383,
+        "hpLossRate": 0,
+        "spinsLossRate": 0.2318
+      },
+      {
+        "stage": 10,
+        "budget": 9,
+        "name": "utility",
+        "upgrades": {
+          "extra-charges": 5,
+          "artifact-mastery": 4
+        },
+        "clearRate": 0.9537,
+        "pairedClearDelta": 0.1865,
+        "confidence95": 0.007634770449200596,
+        "meanTurns": 17.0701,
+        "hpLossRate": 0.0228,
+        "spinsLossRate": 0.0235
+      },
+      {
+        "stage": 10,
+        "budget": 9,
+        "name": "hybrid",
+        "upgrades": {
+          "blade-mastery": 2,
+          "extra-charges": 2,
+          "vitality": 2,
+          "fortified-armor": 1,
+          "arcane-knowledge": 1,
+          "battle-recovery": 1
+        },
+        "clearRate": 0.9724,
+        "pairedClearDelta": 0.2052,
+        "confidence95": 0.007915810604060616,
+        "meanTurns": 12.7533,
+        "hpLossRate": 0,
+        "spinsLossRate": 0.0276
+      },
+      {
+        "stage": 20,
+        "budget": 0,
+        "name": "baseline",
+        "upgrades": {},
+        "clearRate": 0.3069,
+        "pairedClearDelta": 0,
+        "confidence95": 0,
+        "meanTurns": 20.4771,
+        "hpLossRate": 0.141,
+        "spinsLossRate": 0.5521
+      },
+      {
+        "stage": 20,
+        "budget": 19,
+        "name": "damage",
+        "upgrades": {
+          "blade-mastery": 5,
+          "critical-power": 5,
+          "arcane-knowledge": 5,
+          "roshan-hunter": 4
+        },
+        "clearRate": 0.9896,
+        "pairedClearDelta": 0.6827,
+        "confidence95": 0.00912279203353036,
+        "meanTurns": 7.0197,
+        "hpLossRate": 0.0029,
+        "spinsLossRate": 0.0075
+      },
+      {
+        "stage": 20,
+        "budget": 19,
+        "name": "defense",
+        "upgrades": {
+          "vitality": 5,
+          "fortified-armor": 5,
+          "battle-recovery": 5,
+          "second-wind": 4
+        },
+        "clearRate": 0.3347,
+        "pairedClearDelta": 0.0278,
+        "confidence95": 0.0032223892013250217,
+        "meanTurns": 20.6949,
+        "hpLossRate": 0,
+        "spinsLossRate": 0.6653
+      },
+      {
+        "stage": 20,
+        "budget": 19,
+        "name": "utility",
+        "upgrades": {
+          "extra-charges": 10,
+          "artifact-mastery": 9
+        },
+        "clearRate": 0.6731,
+        "pairedClearDelta": 0.3662,
+        "confidence95": 0.009447134776489492,
+        "meanTurns": 23.5881,
+        "hpLossRate": 0.3107,
+        "spinsLossRate": 0.0162
+      },
+      {
+        "stage": 20,
+        "budget": 19,
+        "name": "hybrid",
+        "upgrades": {
+          "blade-mastery": 4,
+          "extra-charges": 3,
+          "vitality": 3,
+          "fortified-armor": 3,
+          "arcane-knowledge": 3,
+          "battle-recovery": 3
+        },
+        "clearRate": 0.9594,
+        "pairedClearDelta": 0.6525,
+        "confidence95": 0.009333519725111929,
+        "meanTurns": 14.3268,
+        "hpLossRate": 0,
+        "spinsLossRate": 0.0406
+      },
+      {
+        "stage": 30,
+        "budget": 0,
+        "name": "baseline",
+        "upgrades": {},
+        "clearRate": 0.0586,
+        "pairedClearDelta": 0,
+        "confidence95": 0,
+        "meanTurns": 20.956,
+        "hpLossRate": 0.3727,
+        "spinsLossRate": 0.5687
+      },
+      {
+        "stage": 30,
+        "budget": 29,
+        "name": "damage",
+        "upgrades": {
+          "blade-mastery": 8,
+          "critical-power": 7,
+          "arcane-knowledge": 7,
+          "roshan-hunter": 7
+        },
+        "clearRate": 0.9893,
+        "pairedClearDelta": 0.9307,
+        "confidence95": 0.004977935458173092,
+        "meanTurns": 5.9399,
+        "hpLossRate": 0.0077,
+        "spinsLossRate": 0.003
+      },
+      {
+        "stage": 30,
+        "budget": 29,
+        "name": "defense",
+        "upgrades": {
+          "vitality": 8,
+          "fortified-armor": 7,
+          "battle-recovery": 7,
+          "second-wind": 7
+        },
+        "clearRate": 0.093,
+        "pairedClearDelta": 0.0344,
+        "confidence95": 0.003572363447420002,
+        "meanTurns": 22.0214,
+        "hpLossRate": 0,
+        "spinsLossRate": 0.907
+      },
+      {
+        "stage": 30,
+        "budget": 29,
+        "name": "utility",
+        "upgrades": {
+          "extra-charges": 15,
+          "artifact-mastery": 14
+        },
+        "clearRate": 0.3448,
+        "pairedClearDelta": 0.2862,
+        "confidence95": 0.008876659556279426,
+        "meanTurns": 25.3902,
+        "hpLossRate": 0.6464,
+        "spinsLossRate": 0.0088
+      },
+      {
+        "stage": 30,
+        "budget": 29,
+        "name": "hybrid",
+        "upgrades": {
+          "blade-mastery": 5,
+          "extra-charges": 5,
+          "vitality": 5,
+          "fortified-armor": 5,
+          "arcane-knowledge": 5,
+          "battle-recovery": 4
+        },
+        "clearRate": 0.9739,
+        "pairedClearDelta": 0.9153,
+        "confidence95": 0.0054575939862556945,
+        "meanTurns": 15.9116,
+        "hpLossRate": 0.0002,
+        "spinsLossRate": 0.0259
+      }
+    ]
+  },
+  "rewardImpact": {
+    "runsPerExperiment": 10000,
+    "seed": 20261016,
+    "strategy": "adaptive",
+    "note": "Removing an offer also changes replacement choices and the resulting policy path. This estimates policy-level contribution, not an isolated per-hit multiplier. Common combat streams are paired by run and stage. Confidence intervals describe Monte Carlo uncertainty within this model, not human play.",
+    "results": [
+      {
+        "id": "blade-mastery",
+        "type": "offense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 12.5389,
+        "pairedDelta": 1.8761,
+        "confidence95": 0.16920465730224865,
+        "reach10Delta": 0.030899999999999928,
+        "reach30Delta": 0.06589999999999999
+      },
+      {
+        "id": "critical-power",
+        "type": "offense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 15.3603,
+        "pairedDelta": -0.9453,
+        "confidence95": 0.1756955450179622,
+        "reach10Delta": -0.013700000000000045,
+        "reach30Delta": -0.028700000000000017
+      },
+      {
+        "id": "arcane-knowledge",
+        "type": "offense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 13.0395,
+        "pairedDelta": 1.3755,
+        "confidence95": 0.1536613075946771,
+        "reach10Delta": 0.019399999999999973,
+        "reach30Delta": 0.0484
+      },
+      {
+        "id": "fortified-armor",
+        "type": "defense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.052,
+        "pairedDelta": 0.363,
+        "confidence95": 0.17506411117434104,
+        "reach10Delta": 0.0008999999999999009,
+        "reach30Delta": 0.014399999999999996
+      },
+      {
+        "id": "extra-charges",
+        "type": "utility",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 12.9118,
+        "pairedDelta": 1.5032,
+        "confidence95": 0.15754310110275113,
+        "reach10Delta": 0.012299999999999978,
+        "reach30Delta": 0.0605
+      },
+      {
+        "id": "vitality",
+        "type": "defense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 15.2043,
+        "pairedDelta": -0.7893,
+        "confidence95": 0.1817167373853738,
+        "reach10Delta": -0.0041000000000001036,
+        "reach30Delta": -0.026200000000000015
+      },
+      {
+        "id": "battle-recovery",
+        "type": "defense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 11.5618,
+        "pairedDelta": 2.8532,
+        "confidence95": 0.1683107406149146,
+        "reach10Delta": 0.044399999999999995,
+        "reach30Delta": 0.0871
+      },
+      {
+        "id": "artifact-mastery",
+        "type": "utility",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 15.6186,
+        "pairedDelta": -1.2036,
+        "confidence95": 0.17715246839543064,
+        "reach10Delta": -0.01330000000000009,
+        "reach30Delta": -0.041999999999999996
+      },
+      {
+        "id": "roshan-hunter",
+        "type": "offense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.8778,
+        "pairedDelta": -0.4628,
+        "confidence95": 0.15349584458693924,
+        "reach10Delta": -0.011200000000000099,
+        "reach30Delta": -0.016700000000000007
+      },
+      {
+        "id": "second-wind",
+        "type": "defense",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.2839,
+        "pairedDelta": 0.1311,
+        "confidence95": 0.09842446835520383,
+        "reach10Delta": 0.006199999999999983,
+        "reach30Delta": 0.0015999999999999903
+      },
+      {
+        "id": "double-damage",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.4246,
+        "pairedDelta": -0.0096,
+        "confidence95": 0.09315995050154598,
+        "reach10Delta": 0.0010999999999999899,
+        "reach30Delta": -0.00040000000000001146
+      },
+      {
+        "id": "regeneration",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 13.9714,
+        "pairedDelta": 0.4436,
+        "confidence95": 0.156395456060185,
+        "reach10Delta": 0.03069999999999995,
+        "reach30Delta": 0.004299999999999998
+      },
+      {
+        "id": "haste",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.7596,
+        "pairedDelta": -0.3446,
+        "confidence95": 0.13549828877636744,
+        "reach10Delta": -0.0051000000000001044,
+        "reach30Delta": -0.012900000000000009
+      },
+      {
+        "id": "arcane",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.4991,
+        "pairedDelta": -0.0841,
+        "confidence95": 0.13366607678585288,
+        "reach10Delta": -0.0023000000000000798,
+        "reach30Delta": -0.003500000000000003
+      },
+      {
+        "id": "invisibility",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.4638,
+        "pairedDelta": -0.0488,
+        "confidence95": 0.15660437114882206,
+        "reach10Delta": -0.0023000000000000798,
+        "reach30Delta": -0.0003000000000000086
+      },
+      {
+        "id": "shield",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.7964,
+        "pairedDelta": -0.3814,
+        "confidence95": 0.16112641571447622,
+        "reach10Delta": -0.0038000000000000256,
+        "reach30Delta": -0.01440000000000001
+      },
+      {
+        "id": "illusion",
+        "type": "rune",
+        "meanStageWith": 14.415,
+        "meanStageWithout": 14.515,
+        "pairedDelta": -0.1,
+        "confidence95": 0.1381895507597996,
+        "reach10Delta": -0.0039000000000000146,
+        "reach30Delta": -0.003799999999999998
+      }
+    ]
+  }
+}

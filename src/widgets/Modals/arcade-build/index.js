@@ -10,6 +10,8 @@ import { getBuildSummary } from '@/modules/Dota/arcade/build-summary'
 import { getRuneValues } from '@/modules/Dota/arcade/runes'
 import { getUpgradeValue, UPGRADES } from '@/modules/Dota/arcade/upgrades'
 
+import BuildImpact from './impact'
+
 import styles from './index.module.scss'
 
 const ArcadeBuild = () => {
@@ -28,6 +30,7 @@ const ArcadeBuild = () => {
       <Text color="accent">
         {t('gauntlet.stage', { stage: number(run.stage) })}
       </Text>
+      <BuildImpact run={run} />
       <div className={styles.groups}>
         {
           summary.groups.map((group) => (

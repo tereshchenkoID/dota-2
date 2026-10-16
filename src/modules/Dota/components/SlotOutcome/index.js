@@ -68,7 +68,21 @@ run.lastDamage > 0 &&
               {
 run.lastBreakdown && run.lastDamage > 0 &&
 <p className={styles.breakdown}>
-  {t('progression.damageBreakdown', { base: number(run.lastBreakdown.base), upgrades: number(run.lastBreakdown.upgrades), rune: number(run.lastBreakdown.rune), total: number(run.lastDamage) })}
+  <span>
+    {t('buildImpact.baseDamage', { value: number(run.lastBreakdown.base) })}
+  </span>
+  {
+    run.lastBreakdown.upgrades > 0 &&
+    <strong className={styles.build}>
+      {t('buildImpact.buildBonus', { value: number(run.lastBreakdown.upgrades) })}
+    </strong>
+  }
+  {
+    run.lastBreakdown.rune > 0 &&
+    <strong className={styles.rune}>
+      {t('buildImpact.runeBonus', { value: number(run.lastBreakdown.rune) })}
+    </strong>
+  }
 </p>
               }
               {
