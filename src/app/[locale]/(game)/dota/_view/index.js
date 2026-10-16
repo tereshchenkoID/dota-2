@@ -4,19 +4,24 @@ import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
+import { useArcadeStore } from '@/modules/Dota/store/arcade'
 
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
 import Link from '@/components/Link'
 import Text from '@/components/Text'
+import ArcadeGame from '@/modules/Dota/components/arcade-game'
 import BattleLog from '@/modules/Dota/components/BattleLog'
 import DotaGame from '@/modules/Dota/components/DotaGame'
 import GameGuide from '@/modules/Dota/components/GameGuide'
 import GamePreloader from '@/modules/Dota/components/GamePreloader'
+import ModeMenu from '@/modules/Dota/components/mode-menu'
 
 import styles from './index.module.scss'
-const DotaView = () => {
+const DotaView = ({ mode = 'classic' }) => {
+  const arcadeRun = useArcadeStore((s) => s.run)
+  const arcade = mode === 'arcade'
   const { t } = useTranslation()
   const open = useModalStore((s) => s.openModal)
   return (
@@ -38,7 +43,7 @@ const DotaView = () => {
             as="h1"
             size={2}
           >
-            {t('app.title')}
+            {t(arcade ? 'gauntlet.title' : 'app.title')}
           </Heading>
           <Text color="muted">
             {t('game.subtitle')}
@@ -52,11 +57,14 @@ const DotaView = () => {
           {t('nav.guide')}
         </Button>
       </div>
+      <ModeMenu />
       <GamePreloader>
-        <DotaGame />
+        {
+          arcade ? <ArcadeGame /> : <DotaGame />
+        }
         <div className={clsx(styles.details, styles.group)}>
           <GameGuide compact />
-          <BattleLog />
+          <BattleLog battle={arcade ? (arcadeRun.battle || { log: [] }) : undefined} />
         </div>
         <Text
           size={3}

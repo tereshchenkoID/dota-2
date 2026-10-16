@@ -239,5 +239,152 @@
     "rulesBody": "On a game page, “How to play” opens the rules for that specific game, including from your account menu.",
     "progressTitle": "Return to your progress",
     "progressBody": "Your profile and progress are saved in this browser. Use the same browser to continue."
+  },
+  "gauntlet": {
+    "title": "Roshan Gauntlet",
+    "mode": "Arcade · Roshan Gauntlet",
+    "classic": "Classic",
+    "classicDescription": "Defeat Roshan in a single battle.",
+    "description": "Face stronger Roshan stages, collect upgrades and runes, and beat your personal best.",
+    "chooseMode": "Choose a mode",
+    "best": "Best stage: {stage}",
+    "continue": "Continue Run",
+    "start": "Start Arcade Run",
+    "newRun": "New Arcade Run",
+    "stage": "Stage {stage}",
+    "elite": "Empowered Roshan",
+    "build": "Your build",
+    "noRune": "No active rune",
+    "prepared": "Prepared for the next stage",
+    "spinsRemaining": "Effect: {count} spins left",
+    "attacksRemaining": "Blocks remaining: {count}",
+    "noUpgrades": "Win a stage to start building your arsenal.",
+    "chooseReward": "Choose your reward",
+    "results": "Run results",
+    "cleared": "STAGE CLEARED",
+    "stageCleared": "Stage {stage} cleared",
+    "stageSummary": "Damage: {damage} · Spins: {spins} · Health: {hp}/{max}",
+    "rewardApplied": "Reward saved. Your next challenge awaits.",
+    "level": "Level {level}/{max}",
+    "nextStage": "Enter stage {stage}",
+    "savedHint": "Choose exactly one reward. Health carries over; unused spins do not. Your choice is saved immediately.",
+    "gameOver": "GAME OVER",
+    "newRecord": "New personal best: stage {stage}!",
+    "return": "Return to Menu",
+    "restartTitle": "Restart Roshan Gauntlet?",
+    "restartBody": "Your current Arcade Run and its upgrades will be replaced. Your personal best and Classic progress stay saved.",
+    "rules": "After every victory, choose one of three rewards. HP carries between stages. Every fifth Roshan is empowered; curses begin at stage 3. Each stage has a 100-spin safety limit, including bonus spins.",
+    "runeHint": "Only one rune can be prepared. It activates automatically next stage. Tap an upgrade to inspect it. All hero combinations count as abilities; critical bonuses affect Phantom Assassin and Daedalus.",
+    "defeat": {
+      "hp": "Roshan has defeated you. Try a different build.",
+      "spins": "No spins left. Your next run could go further."
+    },
+    "metrics": {
+      "reached": "Stage reached",
+      "bosses": "Roshan defeated",
+      "damage": "Total damage",
+      "spins": "Spins used"
+    },
+    "rarities": {
+      "common": "Common",
+      "rare": "Rare",
+      "epic": "Epic"
+    },
+    "types": {
+      "offense": "Offense",
+      "defense": "Defense",
+      "utility": "Utility",
+      "rune": "Rune"
+    },
+    "upgrades": {
+      "blade-mastery": {
+        "name": "Blade Mastery",
+        "description": "Hero damage +{value}%."
+      },
+      "critical-power": {
+        "name": "Critical Power",
+        "description": "Critical damage +{value}%."
+      },
+      "arcane-knowledge": {
+        "name": "Arcane Knowledge",
+        "description": "Hero ability damage +{value}%."
+      },
+      "fortified-armor": {
+        "name": "Fortified Armor",
+        "description": "Start each stage with {value} blocks."
+      },
+      "extra-charges": {
+        "name": "Extra Charges",
+        "description": "+{value} spins every stage."
+      },
+      "vitality": {
+        "name": "Vitality",
+        "description": "Maximum HP +{value}. Each level also heals 15 HP."
+      },
+      "battle-recovery": {
+        "name": "Battle Recovery",
+        "description": "Heal {value} HP after each future victory."
+      },
+      "artifact-mastery": {
+        "name": "Artifact Mastery",
+        "description": "Numeric artifact effects +{value}%. Refresher repeats are unchanged."
+      },
+      "roshan-hunter": {
+        "name": "Roshan Hunter",
+        "description": "Damage against empowered Roshan +{value}%."
+      },
+      "second-wind": {
+        "name": "Second Wind",
+        "description": "Once per stage, survive lethal damage with {value} HP."
+      }
+    },
+    "runes": {
+      "double-damage": {
+        "name": "Double Damage Rune",
+        "description": "Next stage: ×2 final damage for 3 spins."
+      },
+      "regeneration": {
+        "name": "Regeneration Rune",
+        "description": "Heal 35 HP when the next stage starts."
+      },
+      "haste": {
+        "name": "Haste Rune",
+        "description": "Next stage starts with 3 additional spins."
+      },
+      "arcane": {
+        "name": "Arcane Rune",
+        "description": "Next stage: hero abilities deal 50% more damage for 5 spins."
+      },
+      "invisibility": {
+        "name": "Invisibility Rune",
+        "description": "Block the first Roshan attack next stage."
+      },
+      "shield": {
+        "name": "Shield Rune",
+        "description": "Start the next stage with 2 extra blocks."
+      },
+      "illusion": {
+        "name": "Illusion Rune",
+        "description": "Next stage: hero combinations echo 40% damage for 3 spins. Items are not copied."
+      }
+    },
+    "modifiers": {
+      "enraged": {
+        "name": "Enraged",
+        "description": "Roshan attack damage +25%."
+      },
+      "thick-hide": {
+        "name": "Thick Hide",
+        "description": "Roshan takes 10% less damage."
+      },
+      "exhaustion": {
+        "name": "Exhaustion",
+        "description": "One fewer base spin this stage."
+      },
+      "brutal-strikes": {
+        "name": "Brutal Strikes",
+        "description": "Roshan attacks every 2 spins instead of 3."
+      }
+    }
   }
 }

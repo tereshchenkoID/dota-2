@@ -9,9 +9,9 @@ import { BOSS_CONFIG, getPhase } from '@/modules/Dota/config/boss'
 import styles from './index.module.scss'
 
 const PHASES = [styles.phase1, styles.phase2, styles.phase3]
-const RoshanBoss = ({ run, spinning }) => {
+const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
   const { t, number } = useTranslation()
-  const phase = getPhase(run.bossHp)
+  const phase = getPhase(run.bossHp, bossConfig.maxHp)
   return (
     <section
       className={clsx(styles.boss, PHASES[phase])}
@@ -77,7 +77,7 @@ const RoshanBoss = ({ run, spinning }) => {
             {' '}
             <small className={styles.caption}>
               /
-              {number(BOSS_CONFIG.maxHp)}
+              {number(bossConfig.maxHp)}
             </small>
           </b>
         </div>
@@ -87,11 +87,11 @@ const RoshanBoss = ({ run, spinning }) => {
           aria-label={t('game.roshan')}
           aria-valuenow={run.bossHp}
           aria-valuemin={0}
-          aria-valuemax={BOSS_CONFIG.maxHp}
+          aria-valuemax={bossConfig.maxHp}
         >
           <i
             className={styles.fill}
-            style={{ '--health': `${(run.bossHp / BOSS_CONFIG.maxHp) * 100}%` }}
+            style={{ '--health': `${(run.bossHp / bossConfig.maxHp) * 100}%` }}
           />
         </div>
         <div className={styles.attackInfo}>
@@ -101,12 +101,12 @@ const RoshanBoss = ({ run, spinning }) => {
               size={16}
             />
             {' '}
-            {t('game.attackIn', { count: number(3 - (run.turn % 3)) })}
+            {t('game.attackIn', { count: number(bossConfig.attackInterval - (run.turn % bossConfig.attackInterval)) })}
           </span>
           <span className={styles.label}>
             {
               t('game.attackPower', {
-              damage: number(BOSS_CONFIG.phases[phase].damage),
+              damage: number(bossConfig.phases[phase].damage),
             })
             }
           </span>

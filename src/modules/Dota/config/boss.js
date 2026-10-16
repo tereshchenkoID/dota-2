@@ -8,10 +8,10 @@ export const BOSS_CONFIG = {
     { threshold: 0, damage: 15 },
   ],
 }
-export function getPhase(hp) {
+export function getPhase(hp, maxHp = BOSS_CONFIG.maxHp) {
   return BOSS_CONFIG.phases.findIndex(
-    (p) => hp / BOSS_CONFIG.maxHp > p.threshold,
+    (p) => hp / maxHp > p.threshold,
   ) === -1
     ? 2
-    : BOSS_CONFIG.phases.findIndex((p) => hp / BOSS_CONFIG.maxHp > p.threshold)
+    : BOSS_CONFIG.phases.findIndex((p) => hp / maxHp > p.threshold)
 }

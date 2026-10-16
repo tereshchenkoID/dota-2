@@ -14,14 +14,17 @@ import WinningLines from '@/modules/Dota/components/WinningLines'
 import styles from './index.module.scss'
 
 import { playSound, unlockAudio } from '@/lib/sound'
-const SlotMachine = ({ onNew }) => {
+const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
   const { t, number } = useTranslation()
-  const { run, pending, spinning, beginSpin, finishSpin, settings } =
-    useGameStore()
+  const state = useStore()
+  const { pending, spinning, beginSpin, finishSpin } = state
+  const run = state.run.battle || state.run
+  const settings = useGameStore((s) => s.settings)
   const reelsRef = useRef(null)
   const [stopped, setStopped] = useState(0)
   useEffect(() => {
     if (!spinning) return
+    const getRun = () => useStore.getState().run.battle || useStore.getState().run
     const timers = Array.from({ length: 5 }, (_, i) =>
       setTimeout(
         () => {
@@ -36,23 +39,23 @@ const SlotMachine = ({ onNew }) => {
         finishSpin()
         if (
           useGameStore.getState().settings.sound &&
-          useGameStore.getState().run.lastDamage
+          getRun().lastDamage
         )
           playSound('hit')
         if (
           useGameStore.getState().settings.sound &&
-          useGameStore.getState().run.lastHealing
+          getRun().lastHealing
         )
           playSound('heal')
         if (
           useGameStore.getState().settings.sound &&
-          useGameStore.getState().run.lastAttack > 0
+          getRun().lastAttack > 0
         )
           playSound('boss-attack')
       }, 1450),
     )
     return () => timers.forEach(clearTimeout)
-  }, [spinning, finishSpin])
+  }, [spinning, finishSpin, useStore])
   const spin = () => {
     if (beginSpin()) {
       setStopped(0)

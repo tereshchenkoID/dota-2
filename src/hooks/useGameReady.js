@@ -3,6 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react'
 
 import { useProfileStore } from '@/store/profile'
+import { useArcadeStore } from '@/modules/Dota/store/arcade'
 import { useGameStore } from '@/modules/Dota/store/game'
 
 import { SYMBOLS } from '@/modules/Dota/engine/spin'
@@ -13,7 +14,7 @@ const GAME_ASSETS = [...new Set([
   '/assets/ui/dota-background.jpg',
   '/assets/ui/dota-logo.png',
 ])]
-const STORES = [useGameStore, useProfileStore]
+const STORES = [useGameStore, useProfileStore, useArcadeStore]
 const subscribe = (notify) => {
   const unsubscribe = STORES.flatMap((store) => [
     store.persist.onHydrate(notify),

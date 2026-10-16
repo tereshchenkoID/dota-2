@@ -6,9 +6,10 @@ import Heading from '@/components/Heading'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
-const BattleLog = () => {
+const BattleLog = ({ battle }) => {
   const { t, number } = useTranslation()
-  const log = useGameStore((s) => s.run.log)
+  const classicLog = useGameStore((s) => s.run.log)
+  const log = battle?.log || classicLog
   return (
     <section className={styles.log}>
       <Heading

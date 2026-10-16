@@ -1,6 +1,7 @@
 'use client'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
+import { useArcadeStore } from '@/modules/Dota/store/arcade'
 import { useGameStore } from '@/modules/Dota/store/game'
 
 import Button from '@/components/Button'
@@ -10,11 +11,12 @@ import styles from './index.module.scss'
 const ConfirmModal = ({ action, onClose }) => {
   const { t } = useTranslation()
   const { spinning, newRun, reset } = useGameStore()
+  const arcade = useArcadeStore()
   const closeAll = useModalStore((s) => s.closeAllModals)
   return (
     <>
       <Text color="muted">
-        {t(action === 'reset' ? 'settings.resetBody' : 'game.restartBody')}
+        {t(action === 'reset' ? 'settings.resetBody' : action === 'arcade-restart' ? 'gauntlet.restartBody' : 'game.restartBody')}
       </Text>
       <div className={styles.actions}>
         <Button
@@ -25,10 +27,13 @@ const ConfirmModal = ({ action, onClose }) => {
         </Button>
         <Button
           color={action === 'reset' ? 'danger' : 'primary'}
-          disabled={spinning}
+          disabled={spinning || arcade.spinning}
           onClick={
             () => {
-              if (action === 'reset') reset()
+              if (action === 'reset') {
+                reset()
+                arcade.reset()
+              } else if (action === 'arcade-restart') arcade.newRun()
               else newRun()
               closeAll()
             }

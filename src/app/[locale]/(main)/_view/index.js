@@ -12,6 +12,7 @@ import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
 import Link from '@/components/Link'
 import Text from '@/components/Text'
+import ModeMenu from '@/modules/Dota/components/mode-menu'
 import UpcomingCard from '@/modules/Upcoming'
 
 import styles from './index.module.scss'
@@ -149,6 +150,7 @@ const Section = () => {
             </span>
           </div>
         </Link>
+        <ModeMenu />
         <div className={clsx(styles.upcoming, styles.group)}>
           {
             UPCOMING_GAMES.map((game) => (

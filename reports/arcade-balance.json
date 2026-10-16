@@ -1,0 +1,728 @@
+{
+  "runsPerStrategy": 10000,
+  "seed": 20261016,
+  "generatedAt": "2026-10-16T08:45:13.567Z",
+  "config": {
+    "playerHp": 100,
+    "spins": 22,
+    "baseHp": 800,
+    "hpPerStage": 110,
+    "hpAcceleration": 8,
+    "eliteInterval": 5,
+    "eliteHpBonus": 0.12,
+    "eliteHpGrowth": 0.02,
+    "eliteDamageBonus": 0.15,
+    "baseDamage": 4,
+    "damagePerStage": 0.55,
+    "attackInterval": 3,
+    "maxTurns": 100,
+    "maxExtraSpins": 8,
+    "maxShields": 12,
+    "rarityWeights": {
+      "common": 6,
+      "rare": 3,
+      "epic": 1
+    },
+    "spinSeconds": 1.45,
+    "choiceSeconds": 8
+  },
+  "strategies": {
+    "random": {
+      "meanStage": 3.1066,
+      "medianStage": 3,
+      "maxStage": 8,
+      "meanSpins": 49.766,
+      "meanBosses": 2.1066,
+      "estimatedMeanSeconds": 89.01350000000177,
+      "hpDefeatRate": 0.3663,
+      "spinsDefeatRate": 0.6337,
+      "censored": 0,
+      "distribution": {
+        "1": 1484,
+        "2": 1825,
+        "3": 2596,
+        "4": 2603,
+        "5": 1258,
+        "6": 198,
+        "7": 34,
+        "8": 2
+      },
+      "rewards": {
+        "blade-mastery": {
+          "offered": 2965,
+          "selected": 995,
+          "selectionRateWhenOffered": 0.33558178752107926
+        },
+        "critical-power": {
+          "offered": 3027,
+          "selected": 1032,
+          "selectionRateWhenOffered": 0.3409316154608523
+        },
+        "arcane-knowledge": {
+          "offered": 2923,
+          "selected": 963,
+          "selectionRateWhenOffered": 0.3294560383167978
+        },
+        "fortified-armor": {
+          "offered": 5767,
+          "selected": 1894,
+          "selectionRateWhenOffered": 0.32842032252470954
+        },
+        "extra-charges": {
+          "offered": 3007,
+          "selected": 978,
+          "selectionRateWhenOffered": 0.3252411040904556
+        },
+        "vitality": {
+          "offered": 5653,
+          "selected": 1916,
+          "selectionRateWhenOffered": 0.3389350787192641
+        },
+        "battle-recovery": {
+          "offered": 5613,
+          "selected": 1910,
+          "selectionRateWhenOffered": 0.34028148939960806
+        },
+        "artifact-mastery": {
+          "offered": 3041,
+          "selected": 1038,
+          "selectionRateWhenOffered": 0.34133508714238736
+        },
+        "roshan-hunter": {
+          "offered": 3008,
+          "selected": 1009,
+          "selectionRateWhenOffered": 0.33543882978723405
+        },
+        "second-wind": {
+          "offered": 1042,
+          "selected": 339,
+          "selectionRateWhenOffered": 0.3253358925143954
+        },
+        "double-damage": {
+          "offered": 1036,
+          "selected": 320,
+          "selectionRateWhenOffered": 0.3088803088803089
+        },
+        "regeneration": {
+          "offered": 5727,
+          "selected": 1934,
+          "selectionRateWhenOffered": 0.33769862056923344
+        },
+        "haste": {
+          "offered": 3017,
+          "selected": 1006,
+          "selectionRateWhenOffered": 0.3334438183626119
+        },
+        "arcane": {
+          "offered": 2995,
+          "selected": 1029,
+          "selectionRateWhenOffered": 0.3435726210350584
+        },
+        "invisibility": {
+          "offered": 5676,
+          "selected": 1881,
+          "selectionRateWhenOffered": 0.3313953488372093
+        },
+        "shield": {
+          "offered": 5698,
+          "selected": 1857,
+          "selectionRateWhenOffered": 0.3259038259038259
+        },
+        "illusion": {
+          "offered": 3003,
+          "selected": 965,
+          "selectionRateWhenOffered": 0.32134532134532134
+        }
+      },
+      "runes": {
+        "illusion": {
+          "stages": 965,
+          "cleared": 561,
+          "damage": 865615,
+          "spins": 14913,
+          "clearRate": 0.5813471502590674,
+          "meanDamage": 897.0103626943005,
+          "meanSpins": 15.453886010362694
+        },
+        "shield": {
+          "stages": 1857,
+          "cleared": 1131,
+          "damage": 1705516,
+          "spins": 31644,
+          "clearRate": 0.6090468497576736,
+          "meanDamage": 918.4254173397953,
+          "meanSpins": 17.040387722132472
+        },
+        "regeneration": {
+          "stages": 1934,
+          "cleared": 1250,
+          "damage": 1826590,
+          "spins": 33588,
+          "clearRate": 0.6463288521199586,
+          "meanDamage": 944.4622543950362,
+          "meanSpins": 17.367114788004137
+        },
+        "arcane": {
+          "stages": 1029,
+          "cleared": 616,
+          "damage": 927836,
+          "spins": 15371,
+          "clearRate": 0.5986394557823129,
+          "meanDamage": 901.6870748299319,
+          "meanSpins": 14.937803692905733
+        },
+        "invisibility": {
+          "stages": 1881,
+          "cleared": 1051,
+          "damage": 1662388,
+          "spins": 31219,
+          "clearRate": 0.5587453482190324,
+          "meanDamage": 883.7788410419989,
+          "meanSpins": 16.597022860180754
+        },
+        "double-damage": {
+          "stages": 320,
+          "cleared": 213,
+          "damage": 295026,
+          "spins": 4341,
+          "clearRate": 0.665625,
+          "meanDamage": 921.95625,
+          "meanSpins": 13.565625
+        },
+        "haste": {
+          "stages": 1006,
+          "cleared": 636,
+          "damage": 909396,
+          "spins": 16966,
+          "clearRate": 0.6322067594433399,
+          "meanDamage": 903.972166998012,
+          "meanSpins": 16.864811133200796
+        }
+      },
+      "simulationSeconds": 1.884043167
+    },
+    "damage": {
+      "meanStage": 3.1317,
+      "medianStage": 3,
+      "maxStage": 8,
+      "meanSpins": 47.939,
+      "meanBosses": 2.1317,
+      "estimatedMeanSeconds": 86.56515000000209,
+      "hpDefeatRate": 0.4671,
+      "spinsDefeatRate": 0.5329,
+      "censored": 0,
+      "distribution": {
+        "1": 1547,
+        "2": 1536,
+        "3": 2562,
+        "4": 2978,
+        "5": 1185,
+        "6": 171,
+        "7": 19,
+        "8": 2
+      },
+      "rewards": {
+        "blade-mastery": {
+          "offered": 3008,
+          "selected": 2290,
+          "selectionRateWhenOffered": 0.7613031914893617
+        },
+        "critical-power": {
+          "offered": 3076,
+          "selected": 2329,
+          "selectionRateWhenOffered": 0.7571521456436932
+        },
+        "arcane-knowledge": {
+          "offered": 3034,
+          "selected": 2310,
+          "selectionRateWhenOffered": 0.7613711272247857
+        },
+        "fortified-armor": {
+          "offered": 5824,
+          "selected": 63,
+          "selectionRateWhenOffered": 0.010817307692307692
+        },
+        "extra-charges": {
+          "offered": 3035,
+          "selected": 1242,
+          "selectionRateWhenOffered": 0.40922570016474463
+        },
+        "vitality": {
+          "offered": 5656,
+          "selected": 145,
+          "selectionRateWhenOffered": 0.025636492220650637
+        },
+        "battle-recovery": {
+          "offered": 5661,
+          "selected": 161,
+          "selectionRateWhenOffered": 0.028440204910793146
+        },
+        "artifact-mastery": {
+          "offered": 3030,
+          "selected": 1018,
+          "selectionRateWhenOffered": 0.335973597359736
+        },
+        "roshan-hunter": {
+          "offered": 3003,
+          "selected": 1402,
+          "selectionRateWhenOffered": 0.4668664668664669
+        },
+        "second-wind": {
+          "offered": 1091,
+          "selected": 48,
+          "selectionRateWhenOffered": 0.043996333638863426
+        },
+        "double-damage": {
+          "offered": 1037,
+          "selected": 772,
+          "selectionRateWhenOffered": 0.7444551591128254
+        },
+        "regeneration": {
+          "offered": 5800,
+          "selected": 992,
+          "selectionRateWhenOffered": 0.17103448275862068
+        },
+        "haste": {
+          "offered": 3033,
+          "selected": 2288,
+          "selectionRateWhenOffered": 0.7543686119353775
+        },
+        "arcane": {
+          "offered": 3071,
+          "selected": 2371,
+          "selectionRateWhenOffered": 0.7720612178443503
+        },
+        "invisibility": {
+          "offered": 5777,
+          "selected": 808,
+          "selectionRateWhenOffered": 0.13986498182447638
+        },
+        "shield": {
+          "offered": 5775,
+          "selected": 770,
+          "selectionRateWhenOffered": 0.13333333333333333
+        },
+        "illusion": {
+          "offered": 3040,
+          "selected": 2308,
+          "selectionRateWhenOffered": 0.7592105263157894
+        }
+      },
+      "runes": {
+        "invisibility": {
+          "stages": 808,
+          "cleared": 543,
+          "damage": 744130,
+          "spins": 13538,
+          "clearRate": 0.6720297029702971,
+          "meanDamage": 920.9529702970297,
+          "meanSpins": 16.754950495049506
+        },
+        "arcane": {
+          "stages": 2371,
+          "cleared": 1440,
+          "damage": 2111351,
+          "spins": 33916,
+          "clearRate": 0.6073386756642767,
+          "meanDamage": 890.4896668072544,
+          "meanSpins": 14.304512863770562
+        },
+        "regeneration": {
+          "stages": 992,
+          "cleared": 585,
+          "damage": 975154,
+          "spins": 17452,
+          "clearRate": 0.5897177419354839,
+          "meanDamage": 983.0181451612904,
+          "meanSpins": 17.592741935483872
+        },
+        "haste": {
+          "stages": 2288,
+          "cleared": 1388,
+          "damage": 2013015,
+          "spins": 37871,
+          "clearRate": 0.6066433566433567,
+          "meanDamage": 879.8142482517483,
+          "meanSpins": 16.55201048951049
+        },
+        "double-damage": {
+          "stages": 772,
+          "cleared": 496,
+          "damage": 694296,
+          "spins": 10873,
+          "clearRate": 0.6424870466321243,
+          "meanDamage": 899.3471502590673,
+          "meanSpins": 14.08419689119171
+        },
+        "illusion": {
+          "stages": 2308,
+          "cleared": 1359,
+          "damage": 2018188,
+          "spins": 34111,
+          "clearRate": 0.5888214904679376,
+          "meanDamage": 874.4315424610052,
+          "meanSpins": 14.779462738301559
+        },
+        "shield": {
+          "stages": 770,
+          "cleared": 501,
+          "damage": 706546,
+          "spins": 13021,
+          "clearRate": 0.6506493506493507,
+          "meanDamage": 917.5922077922078,
+          "meanSpins": 16.91038961038961
+        }
+      },
+      "simulationSeconds": 1.812524
+    },
+    "defensive": {
+      "meanStage": 3.1341,
+      "medianStage": 3,
+      "maxStage": 8,
+      "meanSpins": 51.4051,
+      "meanBosses": 2.1341,
+      "estimatedMeanSeconds": 91.61019500000195,
+      "hpDefeatRate": 0.2992,
+      "spinsDefeatRate": 0.7008,
+      "censored": 0,
+      "distribution": {
+        "1": 1563,
+        "2": 1721,
+        "3": 2534,
+        "4": 2541,
+        "5": 1339,
+        "6": 244,
+        "7": 53,
+        "8": 5
+      },
+      "rewards": {
+        "blade-mastery": {
+          "offered": 3029,
+          "selected": 26,
+          "selectionRateWhenOffered": 0.008583690987124463
+        },
+        "critical-power": {
+          "offered": 2979,
+          "selected": 34,
+          "selectionRateWhenOffered": 0.011413225914736489
+        },
+        "arcane-knowledge": {
+          "offered": 3041,
+          "selected": 42,
+          "selectionRateWhenOffered": 0.013811246300559027
+        },
+        "fortified-armor": {
+          "offered": 5842,
+          "selected": 4069,
+          "selectionRateWhenOffered": 0.6965080451900034
+        },
+        "extra-charges": {
+          "offered": 2999,
+          "selected": 1355,
+          "selectionRateWhenOffered": 0.4518172724241414
+        },
+        "vitality": {
+          "offered": 5750,
+          "selected": 4629,
+          "selectionRateWhenOffered": 0.8050434782608695
+        },
+        "battle-recovery": {
+          "offered": 5535,
+          "selected": 4481,
+          "selectionRateWhenOffered": 0.8095754290876243
+        },
+        "artifact-mastery": {
+          "offered": 3036,
+          "selected": 584,
+          "selectionRateWhenOffered": 0.19235836627140976
+        },
+        "roshan-hunter": {
+          "offered": 3102,
+          "selected": 3,
+          "selectionRateWhenOffered": 0.0009671179883945841
+        },
+        "second-wind": {
+          "offered": 1111,
+          "selected": 846,
+          "selectionRateWhenOffered": 0.7614761476147615
+        },
+        "double-damage": {
+          "offered": 1042,
+          "selected": 273,
+          "selectionRateWhenOffered": 0.2619961612284069
+        },
+        "regeneration": {
+          "offered": 5781,
+          "selected": 1251,
+          "selectionRateWhenOffered": 0.21639854696419306
+        },
+        "haste": {
+          "offered": 3016,
+          "selected": 876,
+          "selectionRateWhenOffered": 0.29045092838196285
+        },
+        "arcane": {
+          "offered": 3048,
+          "selected": 972,
+          "selectionRateWhenOffered": 0.3188976377952756
+        },
+        "invisibility": {
+          "offered": 5803,
+          "selected": 462,
+          "selectionRateWhenOffered": 0.07961399276236429
+        },
+        "shield": {
+          "offered": 5810,
+          "selected": 484,
+          "selectionRateWhenOffered": 0.08330464716006884
+        },
+        "illusion": {
+          "offered": 3099,
+          "selected": 954,
+          "selectionRateWhenOffered": 0.30784123910939015
+        }
+      },
+      "runes": {
+        "arcane": {
+          "stages": 972,
+          "cleared": 635,
+          "damage": 892619,
+          "spins": 14453,
+          "clearRate": 0.6532921810699589,
+          "meanDamage": 918.332304526749,
+          "meanSpins": 14.869341563786008
+        },
+        "illusion": {
+          "stages": 954,
+          "cleared": 597,
+          "damage": 875640,
+          "spins": 15101,
+          "clearRate": 0.6257861635220126,
+          "meanDamage": 917.8616352201258,
+          "meanSpins": 15.829140461215934
+        },
+        "regeneration": {
+          "stages": 1251,
+          "cleared": 620,
+          "damage": 1253574,
+          "spins": 23097,
+          "clearRate": 0.495603517186251,
+          "meanDamage": 1002.0575539568346,
+          "meanSpins": 18.46282973621103
+        },
+        "haste": {
+          "stages": 876,
+          "cleared": 569,
+          "damage": 793243,
+          "spins": 14921,
+          "clearRate": 0.6495433789954338,
+          "meanDamage": 905.5285388127854,
+          "meanSpins": 17.03310502283105
+        },
+        "shield": {
+          "stages": 484,
+          "cleared": 296,
+          "damage": 447456,
+          "spins": 8356,
+          "clearRate": 0.6115702479338843,
+          "meanDamage": 924.4958677685951,
+          "meanSpins": 17.264462809917354
+        },
+        "invisibility": {
+          "stages": 462,
+          "cleared": 285,
+          "damage": 423875,
+          "spins": 7868,
+          "clearRate": 0.6168831168831169,
+          "meanDamage": 917.478354978355,
+          "meanSpins": 17.03030303030303
+        },
+        "double-damage": {
+          "stages": 273,
+          "cleared": 185,
+          "damage": 254512,
+          "spins": 3986,
+          "clearRate": 0.6776556776556777,
+          "meanDamage": 932.2783882783883,
+          "meanSpins": 14.6007326007326
+        }
+      },
+      "simulationSeconds": 1.8881639580000005
+    },
+    "balanced": {
+      "meanStage": 3.1628,
+      "medianStage": 3,
+      "maxStage": 9,
+      "meanSpins": 50.2932,
+      "meanBosses": 2.1628,
+      "estimatedMeanSeconds": 90.2275400000012,
+      "hpDefeatRate": 0.4045,
+      "spinsDefeatRate": 0.5955,
+      "censored": 0,
+      "distribution": {
+        "1": 1480,
+        "2": 1623,
+        "3": 2531,
+        "4": 2797,
+        "5": 1329,
+        "6": 208,
+        "7": 29,
+        "8": 2,
+        "9": 1
+      },
+      "rewards": {
+        "blade-mastery": {
+          "offered": 3092,
+          "selected": 789,
+          "selectionRateWhenOffered": 0.2551746442432083
+        },
+        "critical-power": {
+          "offered": 3099,
+          "selected": 823,
+          "selectionRateWhenOffered": 0.26556953856082605
+        },
+        "arcane-knowledge": {
+          "offered": 3064,
+          "selected": 857,
+          "selectionRateWhenOffered": 0.2796997389033943
+        },
+        "fortified-armor": {
+          "offered": 5885,
+          "selected": 1403,
+          "selectionRateWhenOffered": 0.23840271877655056
+        },
+        "extra-charges": {
+          "offered": 3158,
+          "selected": 2662,
+          "selectionRateWhenOffered": 0.8429385687143762
+        },
+        "vitality": {
+          "offered": 5822,
+          "selected": 2817,
+          "selectionRateWhenOffered": 0.4838543455857094
+        },
+        "battle-recovery": {
+          "offered": 5762,
+          "selected": 2683,
+          "selectionRateWhenOffered": 0.4656369316209649
+        },
+        "artifact-mastery": {
+          "offered": 3011,
+          "selected": 840,
+          "selectionRateWhenOffered": 0.2789770840252408
+        },
+        "roshan-hunter": {
+          "offered": 3150,
+          "selected": 100,
+          "selectionRateWhenOffered": 0.031746031746031744
+        },
+        "second-wind": {
+          "offered": 1085,
+          "selected": 549,
+          "selectionRateWhenOffered": 0.5059907834101383
+        },
+        "double-damage": {
+          "offered": 1117,
+          "selected": 724,
+          "selectionRateWhenOffered": 0.64816472694718
+        },
+        "regeneration": {
+          "offered": 5879,
+          "selected": 1159,
+          "selectionRateWhenOffered": 0.1971423711515564
+        },
+        "haste": {
+          "offered": 3142,
+          "selected": 2014,
+          "selectionRateWhenOffered": 0.6409929980903882
+        },
+        "arcane": {
+          "offered": 3080,
+          "selected": 2075,
+          "selectionRateWhenOffered": 0.6737012987012987
+        },
+        "invisibility": {
+          "offered": 5708,
+          "selected": 58,
+          "selectionRateWhenOffered": 0.010161177295024528
+        },
+        "shield": {
+          "offered": 5782,
+          "selected": 54,
+          "selectionRateWhenOffered": 0.00933932895191975
+        },
+        "illusion": {
+          "offered": 3048,
+          "selected": 2021,
+          "selectionRateWhenOffered": 0.6630577427821522
+        }
+      },
+      "runes": {
+        "haste": {
+          "stages": 2014,
+          "cleared": 1393,
+          "damage": 1831006,
+          "spins": 34448,
+          "clearRate": 0.6916583912611718,
+          "meanDamage": 909.1390268123138,
+          "meanSpins": 17.10427010923535
+        },
+        "illusion": {
+          "stages": 2021,
+          "cleared": 1310,
+          "damage": 1820645,
+          "spins": 31616,
+          "clearRate": 0.6481939633844631,
+          "meanDamage": 900.8634339435923,
+          "meanSpins": 15.643740722414647
+        },
+        "double-damage": {
+          "stages": 724,
+          "cleared": 500,
+          "damage": 672746,
+          "spins": 10418,
+          "clearRate": 0.6906077348066298,
+          "meanDamage": 929.207182320442,
+          "meanSpins": 14.38950276243094
+        },
+        "arcane": {
+          "stages": 2075,
+          "cleared": 1397,
+          "damage": 1893664,
+          "spins": 31414,
+          "clearRate": 0.6732530120481928,
+          "meanDamage": 912.609156626506,
+          "meanSpins": 15.139277108433735
+        },
+        "regeneration": {
+          "stages": 1159,
+          "cleared": 549,
+          "damage": 1157218,
+          "spins": 21076,
+          "clearRate": 0.47368421052631576,
+          "meanDamage": 998.4624676445211,
+          "meanSpins": 18.184641932700604
+        },
+        "invisibility": {
+          "stages": 58,
+          "cleared": 42,
+          "damage": 54517,
+          "spins": 950,
+          "clearRate": 0.7241379310344828,
+          "meanDamage": 939.948275862069,
+          "meanSpins": 16.379310344827587
+        },
+        "shield": {
+          "stages": 54,
+          "cleared": 33,
+          "damage": 48926,
+          "spins": 967,
+          "clearRate": 0.6111111111111112,
+          "meanDamage": 906.0370370370371,
+          "meanSpins": 17.90740740740741
+        }
+      },
+      "simulationSeconds": 1.8483562080000002
+    }
+  }
+}

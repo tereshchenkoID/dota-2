@@ -3,9 +3,10 @@
 import { useEffect } from 'react'
 
 import { useProfileStore } from '@/store/profile'
+import { useArcadeStore } from '@/modules/Dota/store/arcade'
 import { useGameStore } from '@/modules/Dota/store/game'
 
-const STORES = [useGameStore, useProfileStore]
+const STORES = [useGameStore, useProfileStore, useArcadeStore]
 
 export const useStoreHydration = () => {
   useEffect(() => {

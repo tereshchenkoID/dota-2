@@ -1,0 +1,44 @@
+.intro {
+  display: grid;
+  justify-items: start;
+  gap: rem(24px);
+  padding: rem(32px) rem(20px);
+  border: rem(1px) solid var(--color-border);
+  border-radius: var(--border-radius-default);
+  background: var(--color-surface);
+}
+
+.banner {
+  @include flex(space-between, center, null, wrap);
+
+  gap: rem(12px);
+  margin-bottom: rem(16px);
+  padding: rem(12px) rem(16px);
+  border: rem(1px) solid var(--color-gold);
+  background: var(--color-surface-input);
+  font-size: rem(18px);
+  color: var(--color-gold);
+}
+
+.elite {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.boss {
+  display: grid;
+  min-width: 0;
+}
+
+.empowered {
+  box-shadow: 0 0 rem(24px) var(--color-red);
+}
+
+.health,
+.machine {
+  min-width: 0;
+}
+
+.resume {
+  margin-bottom: rem(16px);
+}

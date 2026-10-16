@@ -5,7 +5,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import Icon from '@/components/Icon'
 
 import styles from './index.module.scss'
-const BattleStats = ({ run }) => {
+const BattleStats = ({ run, maxHp = 100 }) => {
   const { t, number } = useTranslation()
   return (
     <section className={styles.stats}>
@@ -34,7 +34,7 @@ const BattleStats = ({ run }) => {
           <small className={styles.caption}>
             {' '}
             /
-            {number(100)}
+            {number(maxHp)}
           </small>
         </b>
         <div
@@ -43,11 +43,11 @@ const BattleStats = ({ run }) => {
           aria-label={t('game.hp')}
           aria-valuenow={run.hp}
           aria-valuemin={0}
-          aria-valuemax={100}
+          aria-valuemax={maxHp}
         >
           <i
             className={styles.fill}
-            style={{ '--health': `${run.hp}%` }}
+            style={{ '--health': `${(run.hp / maxHp) * 100}%` }}
           />
         </div>
       </div>
