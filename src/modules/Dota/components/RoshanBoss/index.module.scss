@@ -8,15 +8,15 @@
   isolation: isolate;
 }
 
-.bossArt,
-.hurt {
+.bossArt {
   position: absolute;
 
   @include size(100%);
 
   object-fit: cover;
   object-position: 50% 30%;
-  z-index: -1;
+  inset: 0;
+  z-index: 0;
 }
 
 .bossTop {
@@ -145,17 +145,8 @@
   box-shadow: inset 0 0 rem(70px) #db382738;
 }
 
-.phase3 .bossArt,
-.phase3 .hurt {
-  filter: sepia(0.2) saturate(1.5);
-}
-
 .phase3 .phaseBadge {
   color: #ff795c;
-}
-
-.hurt {
-  animation: hurt 0.4s ease-out;
 }
 
 .damagePopup {
@@ -167,18 +158,6 @@
   font: var(--font-weight-bold) rem(38px) var(--font-game-display), georgia, serif;
   text-shadow: 0 rem(2px) rem(10px) #000;
   pointer-events: none;
-}
-
-@keyframes hurt {
-  25%,
-  75% {
-    transform: translateX(rem(4px));
-    filter: brightness(1.5);
-  }
-
-  50% {
-    transform: translateX(rem(-4px));
-  }
 }
 
 @keyframes damage {
@@ -203,8 +182,7 @@
     padding: rem(260px) rem(30px) rem(26px);
   }
 
-  .bossArt,
-  .hurt {
+  .bossArt {
     object-position: 50% 15%;
     object-fit: cover;
   }
@@ -243,8 +221,7 @@
   pointer-events: none;
 }
 
-.bossArt,
-.hurt {
+.bossArt {
   object-position: 50% 25%;
   object-fit: cover;
 }
@@ -318,7 +295,6 @@
 .impactEffect {
   position: absolute;
   inset: 15% 8% 35%;
-  background: radial-gradient(ellipse, #ffd29277, transparent 60%);
   overflow: hidden;
   z-index: $z-index-3;
   animation: impact-glow 0.55s ease-out forwards;
@@ -408,4 +384,11 @@
   @include flex(null, center);
 
   gap: rem(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .damagePopup,
+  .impactEffect {
+    display: none;
+  }
 }

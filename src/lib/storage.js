@@ -8,6 +8,7 @@ export const SAFE_STORAGE = {
       return null
     }
   },
+
   setItem: (key, value) => {
     try {
       localStorage.setItem(key, value)
@@ -15,6 +16,7 @@ export const SAFE_STORAGE = {
       /* Private mode / full quota: play in memory. */
     }
   },
+
   removeItem: (key) => {
     try {
       localStorage.removeItem(key)

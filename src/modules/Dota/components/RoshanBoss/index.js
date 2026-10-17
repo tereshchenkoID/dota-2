@@ -20,8 +20,7 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
       <Image
         width={800}
         height={921}
-        key={`boss-art-${run.turn}`}
-        className={run.lastDamage && !spinning ? styles.hurt : styles.bossArt}
+        className={styles.bossArt}
         src="/assets/bosses/roshan.jpg"
         alt={t('game.roshan')}
       />

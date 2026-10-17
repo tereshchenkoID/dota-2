@@ -8,6 +8,8 @@ import {
 } from 'react'
 import clsx from 'clsx'
 
+import { useSelectPosition } from '@/hooks/useSelectPosition'
+
 import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 
@@ -16,14 +18,16 @@ import styles from './index.module.scss'
 const Select = ({ value, options, onChange, label, disabled = false }) => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
-  const [menuShift, setMenuShift] = useState(0)
 
   const root = useRef(null)
   const trigger = useRef(null)
+  const menu = useRef(null)
   const optionRefs = useRef([])
   const id = useId()
   const selected =
     options.find((option) => option.value === value) || options[0]
+
+  useSelectPosition({ open, trigger, menu, onOpenChange: setOpen })
 
   useEffect(() => {
     if (!open) return
@@ -40,10 +44,6 @@ const Select = ({ value, options, onChange, label, disabled = false }) => {
   }, [open])
 
   const show = () => {
-    const unit = parseFloat(getComputedStyle(document.documentElement).fontSize)
-    const width = Math.min(14.5 * unit, window.innerWidth - 1.5 * unit)
-    const edge = trigger.current.getBoundingClientRect().right
-    setMenuShift(Math.max(0, 0.75 * unit - (edge - width)) / unit)
     setActive(
       Math.max(
         0,
@@ -126,9 +126,10 @@ const Select = ({ value, options, onChange, label, disabled = false }) => {
       {
         open &&
         <div
+          ref={menu}
           id={id}
           className={styles.menu}
-          style={{ '--shift': `${-menuShift}rem` }}
+          popover="manual"
           role="listbox"
           aria-label={label}
           onKeyDown={navigate}

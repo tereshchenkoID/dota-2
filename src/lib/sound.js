@@ -1,4 +1,5 @@
 import { AUDIO_CONFIG } from '@/modules/Dota/config/audio'
+
 let context
 let generation = 0
 let hitIndex = 0

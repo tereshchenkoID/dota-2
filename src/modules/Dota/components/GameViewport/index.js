@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 
+import { useScrollLock } from '@/hooks/useScrollLock'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useGameStore } from '@/modules/Dota/store/game'
@@ -28,6 +29,7 @@ const GameViewport = ({ children, onOpen }) => {
   const sound = useGameStore((s) => s.settings.sound)
   const toggleSound = useGameStore((s) => s.toggleSound)
   const immersive = nativeFullscreen || expanded
+  useScrollLock(expanded)
   useEffect(() => {
     if (!sound) stopSounds()
   }, [sound])
@@ -51,8 +53,6 @@ const GameViewport = ({ children, onOpen }) => {
   }, [])
   useEffect(() => {
     if (!expanded) return
-    const previous = document.body.style.overflow
-    const scrollY = window.scrollY
     const inertSiblings = []
     let branch = ref.current
     while (branch?.parentElement && branch !== document.body) {
@@ -64,11 +64,8 @@ const GameViewport = ({ children, onOpen }) => {
       }
       branch = branch.parentElement
     }
-    document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = previous
       for (const [element, wasInert] of inertSiblings) element.inert = wasInert
-      window.scrollTo({ top: scrollY, behavior: 'instant' })
     }
   }, [expanded])
   const toggleFullscreen = async () => {

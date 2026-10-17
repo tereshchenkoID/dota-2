@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef } from 'react'
 import clsx from 'clsx'
 
+import { useScrollLock } from '@/hooks/useScrollLock'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useAppearanceStore } from '@/store/appearance'
 
@@ -11,9 +12,6 @@ import Heading from '@/components/Heading'
 import Icon from '@/components/Icon'
 
 import styles from './index.module.scss'
-
-let openDialogs = 0
-let bodyOverflow = ''
 
 const Modal = ({
   title,
@@ -26,22 +24,17 @@ const Modal = ({
   const { t } = useTranslation()
   const theme = useAppearanceStore((state) => state.resolvedTheme)
 
+  useScrollLock(true, ref)
+
   useEffect(() => {
     const previous = document.activeElement
     const dialog = ref.current
 
-    if (openDialogs === 0) {
-      bodyOverflow = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-    }
-    openDialogs += 1
     dialog.showModal()
 
     return () => {
       dialog.close()
-      openDialogs -= 1
-      if (openDialogs === 0) document.body.style.overflow = bodyOverflow
-      if (previous?.isConnected) previous.focus()
+      if (previous?.isConnected) previous.focus({ preventScroll: true })
     }
   }, [])
 
