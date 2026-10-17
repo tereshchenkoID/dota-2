@@ -12,7 +12,6 @@
 .copy {
   display: grid;
   gap: rem(12px);
-  min-width: 0;
 }
 
 .avatar {
@@ -22,7 +21,7 @@
   position: relative;
   padding: 0;
   border: rem(2px) solid var(--color-accent);
-  border-radius: var(--radius-panel);
+  border-radius: rem(12px);
   background: var(--color-material-raised);
 }
 
@@ -41,7 +40,7 @@
   right: rem(-8px);
   bottom: rem(-8px);
   border: rem(2px) solid var(--color-material);
-  border-radius: var(--radius-control);
+  border-radius: rem(8px);
   background: var(--color-accent);
   color: var(--color-text-on-accent);
   place-items: center;

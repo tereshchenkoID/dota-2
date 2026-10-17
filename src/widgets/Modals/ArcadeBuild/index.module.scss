@@ -4,7 +4,6 @@
 .details {
   display: grid;
   gap: rem(16px);
-  min-width: 0;
 }
 
 .list {
@@ -39,7 +38,6 @@
   display: grid;
   gap: rem(12px);
   margin: 0;
-  min-width: 0;
 }
 
 .controls {

@@ -5,6 +5,5 @@
 .label {
   @include flex(null, center);
 
-  gap: var(--control-gap);
-  min-width: 0;
+  gap: rem(8px);
 }

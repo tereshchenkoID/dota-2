@@ -41,7 +41,6 @@
   @include flex(null, center);
 
   gap: rem(8px);
-  min-width: 0;
 }
 
 .gameBrand .image {
@@ -76,7 +75,6 @@
 
 .viewportBody {
   padding: rem(10px);
-  min-width: 0;
 }
 
 .expanded {

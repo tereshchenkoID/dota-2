@@ -4,12 +4,7 @@
   gap: rem(12px);
   padding: rem(12px);
   border: rem(1px) solid var(--color-game-border);
-  min-width: 0;
   background: linear-gradient(110deg, #1c2933ed, #111c25f5);
-}
-
-.group {
-  min-width: 0;
 }
 
 .label {

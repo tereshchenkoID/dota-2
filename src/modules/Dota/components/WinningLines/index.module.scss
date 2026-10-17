@@ -6,7 +6,7 @@
 
   overflow: visible;
   pointer-events: none;
-  z-index: 2;
+  z-index: $z-index-2;
 
   .path {
     fill: none;

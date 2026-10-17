@@ -1,19 +1,12 @@
 .arena {
   display: grid;
   gap: rem(16px);
-  min-width: 0;
 }
 
 .playerSide {
   display: flex;
   flex-direction: column;
   gap: rem(16px);
-  min-width: 0;
-}
-
-.health,
-.machine {
-  min-width: 0;
 }
 
 .health {

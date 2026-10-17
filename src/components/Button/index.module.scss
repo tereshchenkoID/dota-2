@@ -3,12 +3,12 @@
   @include transition((background-color, border-color, color));
 
   flex-shrink: 0;
-  gap: var(--control-gap);
-  padding: 0 var(--control-padding);
+  gap: rem(8px);
+  padding: 0 rem(12px);
   border: rem(1px) solid transparent;
-  border-radius: var(--radius-control);
-  min-width: var(--control-height);
-  height: var(--control-height);
+  border-radius: rem(8px);
+  min-width: rem(44px);
+  height: rem(44px);
   font-size: rem(16px);
   font-weight: var(--font-weight-semibold);
   line-height: 1.25;
@@ -86,7 +86,7 @@
 }
 
 .square {
-  @include size(var(--control-height));
+  @include size(rem(44px));
 
   padding: 0;
 }

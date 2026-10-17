@@ -5,7 +5,6 @@
   padding: rem(8px) rem(12px);
   border: rem(1px) solid #ec825c88;
   width: 100%;
-  min-width: 0;
   min-height: rem(44px);
   background: linear-gradient(115deg, #97412d, #cb5b36 65%, #b2442c);
   box-shadow: 0 rem(4px) rem(20px) #b33e252e, inset 0 rem(1px) #ffc3a63d;
@@ -32,7 +31,6 @@
 }
 
 .buttonLabel {
-  min-width: 0;
   line-height: 1.4;
 }
 

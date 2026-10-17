@@ -1,7 +1,6 @@
 .machine {
   padding: rem(18px) rem(12px) rem(14px);
   border: rem(1px) solid #8594a144;
-  min-width: 0;
   background: linear-gradient(135deg, #25313be6, #131c24f2);
   box-shadow: 0 rem(12px) rem(40px) #0005, inset 0 rem(1px) #b4c4d622;
 }
@@ -45,7 +44,6 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: rem(4px);
   position: relative;
-  min-width: 0;
   overflow: hidden;
   isolation: isolate;
 }

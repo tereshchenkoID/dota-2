@@ -1,7 +1,6 @@
 .block {
   border: rem(1px) solid var(--color-border-muted);
-  border-radius: var(--radius-panel);
-  min-width: 0;
+  border-radius: rem(12px);
   color: var(--color-text);
 
   &.padding-0 {

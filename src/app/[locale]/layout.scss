@@ -71,13 +71,7 @@
   --font-weight-heavy: 750;
   --font-weight-extrabold: 800;
   --font-display: var(--font-family);
-  --radius-control: #{rem(8px)};
-  --radius-panel: #{rem(12px)};
   --radius-full: #{rem(1000px)};
-  --control-height: #{rem(44px)};
-  --control-padding: #{rem(12px)};
-  --control-gap: #{rem(8px)};
-  --panel-padding: #{rem(20px)};
 }
 
 * {
@@ -111,12 +105,13 @@ select {
   -webkit-tap-highlight-color: transparent;
 }
 
-button,
 select {
   cursor: pointer;
 }
 
 button {
+  @include reset-button;
+
   color: inherit;
 
   &:disabled {
@@ -124,12 +119,14 @@ button {
   }
 }
 
-button:focus-visible,
-a:focus-visible,
-select:focus-visible,
-input:focus-visible {
-  outline: rem(2px) solid var(--color-focus);
-  outline-offset: rem(4px);
+a,
+select,
+input,
+button {
+  &:focus-visible {
+    outline: rem(2px) solid var(--color-focus);
+    outline-offset: rem(4px);
+  }
 }
 
 a {
@@ -140,11 +137,6 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-button {
-  padding: 0;
-  border: 0;
 }
 
 h1,
@@ -176,5 +168,4 @@ p {
 main {
   flex: 1;
   padding-block: rem(40px);
-  min-width: 0;
 }

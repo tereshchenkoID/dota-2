@@ -1,10 +1,12 @@
 .block {
   flex-shrink: 0;
   position: relative;
-}
 
-.open .arrow {
-  transform: rotate(180deg);
+  &.open {
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .trigger {
@@ -24,12 +26,12 @@
   inset-inline-end: var(--shift, 0);
   padding: rem(4px);
   border: rem(1px) solid var(--color-border);
-  border-radius: var(--radius-panel);
+  border-radius: rem(12px);
   width: rem(232px);
   max-width: calc(100vw - rem(24px));
   background: var(--color-material);
   box-shadow: var(--shadow-panel);
-  z-index: 200;
+  z-index: $z-index-1;
   animation: open-menu 0.15s ease-out;
 }
 
@@ -39,9 +41,9 @@
   gap: rem(12px);
   padding: rem(8px) rem(12px);
   border: 0;
-  border-radius: var(--radius-control);
+  border-radius: rem(8px);
   width: 100%;
-  min-height: var(--control-height);
+  min-height: rem(44px);
   background: transparent;
   text-align: start;
   color: var(--color-text);
@@ -56,6 +58,10 @@
   &:focus {
     outline: none;
     background: var(--color-material-hover);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: rem(4px);
   }
 
   &[aria-selected="true"] {

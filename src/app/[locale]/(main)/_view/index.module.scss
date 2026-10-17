@@ -54,14 +54,14 @@
   position: absolute;
   top: rem(20px);
   left: rem(20px);
-  z-index: 1;
+  z-index: $z-index-1;
 }
 
 .content {
   @include flex(null, null, column);
 
   gap: rem(16px);
-  padding: var(--panel-padding);
+  padding: rem(16px);
 
   @include tab-s {
     padding: rem(32px);

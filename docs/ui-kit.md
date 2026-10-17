@@ -58,9 +58,6 @@
 
 ## Геометрия и стили
 
-- `--control-height: 44px`, `--control-padding: 12px`, `--control-gap: 8px`.
-- Радиусы: `--radius-control: 8px`, `--radius-panel: 12px`, `--radius-full` для капсул.
-- `--panel-padding: 20px`; отступы содержимого карточек и Panel совпадают.
 - `--shadow-panel`, `--shadow-dialog` задаются отдельно для каждой темы.
 - Все фиксированные CSS-значения пишутся через `rem(px)`, размеры пар width/height — через `@include size()`.
 - Миксины отвечают за flex, hover, transition и брейкпоинты; компоненты-потребители содержат преимущественно layout.

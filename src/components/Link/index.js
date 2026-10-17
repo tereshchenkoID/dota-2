@@ -20,7 +20,7 @@ const Link = ({
       href={href}
       className={
         clsx(
-          styles.link,
+          styles.block,
           className
         )
       }
