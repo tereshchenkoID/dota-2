@@ -12,7 +12,7 @@
   margin-bottom: rem(16px);
   padding: rem(12px) rem(16px);
   border: rem(1px) solid var(--color-game-accent);
-  background: var(--color-material-input);
+  background: var(--background-game-panel);
   font-size: rem(18px);
   color: var(--color-game-accent);
 }
@@ -35,21 +35,21 @@
 }
 
 .world {
-  --color-aura: #718b65;
+  --color-game-aura: #718b65;
 
-  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--color-aura) 12%, transparent), transparent 72%);
+  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--color-game-aura) 12%, transparent), transparent 72%);
 }
 
-.introduction { --color-aura: #718b65; }
+.introduction { --color-game-aura: #718b65; }
 
-.development { --color-aura: #8bb85d; }
+.development { --color-game-aura: #8bb85d; }
 
-.challenge { --color-aura: #cb7053; }
+.challenge { --color-game-aura: #cb7053; }
 
-.endless { --color-aura: #e34736; }
+.endless { --color-game-aura: #e34736; }
 
 .world .boss {
-  box-shadow: 0 0 rem(24px) color-mix(in srgb, var(--color-aura) 24%, transparent);
+  box-shadow: 0 0 rem(24px) color-mix(in srgb, var(--color-game-aura) 24%, transparent);
 }
 
 .world .empowered {
@@ -64,8 +64,8 @@
   gap: rem(8px) rem(12px);
   margin-bottom: rem(16px);
   padding: rem(12px) rem(16px);
-  border-left: rem(4px) solid var(--color-aura);
-  background: var(--color-material-input);
+  border-left: rem(4px) solid var(--color-game-aura);
+  background: var(--background-game-panel);
   font-size: rem(16px);
   color: var(--color-game-accent);
 }

@@ -13,15 +13,17 @@ import Icon from '@/components/Icon'
 import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 import { MODIFIERS } from '@/modules/Dota/arcade/modifiers'
-import ArcadePanel from '@/modules/Dota/components/arcade-panel'
+import BattleArena from '@/modules/Dota/components/BattleArena'
 import BattleStats from '@/modules/Dota/components/BattleStats'
-import CombatNotice from '@/modules/Dota/components/combat-notice'
+import GameButton from '@/modules/Dota/components/GameButton'
 import GameViewport from '@/modules/Dota/components/GameViewport'
 import RoshanBoss from '@/modules/Dota/components/RoshanBoss'
 import SlotMachine from '@/modules/Dota/components/SlotMachine'
 
+import ArcadePanel from './ArcadePanel'
+import CombatNotice from './CombatNotice'
+
 import styles from './index.module.scss'
-import DOTA_ARENA_STYLES from '@/modules/Dota/components/DotaGame/index.module.scss'
 
 const ArcadeGame = () => {
   const { t, number } = useTranslation()
@@ -80,59 +82,55 @@ const ArcadeGame = () => {
           </span>
         </div>
         {
-modifier &&
-<div className={styles.curse}>
-  <Icon
-    name={modifier.icon}
-    size={20}
-  />
-  <strong>
-    {t(modifier.nameKey)}
-  </strong>
-  <span>
-    {t(modifier.descriptionKey)}
-  </span>
-</div>
+          modifier &&
+          <div className={styles.curse}>
+            <Icon
+              name={modifier.icon}
+              size={20}
+            />
+            <strong>
+              {t(modifier.nameKey)}
+            </strong>
+            <span>
+              {t(modifier.descriptionKey)}
+            </span>
+          </div>
         }
         {
-run.status !== 'fighting' &&
-<Button
-  className={styles.resume}
-  onClick={() => open(reward ? 'arcade-reward' : 'arcade-result')}
->
-  {t(reward ? 'gauntlet.chooseReward' : 'gauntlet.results')}
-</Button>
+          run.status !== 'fighting' &&
+          <GameButton
+            className={styles.resume}
+            onClick={() => open(reward ? 'arcade-reward' : 'arcade-result')}
+          >
+            {t(reward ? 'gauntlet.chooseReward' : 'gauntlet.results')}
+          </GameButton>
         }
-        <div
-          data-game-arena
-          className={DOTA_ARENA_STYLES.arena}
-        >
-          <div className={clsx(styles.boss, run.stageConfig.elite && styles.empowered)}>
-            <RoshanBoss
-              run={run.battle}
-              spinning={spinning}
-              bossConfig={run.stageConfig}
-            />
-          </div>
-          <div className={DOTA_ARENA_STYLES.playerSide}>
-            <div className={DOTA_ARENA_STYLES.health}>
-              <BattleStats
+        <BattleArena
+          boss={
+            <div className={clsx(styles.boss, run.stageConfig.elite && styles.empowered)}>
+              <RoshanBoss
                 run={run.battle}
-                maxHp={run.maxHp}
-                feedback={
-                  !spinning && (run.battle.secondWindTriggered || run.battle.lastBlockSource || run.battle.lastAttack > 0) &&
-                  <CombatNotice battle={run.battle} />
-                }
+                spinning={spinning}
+                bossConfig={run.stageConfig}
               />
             </div>
-            <div className={DOTA_ARENA_STYLES.machine}>
-              <SlotMachine
-                store={useArcadeStore}
-                onNew={() => open('arcade-restart')}
-              />
-            </div>
-          </div>
-        </div>
+          }
+          stats={
+            <BattleStats
+              run={run.battle}
+              maxHp={run.maxHp}
+              feedback={
+                !spinning && (run.battle.secondWindTriggered || run.battle.lastBlockSource || run.battle.lastAttack > 0) &&
+                <CombatNotice battle={run.battle} />
+              }
+            />
+          }
+        >
+          <SlotMachine
+            store={useArcadeStore}
+            onNew={() => open('arcade-restart')}
+          />
+        </BattleArena>
         <ArcadePanel
           run={run}
           best={stats.bestStage}

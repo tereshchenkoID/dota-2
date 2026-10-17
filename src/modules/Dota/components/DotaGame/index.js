@@ -4,12 +4,12 @@ import { useEffect } from 'react'
 import { useModalStore } from '@/store/modal'
 import { useGameStore } from '@/modules/Dota/store/game'
 
+import BattleArena from '@/modules/Dota/components/BattleArena'
 import BattleStats from '@/modules/Dota/components/BattleStats'
 import GameViewport from '@/modules/Dota/components/GameViewport'
 import RoshanBoss from '@/modules/Dota/components/RoshanBoss'
 import SlotMachine from '@/modules/Dota/components/SlotMachine'
 
-import styles from './index.module.scss'
 const DotaGame = () => {
   const run = useGameStore((s) => s.run)
   const spinning = useGameStore((s) => s.spinning)
@@ -21,23 +21,17 @@ const DotaGame = () => {
 
   return (
     <GameViewport onOpen={open}>
-      <div
-        data-game-arena
-        className={styles.arena}
+      <BattleArena
+        boss={
+          <RoshanBoss
+            run={run}
+            spinning={spinning}
+          />
+        }
+        stats={<BattleStats run={run} />}
       >
-        <RoshanBoss
-          run={run}
-          spinning={spinning}
-        />
-        <div className={styles.playerSide}>
-          <div className={styles.health}>
-            <BattleStats run={run} />
-          </div>
-          <div className={styles.machine}>
-            <SlotMachine onNew={() => open('restart')} />
-          </div>
-        </div>
-      </div>
+        <SlotMachine onNew={() => open('restart')} />
+      </BattleArena>
     </GameViewport>
   )
 }

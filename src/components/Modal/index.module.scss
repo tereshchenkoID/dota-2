@@ -6,8 +6,11 @@
   max-height: 88dvh;
   background: var(--color-material);
   box-shadow: var(--shadow-dialog);
-  overflow: auto;
+
+  @include scroll-y;
+
   animation: appear 0.2s ease-out;
+  font-family: var(--font-family);
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   color: var(--color-text);

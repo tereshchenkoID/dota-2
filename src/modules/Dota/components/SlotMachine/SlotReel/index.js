@@ -1,7 +1,8 @@
 import clsx from 'clsx'
 
-import SlotSymbol from '@/modules/Dota/components/SlotSymbol'
 import { SYMBOLS } from '@/modules/Dota/engine/spin'
+
+import SlotSymbol from './SlotSymbol'
 
 import styles from './index.module.scss'
 const SlotReel = ({ column, index, rolling, winning }) => {

@@ -1,19 +1,19 @@
 import { useTranslation } from '@/hooks/useTranslation'
 
-import styles from './index.module.scss'
+import GameButton from '@/modules/Dota/components/GameButton'
+
 const SpinButton = ({ onClick, disabled, spinning }) => {
   const { t } = useTranslation()
+
   return (
-    <button
-      type="button"
-      className={styles.spinButton}
+    <GameButton
+      fullWidth
+      size="large"
       disabled={disabled}
       onClick={onClick}
     >
-      <span className={styles.buttonLabel}>
-        {t(spinning ? 'game.spinning' : 'game.spin')}
-      </span>
-    </button>
+      {t(spinning ? 'game.spinning' : 'game.spin')}
+    </GameButton>
   )
 }
 

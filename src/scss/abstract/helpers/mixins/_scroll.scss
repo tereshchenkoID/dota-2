@@ -1,55 +1,37 @@
 @use "rem-converter" as *;
 
-@mixin scroll-y {
-  background-clip: content-box;
-  overflow-y: auto;
-  overscroll-behavior: none;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
+@mixin scrollbar($thumb, $track) {
+  scrollbar-width: thin;
+  scrollbar-color: $thumb $track;
 
   &::-webkit-scrollbar {
-    width: rem(5px);
+    width: rem(6px);
+    height: rem(6px);
   }
 
+  &::-webkit-scrollbar-track,
   &::-webkit-scrollbar-corner {
-    background-color: var(--color-accent-hover);
+    background: $track;
   }
 
   &::-webkit-scrollbar-thumb {
-    border: rem(1px) solid var(--color-accent-hover);
-    background-color: var(--color-accent-hover);
-    background-clip: content-box;
-  }
-
-  &::-webkit-scrollbar-track {
-    border: rem(1px) solid var(--color-material-hover);
-    background-color: var(--color-material-hover);
+    border: rem(2px) solid $track;
+    border-radius: rem(8px);
+    background: $thumb;
   }
 }
 
-@mixin scroll-x {
-  background-clip: content-box;
-  padding-block-end: rem(16px);
+@mixin scroll-y($thumb: var(--color-border), $track: var(--color-material-raised)) {
+  @include scrollbar($thumb, $track);
+
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+}
+
+@mixin scroll-x($thumb: var(--color-border), $track: var(--color-material-raised)) {
+  @include scrollbar($thumb, $track);
+
   overflow-x: auto;
-  scroll-behavior: smooth;
   overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    height: rem(4px);
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: rem(4px);
-    background-color: var(--color-material-hover);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-material-hover);
-  }
 }

@@ -8,7 +8,8 @@
   gap: rem(8px);
   padding: rem(4px);
   max-height: 55dvh;
-  overflow: auto;
+
+  @include scroll-y;
 
   @include mob-m {
     grid-template-columns: repeat(5, 1fr);

@@ -1,30 +1,17 @@
+@use "theme";
+
 .viewport {
-  --color-material: #172033;
-  --color-material-raised: #202c43;
-  --color-material-hover: #2a3955;
-  --color-material-input: #10192b;
-  --color-border: #526480;
-  --color-border-muted: #33415a;
-  --color-text: #e4e2dc;
-  --color-text-muted: #a2afb4;
-  --color-text-on-accent: #17130a;
-  --color-accent: #c5a66a;
-  --color-accent-hover: #e8d4a8;
-  --color-accent-soft: #433a27;
-  --color-focus: #e8d4a8;
-  --color-game-accent: #c5a66a;
-  --color-game-danger: #d25535;
-  --color-game-border: #e0e7e712;
-  --font-display: var(--font-game-display), georgia, serif;
+  @include theme.theme;
+
   --symbol-ratio: 1.02;
 
   color-scheme: dark;
   position: relative;
-  border: rem(1px) solid #59636b;
-  background: #131b22 url("/assets/ui/dota-background.jpg") center top/cover;
-  box-shadow: 0 rem(28px) rem(70px) #0008;
+  border: rem(1px) solid var(--color-game-border-strong);
+  background: var(--color-game-material) url("/assets/ui/dota-background.jpg") center top/cover;
+  box-shadow: 0 rem(28px) rem(70px) var(--color-game-shadow);
   font-family: var(--font-game), Arial, sans-serif;
-  color: #e4e2dc;
+  color: var(--color-game-text);
   isolation: isolate;
 }
 
@@ -33,8 +20,8 @@
 
   gap: rem(6px);
   padding: rem(12px) rem(10px);
-  background: linear-gradient(110deg, #24313aeb, #12191ee8);
-  border-bottom: rem(1px) solid #83929b35;
+  background: var(--background-game-toolbar);
+  border-bottom: rem(1px) solid var(--color-game-border);
 }
 
 .gameBrand {
@@ -52,7 +39,7 @@
 }
 
 .gameBrand .title {
-  font-family: var(--font-display);
+  font-family: var(--font-game-display), georgia, serif;
   font-size: rem(16px);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
@@ -64,7 +51,7 @@
   display: none;
   margin-top: rem(4px);
   font-size: rem(12px);
-  color: #8d9ca5;
+  color: var(--color-game-text-muted);
   letter-spacing: rem(1.7px);
 }
 
@@ -95,8 +82,7 @@
   border: 0;
 
   @include size(100%, 100dvh);
-
-  overflow: auto;
+  @include scroll-y(var(--color-game-scroll-thumb), var(--color-game-scroll-track));
 }
 
 .immersive .viewportBody {

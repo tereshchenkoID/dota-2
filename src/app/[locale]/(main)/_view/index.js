@@ -15,7 +15,7 @@ import Icon from '@/components/Icon'
 import Link from '@/components/Link'
 import Panel from '@/components/Panel'
 import Text from '@/components/Text'
-import ModeMenu from '@/modules/Dota/components/mode-menu'
+import ModeMenu from '@/modules/Dota/components/ModeMenu'
 import Upcoming from '@/modules/Upcoming'
 
 import styles from './index.module.scss'

@@ -21,6 +21,8 @@
 }
 
 .menu {
+  @include scroll-y;
+
   position: absolute;
   top: calc(100% + rem(8px));
   inset-inline-end: var(--shift, 0);
@@ -29,6 +31,7 @@
   border-radius: rem(12px);
   width: rem(232px);
   max-width: calc(100vw - rem(24px));
+  max-height: min(rem(320px), 40dvh);
   background: var(--color-material);
   box-shadow: var(--shadow-panel);
   z-index: $z-index-1;

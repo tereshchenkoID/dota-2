@@ -4,7 +4,6 @@
     "tagline": "THE ROSHAN CHALLENGE"
   },
   "nav": {
-    "battle": "Battle",
     "guide": "How to play",
     "stats": "Your legacy",
     "games": "Games"
@@ -18,8 +17,6 @@
     "settings": "Settings"
   },
   "game": {
-    "eyebrow": "ENTER THE PIT",
-    "title": "Fortune favors the fearless.",
     "subtitle": "Spin your heroes. Unleash their power. Bring down Roshan.",
     "live": "SOLO RAID",
     "roshan": "ROSHAN",
@@ -29,7 +26,6 @@
     "phase2": "Unleashed fury",
     "phase3": "Last stand",
     "attackIn": "Attacks in {count} spins",
-    "attackNow": "Roshan attacks",
     "attackPower": "{damage} damage per attack",
     "spin": "SPIN",
     "spinning": "SUMMONING…",
@@ -49,15 +45,12 @@
     "logDamage": "{damage} damage dealt",
     "logAttack": "Roshan strikes for {damage}",
     "blocked": "Attack blocked",
-    "newRun": "New run",
     "restartTitle": "Start a new run?",
     "restartBody": "Your current battle will be replaced. Earned progress stays with you.",
     "cancel": "Cancel",
     "confirm": "Confirm",
-    "continue": "Continue battle",
     "saved": "PROGRESS SAVED LOCALLY",
     "free": "No stakes. Just strategy, luck, and a very angry Roshan.",
-    "local": "BROWSER RPG · FREE TO PLAY",
     "loading": "Opening the pit…",
     "fullscreen": "Open game in fullscreen",
     "exitFullscreen": "Exit fullscreen",
@@ -79,7 +72,6 @@
     "lines": "THE WINNING LINES",
     "rules": "Match 3, 4, or 5 identical symbols from the left on any marked line. Four doubles the power. Five unleashes an ultimate. Each spin costs one charge. Roshan attacks every third spin.",
     "weights": "Heroes weight 12 · Artifacts weight 3. Each spin selects a weighted rally symbol: every cell has a 44% rally chance, otherwise it uses the full weighted pool. No guaranteed matches.",
-    "three": "3 MATCH",
     "five": "5 MATCH",
     "line1": "Upper",
     "line2": "Center",
@@ -142,7 +134,8 @@
   },
   "footer": {
     "note": "A fan-made, offline-first adventure. Not affiliated with Valve.",
-    "assets": "Dota 2 assets © Valve."
+    "assets": "Dota 2 assets © Valve.",
+    "top": "Back to top"
   },
   "symbols": {
     "juggernaut": "Juggernaut",
@@ -183,9 +176,7 @@
   "site": {
     "brand": "SPIN ARCADE",
     "tagline": "ONE ARCADE. MANY WORLDS.",
-    "eyebrow": "YOUR NEXT CHALLENGE",
-    "title": "A different world in every spin.",
-    "subtitle": "Choose your challenge. Build your legacy. Start with the Roshan pit."
+    "title": "A different world in every spin."
   },
   "home": {
     "eyebrow": "YOUR BROWSER ARCADE",
@@ -249,7 +240,6 @@
     "best": "Best stage: {stage}",
     "continue": "Continue Run",
     "start": "Start Arcade Run",
-    "newRun": "New Arcade Run",
     "stage": "Stage {stage}",
     "elite": "Empowered Roshan",
     "build": "Your build",
@@ -264,12 +254,9 @@
     "stageCleared": "Stage {stage} cleared",
     "stageSummary": "Damage: {damage} · Spins: {spins} · Health: {hp}/{max}",
     "rewardApplied": "Reward saved. Your next challenge awaits.",
-    "level": "Level {level}/{max}",
     "nextStage": "Enter stage {stage}",
     "savedHint": "Choose exactly one reward. Health carries over; unused spins do not. Your choice is saved immediately.",
-    "gameOver": "GAME OVER",
     "newRecord": "New personal best: stage {stage}!",
-    "return": "Return to Menu",
     "restartTitle": "Restart Roshan Gauntlet?",
     "restartBody": "Your current Arcade Run and its upgrades will be replaced. Your personal best and Classic progress stay saved.",
     "rules": "After every victory, choose one of three rewards. HP carries between stages. Every fifth Roshan is empowered; curses begin at stage 3. Each stage has a 100-spin safety limit, including bonus spins.",
@@ -416,8 +403,7 @@
       "secondWind": "Second Wind! Survived with {hp} HP.",
       "runeBlock": "Invisibility Rune blocked Roshan.",
       "shieldBlock": "A shield blocked Roshan.",
-      "attack": "Roshan strikes: −{damage} HP",
-      "ready": "Keep your build ready for the next strike."
+      "attack": "Roshan strikes: −{damage} HP"
     },
     "stats": {
       "heroBonus": "Hero damage",
@@ -448,7 +434,6 @@
   },
   "buildImpact": {
     "title": "See your build at work",
-    "highest": "Highest upgrade level",
     "levels": "Highest upgrade {highest}/{max} · Total levels {total}/{capacity}",
     "levelHint": "Upgrade level is separate from stage. One reward gives one level: at least {max} victories for one maximum upgrade, {capacity} for all ten, before rune choices. This is a technical cap, not a typical run milestone.",
     "health": "Maximum HP: {base} → {value}",
@@ -469,7 +454,8 @@
       "healing": "Healing {base} → {value} HP",
       "extraSpins": "Bonus spins {base} → {value}",
       "shields": "Blocks {base} → {value}"
-    }
+    },
+    "highest": "Highest upgrade level"
   },
   "appearance": {
     "title": "Appearance",
@@ -477,53 +463,5 @@
     "dark": "Dark",
     "light": "Light",
     "system": "System"
-  },
-  "uiKit": {
-    "title": "UI Kit",
-    "system": "Spin Arcade · Design system",
-    "description": "One component library for every page and dialog. Inspect real controls, states, typography and themes.",
-    "buttons": "Buttons and actions",
-    "controlHint": "Buttons, inputs, selects and toggles use the same 44 px control height. Variants change emphasis, not geometry.",
-    "disabled": "Disabled",
-    "selected": "Selected",
-    "iconButton": "Icon button",
-    "forms": "Fields and switches",
-    "input": "Search",
-    "placeholder": "Enter a name",
-    "validation": "Validation state",
-    "example": "Example value",
-    "error": "Example validation message.",
-    "toggle": "Preview switch",
-    "progress": "Progress example",
-    "typography": "Typography",
-    "heading": "Heading · size {size}",
-    "text": "Body text · size {size}",
-    "panels": "Panels and surfaces",
-    "panelHint": "Shared padding, border and radius. Only the surface variant changes.",
-    "metrics": "Metrics and badges",
-    "metricLevel": "Level",
-    "metricPoints": "Points",
-    "dialogs": "Dialogs",
-    "dialogHint": "A shared modal shell manages appearance, focus, Escape, scrolling and the game fullscreen portal.",
-    "openDialog": "Open demo",
-    "colors": "Semantic colors",
-    "colorHint": "Tokens describe a purpose. Light and dark palettes share the same names; components never select a palette themselves.",
-    "variants": {
-      "primary": "Primary",
-      "secondary": "Secondary",
-      "ghost": "Ghost",
-      "danger": "Danger"
-    },
-    "materials": {
-      "default": "Default surface",
-      "raised": "Raised surface",
-      "inset": "Input surface"
-    },
-    "badges": {
-      "neutral": "Neutral",
-      "accent": "Accent",
-      "success": "Success",
-      "danger": "Danger"
-    }
   }
 }

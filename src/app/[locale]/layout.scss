@@ -79,6 +79,8 @@
 }
 
 html {
+  @include scroll-y;
+
   scroll-behavior: smooth;
 }
 

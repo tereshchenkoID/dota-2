@@ -10,7 +10,7 @@ const ARCADE_GUIDE = {
 // Each playable route owns its guide; catalog and unknown routes use arcade help.
 const GAME_GUIDES = {
   '/dota/arcade': {
-    Component: lazy(() => import('@/modules/Dota/components/arcade-guide')),
+    Component: lazy(() => import('@/modules/Dota/components/ArcadeGuide')),
     title: 'gauntlet.title',
   },
   '/dota': {

@@ -8,8 +8,8 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 import { useGameStore } from '@/modules/Dota/store/game'
 
-import Button from '@/components/Button'
 import Icon from '@/components/Icon'
+import GameButton from '@/modules/Dota/components/GameButton'
 
 import styles from './index.module.scss'
 
@@ -124,8 +124,8 @@ const GameViewport = ({ children, onOpen }) => {
           </div>
         </div>
         <div className={styles.toolbarActions}>
-          <Button
-            color="secondary"
+          <GameButton
+            variant="secondary"
             square
             className={styles.guideControl}
             type="button"
@@ -134,11 +134,11 @@ const GameViewport = ({ children, onOpen }) => {
           >
             <Icon
               name="circle-question-mark"
-              size={21}
+              size={20}
             />
-          </Button>
-          <Button
-            color="secondary"
+          </GameButton>
+          <GameButton
+            variant="secondary"
             square
             type="button"
             onClick={soundClick}
@@ -149,18 +149,18 @@ const GameViewport = ({ children, onOpen }) => {
               sound ? (
                 <Icon
                   name="volume-2"
-                  size={21}
+                  size={20}
                 />
               ) : (
                 <Icon
                   name="volume-x"
-                  size={21}
+                  size={20}
                 />
               )
             }
-          </Button>
-          <Button
-            color="secondary"
+          </GameButton>
+          <GameButton
+            variant="secondary"
             square
             type="button"
             onClick={() => onOpen('settings')}
@@ -168,11 +168,11 @@ const GameViewport = ({ children, onOpen }) => {
           >
             <Icon
               name="settings"
-              size={21}
+              size={20}
             />
-          </Button>
-          <Button
-            color="secondary"
+          </GameButton>
+          <GameButton
+            variant="secondary"
             square
             type="button"
             onClick={toggleFullscreen}
@@ -188,16 +188,16 @@ const GameViewport = ({ children, onOpen }) => {
               immersive ? (
                 <Icon
                   name="minimize"
-                  size={21}
+                  size={20}
                 />
               ) : (
                 <Icon
                   name="maximize"
-                  size={21}
+                  size={20}
                 />
               )
             }
-          </Button>
+          </GameButton>
         </div>
       </header>
       <div className={styles.viewportBody}>

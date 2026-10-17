@@ -68,14 +68,14 @@
 }
 
 .bossInfo .title {
-  font: rem(36px) var(--font-display);
+  font: rem(36px) var(--font-game-display), georgia, serif;
   letter-spacing: rem(9px);
   margin: rem(6px) 0 rem(4px);
   text-shadow: 0 rem(2px) rem(16px) #000;
 }
 
 .bossInfo .description {
-  font: italic rem(12px) var(--font-display);
+  font: italic rem(12px) var(--font-game-display), georgia, serif;
   color: #aaa793;
 }
 
@@ -164,7 +164,7 @@
   left: 47%;
   animation: damage 1.1s forwards;
   color: #f0bb7b;
-  font: var(--font-weight-bold) rem(38px) var(--font-display);
+  font: var(--font-weight-bold) rem(38px) var(--font-game-display), georgia, serif;
   text-shadow: 0 rem(2px) rem(10px) #000;
   pointer-events: none;
 }

@@ -6,10 +6,12 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useGameStore } from '@/modules/Dota/store/game'
 
 import Icon from '@/components/Icon'
-import SlotOutcome from '@/modules/Dota/components/SlotOutcome'
-import SlotReel from '@/modules/Dota/components/SlotReel'
-import SpinButton from '@/modules/Dota/components/SpinButton'
-import WinningLines from '@/modules/Dota/components/WinningLines'
+import GameButton from '@/modules/Dota/components/GameButton'
+
+import SlotOutcome from './SlotOutcome'
+import SlotReel from './SlotReel'
+import SpinButton from './SpinButton'
+import WinningLines from './WinningLines'
 
 import styles from './index.module.scss'
 
@@ -147,9 +149,8 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
           {' '}
           {t('game.saved')}
         </span>
-        <button
-          type="button"
-          className={styles.restart}
+        <GameButton
+          variant="secondary"
           onClick={onNew}
           disabled={spinning}
           aria-haspopup="dialog"
@@ -161,7 +162,7 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
           />
           {' '}
           {t('game.restart')}
-        </button>
+        </GameButton>
       </div>
     </section>
   )

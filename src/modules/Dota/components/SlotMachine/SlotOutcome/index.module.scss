@@ -17,12 +17,12 @@
   max-height: 100%;
   background: linear-gradient(120deg, #0b141bc4, #111b24b0);
   box-shadow: 0 rem(8px) rem(28px) #0005, inset 0 rem(1px) #fff1;
-  overflow: auto;
+
+  @include scroll-y(var(--color-game-scroll-thumb), var(--color-game-scroll-track));
+
   animation: reveal 0.24s ease-out both;
   text-align: center;
   pointer-events: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #b49c68 transparent;
 }
 
 .compact {
@@ -66,7 +66,7 @@
   }
 
   .value {
-    font-family: var(--font-display);
+    font-family: var(--font-game-display), georgia, serif;
     font-size: rem(12px);
     font-weight: var(--font-weight-semibold);
     line-height: 1.4;
@@ -151,7 +151,7 @@
 .rune {
   padding: rem(4px) rem(8px);
   border: rem(1px) solid currentcolor;
-  background: var(--color-material-input);
+  background: var(--color-game-material-input);
 }
 
 .build {
@@ -159,5 +159,5 @@
 }
 
 .rune {
-  color: var(--color-accent-hover);
+  color: var(--color-game-accent-hover);
 }

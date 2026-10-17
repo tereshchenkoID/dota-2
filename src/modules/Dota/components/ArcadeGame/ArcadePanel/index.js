@@ -3,10 +3,10 @@
 import { useTranslation } from '@/hooks/useTranslation'
 import { useModalStore } from '@/store/modal'
 
-import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 import { RUNES } from '@/modules/Dota/arcade/runes'
 import { UPGRADES } from '@/modules/Dota/arcade/upgrades'
+import GameButton from '@/modules/Dota/components/GameButton'
 
 import styles from './index.module.scss'
 
@@ -23,8 +23,8 @@ const ArcadePanel = ({ run }) => {
       aria-label={t('gauntlet.build')}
     >
       <div className={styles.controls}>
-        <Button
-          color="secondary"
+        <GameButton
+          variant="secondary"
           type="button"
           onClick={() => open('arcade-build')}
         >
@@ -33,9 +33,9 @@ const ArcadePanel = ({ run }) => {
             size={20}
           />
           {t('progression.currentBuild')}
-        </Button>
-        <Button
-          color="secondary"
+        </GameButton>
+        <GameButton
+          variant="secondary"
           type="button"
           onClick={() => open('arcade-records')}
         >
@@ -44,7 +44,7 @@ const ArcadePanel = ({ run }) => {
             size={20}
           />
           {t('progression.arcadeRecords')}
-        </Button>
+        </GameButton>
       </div>
       <div
         className={styles.rune}
@@ -60,19 +60,19 @@ const ArcadePanel = ({ run }) => {
           }
         </span>
         {
-rune &&
-<span>
-  {
-    run.preparedRune ? t('gauntlet.prepared') : t(rune.durationType === 'attacks' ? 'gauntlet.attacksRemaining' : 'gauntlet.spinsRemaining', { count: number(run.activeRune.remaining) })
-  }
-</span>
+          rune &&
+          <span>
+            {
+              run.preparedRune ? t('gauntlet.prepared') : t(rune.durationType === 'attacks' ? 'gauntlet.attacksRemaining' : 'gauntlet.spinsRemaining', { count: number(run.activeRune.remaining) })
+            }
+          </span>
         }
       </div>
       <div className={styles.upgrades}>
         {
           upgrades.map((upgrade) => (
-            <Button
-              color="secondary"
+            <GameButton
+              variant="secondary"
               type="button"
               key={upgrade.id}
               onClick={() => open('arcade-build')}
@@ -86,7 +86,7 @@ rune &&
               <span>
                 {number(run.upgrades[upgrade.id])}
               </span>
-            </Button>
+            </GameButton>
           ))
         }
       </div>

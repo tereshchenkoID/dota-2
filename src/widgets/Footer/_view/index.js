@@ -5,7 +5,6 @@ import { useTranslation } from '@/hooks/useTranslation'
 import Button from '@/components/Button'
 import Container from '@/components/Container'
 import Icon from '@/components/Icon'
-import Link from '@/components/Link'
 import Logo from '@/components/Logo'
 import Text from '@/components/Text'
 
@@ -39,7 +38,8 @@ const FooterView = () => {
         <div className={styles.actions}>
           <Button
             color="secondary"
-            square={true}
+            square
+            aria-label={t('footer.top')}
             onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })}
           >
             <Icon
