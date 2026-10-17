@@ -8,7 +8,7 @@ import { BOSS_CONFIG, getPhase } from '@/modules/Dota/config/boss'
 
 import styles from './index.module.scss'
 
-const PHASES = [styles.phase1, styles.phase2, styles.phase3]
+const PHASES = [null, styles.phase2, styles.phase3]
 const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
   const { t, number } = useTranslation()
   const phase = getPhase(run.bossHp, bossConfig.maxHp)

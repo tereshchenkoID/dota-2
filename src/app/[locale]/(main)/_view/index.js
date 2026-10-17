@@ -30,21 +30,18 @@ const Section = () => {
     <Container className={styles.block}>
       <section className={styles.intro}>
         <Text
-          className={styles.description}
           size={3}
           color="accent"
         >
           {t('home.eyebrow')}
         </Text>
         <Heading
-          className={styles.title}
           as="h1"
           size={1}
         >
           {t('site.title')}
         </Heading>
         <Text
-          className={styles.description}
           size={1}
           color="muted"
         >

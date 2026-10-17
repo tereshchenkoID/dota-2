@@ -1,6 +1,6 @@
 .stats {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: rem(12px);
   padding: rem(12px);
   border: rem(1px) solid var(--color-game-border);
@@ -17,15 +17,13 @@
 
 .caption {
   font-size: inherit;
-  line-height: 1.4;
 }
 
 .value {
   display: block;
-  margin-top: rem(4px);
+  margin-block-start: rem(4px);
   font-family: var(--font-game), Arial, sans-serif;
   font-size: rem(24px);
-  line-height: 1.2;
 }
 
 .value .caption {
@@ -38,7 +36,7 @@
 }
 
 .healthTrack {
-  margin-top: rem(4px);
+  margin-block-start: rem(4px);
   height: rem(4px);
   background: #0e1410;
 }
@@ -58,8 +56,8 @@
   grid-column: 1 / -1;
   gap: rem(8px);
   margin: 0;
-  padding-top: rem(8px);
-  border-top: rem(1px) solid var(--color-game-border);
+  padding-block-start: rem(8px);
+  border-block-start: rem(1px) solid var(--color-game-border);
 }
 
 .lastAbility .label {
@@ -70,7 +68,7 @@
 .lastAbility .value {
   margin: 0;
   font-size: rem(14px);
-  text-align: right;
+  text-align: end;
   color: var(--color-game-accent);
 }
 
@@ -98,11 +96,11 @@
 
   .group {
     padding-inline: rem(8px);
-    border-right: rem(1px) solid var(--color-game-border);
+    border-inline-end: rem(1px) solid var(--color-game-border);
   }
 
   .shield {
-    border-right: 0;
+    border-inline-end: 0;
   }
 
   .label {
@@ -111,12 +109,12 @@
   }
 
   .value {
-    margin-top: rem(8px);
+    margin-block-start: rem(8px);
     font-size: rem(28px);
   }
 
   .healthTrack {
-    margin-top: rem(8px);
+    margin-block-start: rem(8px);
   }
 
   .lastAbility {

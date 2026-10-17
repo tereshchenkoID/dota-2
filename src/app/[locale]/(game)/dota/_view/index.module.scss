@@ -2,7 +2,7 @@
   @include flex(space-between, flex-start, column);
 
   gap: rem(20px);
-  margin-bottom: rem(24px);
+  margin-block-end: rem(24px);
 
   @include mob-m {
     flex-direction: row;
@@ -25,7 +25,7 @@
 .details {
   display: grid;
   gap: rem(32px);
-  margin-top: rem(40px);
+  margin-block-start: rem(40px);
 
   @include tab-l {
     grid-template-columns: 1.6fr 1fr;
@@ -34,6 +34,6 @@
 }
 
 .note {
-  margin-top: rem(32px);
+  margin-block-start: rem(32px);
   text-align: center;
 }

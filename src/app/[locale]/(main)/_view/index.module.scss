@@ -13,7 +13,7 @@
   @include flex(space-between, center, null, wrap);
 
   gap: rem(16px);
-  margin-bottom: rem(24px);
+  margin-block-end: rem(24px);
 }
 
 .card {
@@ -52,8 +52,8 @@
 
 .badge {
   position: absolute;
-  top: rem(20px);
-  left: rem(20px);
+  inset-block-start: rem(20px);
+  inset-inline-start: rem(20px);
   z-index: $z-index-1;
 }
 
@@ -85,7 +85,7 @@
   gap: rem(24px);
 
   @include tab-s {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: rem(32px);
   }
 }
@@ -98,7 +98,7 @@
 .upcoming {
   display: grid;
   gap: rem(24px);
-  margin-top: rem(24px);
+  margin-block-start: rem(24px);
 
   @include tab-s {
     grid-template-columns: repeat(2, 1fr);

@@ -21,8 +21,8 @@
 
 .decor {
   position: absolute;
-  right: rem(24px);
-  bottom: rem(20px);
+  inset-block-end: rem(20px);
+  inset-inline-end: rem(24px);
   opacity: 0.35;
 }
 
@@ -52,8 +52,8 @@
 
 .genre {
   position: absolute;
-  top: rem(20px);
-  left: rem(20px);
+  inset-block-start: rem(20px);
+  inset-inline-start: rem(20px);
 }
 
 .content {
@@ -66,7 +66,7 @@
 }
 
 .note {
-  padding-top: rem(16px);
+  padding-block-start: rem(16px);
+  border-block-start: rem(1px) solid var(--color-border-muted);
   width: 100%;
-  border-top: rem(1px) solid var(--color-border-muted);
 }

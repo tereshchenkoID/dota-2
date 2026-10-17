@@ -61,7 +61,6 @@ const ProfileModal = () => {
           <Heading
             as="strong"
             size={3}
-            className={styles.username}
           >
             {username.trim() || 'Player'}
           </Heading>

@@ -36,8 +36,8 @@
 
 .glyph {
   position: absolute;
-  top: rem(8px);
-  right: rem(8px);
+  inset-block-start: rem(8px);
+  inset-inline-end: rem(8px);
   padding: rem(2px);
   border-radius: 50%;
   background-color: var(--color-accent);

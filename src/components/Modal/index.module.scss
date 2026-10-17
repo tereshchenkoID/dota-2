@@ -10,7 +10,6 @@
   animation: appear 0.2s ease-out;
   font-family: var(--font-family);
   font-weight: var(--font-weight-regular);
-  line-height: 1.6;
   color: var(--color-text);
 
   &::backdrop {
@@ -38,7 +37,7 @@
 }
 
 .body {
-  margin-top: rem(24px);
+  margin-block-start: rem(24px);
 }
 
 @keyframes appear {
@@ -54,12 +53,20 @@
 .drawer {
   @include size(min(rem(440px), 100%), 100dvh);
 
-  margin: 0 0 0 auto;
-  border-radius: rem(12px) 0 0 rem(12px);
-  border-width: 0 0 0 rem(1px);
+  margin: 0;
+  margin-inline-start: auto;
+  border-radius: 0;
+  border-start-start-radius: rem(12px);
+  border-end-start-radius: rem(12px);
+  border-width: 0;
+  border-inline-start-width: rem(1px);
   max-width: 100%;
   max-height: 100dvh;
   animation: slide-in 0.25s ease-out;
+
+  &:dir(rtl) {
+    --drawer-offset: -100%;
+  }
 
   .content {
     height: 100%;
@@ -69,7 +76,7 @@
 
 @keyframes slide-in {
   from {
-    transform: translateX(100%);
+    transform: translateX(var(--drawer-offset, 100%));
   }
 
   to {

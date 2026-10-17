@@ -4,13 +4,12 @@
   flex-shrink: 0;
   gap: rem(12px);
   font-weight: var(--font-weight-heavy);
-  line-height: 1;
   color: var(--color-text);
 }
 
 .small {
   display: none;
-  margin-top: rem(8px);
+  margin-block-start: rem(8px);
   font-size: rem(12px);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);

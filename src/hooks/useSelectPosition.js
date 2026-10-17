@@ -44,8 +44,11 @@ export const useSelectPosition = ({ open, trigger, menu, onOpenChange }) => {
       const left = Math.max(leftEdge, Math.min(aligned, rightEdge - width))
       const top = upward ? anchor.top - gap - height : anchor.bottom + gap
 
-      list.style.left = `${left}px`
-      list.style.top = `${Math.max(topEdge, top)}px`
+      const inlineStart = getComputedStyle(list).direction === 'rtl'
+        ? document.documentElement.clientWidth - left - width
+        : left
+      list.style.insetInlineStart = `${inlineStart}px`
+      list.style.insetBlockStart = `${Math.max(topEdge, top)}px`
       list.style.maxHeight = `${height}px`
     }
 

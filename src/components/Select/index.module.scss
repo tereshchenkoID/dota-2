@@ -53,7 +53,7 @@
 
   .glyph {
     flex-shrink: 0;
-    margin-left: auto;
+    margin-inline-start: auto;
     color: var(--color-accent);
   }
 
@@ -64,7 +64,7 @@
   }
 
   &:not(:last-child) {
-    margin-bottom: rem(4px);
+    margin-block-end: rem(4px);
   }
 
   &[aria-selected="true"] {

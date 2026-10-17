@@ -37,8 +37,8 @@
 
   display: grid;
   position: absolute;
-  right: rem(-8px);
-  bottom: rem(-8px);
+  inset-block-end: rem(-8px);
+  inset-inline-end: rem(-8px);
   border: rem(2px) solid var(--color-material);
   border-radius: rem(8px);
   background: var(--color-accent);

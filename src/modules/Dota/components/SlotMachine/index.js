@@ -73,7 +73,6 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
       <div className={styles.machineHeading}>
         <span className={styles.label}>
           <Icon
-            className={styles.glyph}
             name="gem"
             size={16}
           />
@@ -87,7 +86,6 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
       <div className={styles.reelsFrame}>
         <div className={styles.paylineMarker}>
           <Icon
-            className={styles.glyph}
             name="chevron-right"
             size={24}
           />
@@ -122,7 +120,6 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
         </div>
         <div className={styles.paylineMarker}>
           <Icon
-            className={styles.glyph}
             name="chevron-left"
             size={24}
           />
@@ -156,7 +153,6 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
           aria-haspopup="dialog"
         >
           <Icon
-            className={styles.glyph}
             name="rotate-ccw"
             size={20}
           />

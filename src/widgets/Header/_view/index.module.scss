@@ -1,7 +1,7 @@
 .block {
   position: sticky;
-  top: 0;
-  border-bottom: rem(1px) solid var(--color-border-muted);
+  inset-block-start: 0;
+  border-block-end: rem(1px) solid var(--color-border-muted);
   background: var(--color-material);
   z-index: $z-index-8;
 }

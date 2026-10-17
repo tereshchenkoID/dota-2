@@ -24,6 +24,10 @@
       transform: translateX(rem(20px));
       color: var(--color-accent);
     }
+
+    &:dir(rtl) .thumb {
+      transform: translateX(rem(-20px));
+    }
   }
 }
 
@@ -43,8 +47,8 @@
 
   display: grid;
   position: absolute;
-  top: rem(3px);
-  left: rem(3px);
+  inset-block-start: rem(3px);
+  inset-inline-start: rem(3px);
   border-radius: var(--radius-full);
   background-color: var(--color-text-muted);
   place-items: center;

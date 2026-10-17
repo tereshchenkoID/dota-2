@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import clsx from 'clsx'
 
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -11,12 +10,13 @@ import { ITEMS } from '@/modules/Dota/config/items'
 import { PAYLINES } from '@/modules/Dota/config/paylines'
 
 import styles from './index.module.scss'
+
 const GameGuide = ({ compact = false }) => {
   const { t, number } = useTranslation()
   return (
-    <div className={clsx(styles.guide, styles.group)}>
-      <div className={clsx(styles.guideHeading, styles.group)}>
-        <div className={styles.group}>
+    <div>
+      <div className={styles.guideHeading}>
+        <div>
           <Text
             as="span"
             size={4}
@@ -39,11 +39,11 @@ const GameGuide = ({ compact = false }) => {
           {t('guide.subtitle')}
         </Text>
       </div>
-      <div className={clsx(styles.heroes, styles.group)}>
+      <div className={styles.heroes}>
         {
           HEROES.map((h) => (
             <div
-              className={clsx(styles.hero, styles.group)}
+              className={styles.hero}
               key={h.id}
             >
               <Image
@@ -53,7 +53,7 @@ const GameGuide = ({ compact = false }) => {
                 src={h.image}
                 alt=""
               />
-              <div className={styles.group}>
+              <div>
                 <Heading
                   as="h3"
                   size={5}
@@ -106,7 +106,7 @@ const GameGuide = ({ compact = false }) => {
           <Text color="muted">
             {t('guide.rules')}
           </Text>
-          <div className={clsx(styles.lines, styles.group)}>
+          <div className={styles.lines}>
             {
               PAYLINES.map((line, i) => (
                 <Panel
@@ -164,11 +164,11 @@ const GameGuide = ({ compact = false }) => {
           <Text color="muted">
             {t('guide.itemsRule')}
           </Text>
-          <div className={clsx(styles.items, styles.group)}>
+          <div className={styles.items}>
             {
               ITEMS.map((item) => (
                 <div
-                  className={clsx(styles.hero, styles.group)}
+                  className={styles.hero}
                   key={item.id}
                 >
                   <Image
@@ -178,7 +178,7 @@ const GameGuide = ({ compact = false }) => {
                     src={item.image}
                     alt=""
                   />
-                  <div className={styles.group}>
+                  <div>
                     <Heading
                       as="h3"
                       size={5}

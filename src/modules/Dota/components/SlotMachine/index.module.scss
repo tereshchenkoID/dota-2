@@ -24,7 +24,7 @@
   > .label:last-child {
     max-width: rem(110px);
     font-size: rem(11px);
-    text-align: right;
+    text-align: end;
   }
 }
 
@@ -41,7 +41,7 @@
 .reels {
   display: grid;
   flex: 1;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: rem(4px);
   position: relative;
   overflow: hidden;
@@ -59,30 +59,28 @@
 
 .controls {
   display: grid;
-  grid-template-columns: rem(64px) minmax(0, 1fr);
+  grid-template-columns: rem(64px) 1fr;
   align-items: center;
   gap: rem(8px);
-  margin-top: rem(8px);
+  margin-block-start: rem(8px);
   padding: 0 0 rem(8px);
-  border-bottom: rem(1px) solid #ffffff0b;
+  border-block-end: rem(1px) solid #ffffff0b;
 }
 
 .remaining {
   @include flex(center, center, column);
 
   gap: rem(4px);
-  border-right: rem(1px) solid #ffffff12;
+  border-inline-end: rem(1px) solid #ffffff12;
 
   .value {
     font-family: var(--font-game-display), georgia, serif;
     font-size: rem(28px);
-    line-height: 1;
     color: #e8ddc6;
   }
 
   .label {
     font-size: rem(11px);
-    line-height: 1.4;
     text-align: center;
     color: #a2a995;
   }
@@ -119,7 +117,7 @@
   }
 
   .controls {
-    grid-template-columns: rem(80px) minmax(0, 1fr);
+    grid-template-columns: rem(80px) 1fr;
     gap: rem(12px);
   }
 
@@ -139,10 +137,9 @@
   }
 
   .controls {
-    grid-template-columns: rem(124px) minmax(0, 1fr);
-    margin-top: rem(16px);
-    padding-top: rem(12px);
-    padding-bottom: rem(16px);
+    grid-template-columns: rem(124px) 1fr;
+    margin-block-start: rem(16px);
+    padding-block: rem(12px) rem(16px);
   }
 
   .remaining .value {
@@ -150,7 +147,7 @@
   }
 
   .machineFooter {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
 
     > .label {
