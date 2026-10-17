@@ -1,4 +1,5 @@
 'use client'
+
 import { useTranslation } from '@/hooks/useTranslation'
 import { useGameStore } from '@/modules/Dota/store/game'
 
@@ -7,12 +8,14 @@ import Panel from '@/components/Panel'
 import Text from '@/components/Text'
 
 import styles from './index.module.scss'
+
 const BattleLog = ({ battle }) => {
   const { t, number } = useTranslation()
   const classicLog = useGameStore((s) => s.run.log)
   const log = battle?.log || classicLog
+
   return (
-    <Panel>
+    <Panel as="div">
       <Heading
         as="h2"
         size={3}
@@ -21,8 +24,8 @@ const BattleLog = ({ battle }) => {
       </Heading>
       <div aria-live="polite">
         {
-          log.length ? (
-            log.slice(0, 4).map((entry) => (
+          log.length ?
+            log.slice(0, 4).map((entry) =>
               <div
                 className={styles.entry}
                 key={entry.turn}
@@ -64,15 +67,14 @@ const BattleLog = ({ battle }) => {
                   }
                 </div>
               </div>
-            ))
-          ) : (
+            )
+            :
             <Text
               color="muted"
               className={styles.empty}
             >
               {t('game.logEmpty')}
             </Text>
-          )
         }
       </div>
     </Panel>

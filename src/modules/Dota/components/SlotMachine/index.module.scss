@@ -1,41 +1,54 @@
-.machine {
-  padding: rem(18px) rem(12px) rem(14px);
-  border: rem(1px) solid #8594a144;
+.block {
+  padding: rem(16px);
+  border: rem(1px) solid rgb(133 148 161 / 26.67%);
   background: var(--background-game-panel);
-  box-shadow: 0 rem(12px) rem(40px) #0005, inset 0 rem(1px) #b4c4d622;
+  box-shadow: 0 rem(12px) rem(40px) rgb(0 0 0 / 33.33%), inset 0 rem(1px) rgb(180 196 214 / 13.33%);
 }
 
-.machineHeading {
+.headline {
   @include flex(space-between, center);
 
   gap: rem(8px);
-  padding: 0 rem(8px) rem(16px);
+  padding-block-end: rem(16px);
   font-size: rem(12px);
   letter-spacing: rem(0.4px);
-  color: #acb6bb;
+  color: rgb(172 182 187);
 
-  > .label:first-child {
-    @include flex(null, center);
+  .label {
+    &:first-child {
+      @include flex(null, center);
 
-    gap: rem(8px);
-    color: #ded8c7;
-  }
+      gap: rem(8px);
+      color: rgb(222 216 199);
+    }
 
-  > .label:last-child {
-    max-width: rem(110px);
-    font-size: rem(11px);
-    text-align: end;
+    &:last-child {
+      max-width: rem(110px);
+      font-size: rem(11px);
+      text-align: end;
+
+      @include mob-s {
+        max-width: none;
+        font-size: inherit;
+        text-align: start;
+      }
+    }
   }
 }
 
-.reelsFrame {
+.frame {
   @include flex(null, center);
 
   gap: rem(4px);
   padding: rem(10px) rem(4px);
-  border: rem(1px) solid #77828d55;
-  background: linear-gradient(#050b10, #101820);
-  box-shadow: 0 0 0 rem(4px) #0a101650, inset 0 0 rem(20px) #000b;
+  border: rem(1px) solid rgb(119 130 141 / 33.33%);
+  background: linear-gradient(rgb(5 11 16), rgb(16 24 32));
+  box-shadow: 0 0 0 rem(4px) rgb(10 16 22 / 31.37%), inset 0 0 rem(20px) rgb(0 0 0 / 73.33%);
+
+  @include mob-m {
+    gap: rem(8px);
+    padding-inline: rem(6px);
+  }
 }
 
 .reels {
@@ -46,58 +59,84 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+
+  @include mob-m {
+    gap: rem(8px);
+  }
 }
 
-.paylineMarker {
+.arrow {
   display: grid;
   position: relative;
   width: rem(6px);
   z-index: $z-index-1;
-  color: #c49d5d;
+  color: rgb(196 157 93);
   place-content: center;
 }
 
 .controls {
   display: grid;
-  grid-template-columns: rem(64px) 1fr;
+  grid-template-columns: auto rem(1px) 1fr;
   align-items: center;
   gap: rem(8px);
-  margin-block-start: rem(8px);
-  padding: 0 0 rem(8px);
-  border-block-end: rem(1px) solid #ffffff0b;
+  padding-block: rem(8px);
+  border-block-end: rem(1px) solid rgb(255 255 255 / 4.31%);
+
+  @include mob-m {
+     padding-block: rem(12px);
+  }
+}
+
+.divider {
+  @include size(100%);
+
+  background-color: rgb(255 255 255 / 7.06%);
 }
 
 .remaining {
   @include flex(center, center, column);
 
   gap: rem(4px);
-  border-inline-end: rem(1px) solid #ffffff12;
+  text-align: center;
 
   .value {
     font-family: var(--font-game-display), georgia, serif;
-    font-size: rem(28px);
-    color: #e8ddc6;
+    font-size: rem(22px);
+    line-height: 1;
+    color: rgb(232 221 198);
+
+    @include mob-m {
+      font-size: rem(34px);
+    }
   }
 
   .label {
     font-size: rem(11px);
-    text-align: center;
-    color: #a2a995;
+    color: rgb(162 169 149);
+
+    @include mob-m {
+      font-size: rem(12px);
+    }
   }
 }
 
-.machineFooter {
+.footer {
   display: grid;
   gap: rem(12px);
-  padding: rem(16px) rem(8px) 0;
+  padding-block-start: rem(16px);
 
-  > .label {
+  .label {
     @include flex(center, center);
 
     gap: rem(8px);
     order: 1;
     font-size: rem(12px);
-    color: #82949d;
+    color: rgb(130 148 157);
+
+    @include mob-m {
+      justify-content: flex-start;
+      order: 0;
+    }
   }
 
   .fill {
@@ -107,58 +146,9 @@
     border-radius: 50%;
     background: var(--color-game-success);
   }
-}
 
-@include mob-s {
-  .machineHeading > .label:last-child {
-    max-width: none;
-    font-size: inherit;
-    text-align: start;
-  }
-
-  .controls {
-    grid-template-columns: rem(80px) 1fr;
-    gap: rem(12px);
-  }
-
-  .remaining .label {
-    font-size: rem(12px);
-  }
-}
-
-@include mob-m {
-  .reels {
-    gap: rem(8px);
-  }
-
-  .reelsFrame {
-    gap: rem(8px);
-    padding-inline: rem(6px);
-  }
-
-  .controls {
-    grid-template-columns: rem(124px) 1fr;
-    margin-block-start: rem(16px);
-    padding-block: rem(12px) rem(16px);
-  }
-
-  .remaining .value {
-    font-size: rem(34px);
-  }
-
-  .machineFooter {
+  @include mob-m {
     grid-template-columns: 1fr auto;
     align-items: center;
-
-    > .label {
-      justify-content: flex-start;
-      order: 0;
-    }
-  }
-}
-
-@include tab-s {
-  .machine {
-    padding: rem(20px) rem(18px) rem(14px);
   }
 }

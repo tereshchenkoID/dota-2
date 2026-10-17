@@ -16,16 +16,24 @@ const SlotOutcome = ({ run, spinning }) => {
 
   return (
     <div
-      className={styles.overlay}
+      className={styles.block}
       aria-live="polite"
       aria-atomic="true"
     >
       <div
         key={spinning ? 'spinning' : run.turn}
-        className={clsx(styles.panel, !matches && styles.compact)}
+        className={
+          clsx(
+            styles.panel,
+            {
+              [styles.compact]: !matches
+            }
+          )
+        }
       >
         {
-          matches ? (
+          matches
+            ?
             <>
               <ul
                 className={styles.combinations}
@@ -58,46 +66,46 @@ const SlotOutcome = ({ run, spinning }) => {
                   {t('abilities.' + run.lastAbility)}
                 </strong>
                 {
-run.lastDamage > 0 &&
-<b className={styles.value}>
-  +
-  {number(run.lastDamage)}
-</b>
+                  run.lastDamage > 0 &&
+                  <b className={styles.value}>
+                    +
+                    {number(run.lastDamage)}
+                  </b>
                 }
               </div>
               {
-run.lastBreakdown && run.lastDamage > 0 &&
-<p className={styles.breakdown}>
-  <span>
-    {t('buildImpact.baseDamage', { value: number(run.lastBreakdown.base) })}
-  </span>
-  {
-    run.lastBreakdown.upgrades > 0 &&
-    <strong className={styles.build}>
-      {t('buildImpact.buildBonus', { value: number(run.lastBreakdown.upgrades) })}
-    </strong>
-  }
-  {
-    run.lastBreakdown.rune > 0 &&
-    <strong className={styles.rune}>
-      {t('buildImpact.runeBonus', { value: number(run.lastBreakdown.rune) })}
-    </strong>
-  }
-</p>
+                run.lastBreakdown && run.lastDamage > 0 &&
+                <p className={styles.breakdown}>
+                  <span>
+                    {t('buildImpact.baseDamage', { value: number(run.lastBreakdown.base) })}
+                  </span>
+                  {
+                    run.lastBreakdown.upgrades > 0 &&
+                    <strong className={styles.build}>
+                      {t('buildImpact.buildBonus', { value: number(run.lastBreakdown.upgrades) })}
+                    </strong>
+                  }
+                  {
+                    run.lastBreakdown.rune > 0 &&
+                    <strong className={styles.rune}>
+                      {t('buildImpact.runeBonus', { value: number(run.lastBreakdown.rune) })}
+                    </strong>
+                  }
+                </p>
               }
               {
-run.lastHealing > 0 &&
-<p className={styles.healing}>
-  <Icon
-    className={styles.glyph}
-    name="heart-pulse"
-    size={16}
-  />
-  {t('game.healed', { amount: number(run.lastHealing) })}
-</p>
+                run.lastHealing > 0 &&
+                <p className={styles.healing}>
+                  <Icon
+                    className={styles.glyph}
+                    name="heart-pulse"
+                    size={16}
+                  />
+                  {t('game.healed', { amount: number(run.lastHealing) })}
+                </p>
               }
             </>
-          ) : (
+            :
             <span className={styles.message}>
               <Icon
                 className={styles.glyph}
@@ -106,7 +114,6 @@ run.lastHealing > 0 &&
               />
               {t(spinning ? 'game.spinning' : run.turn ? 'game.noMatch' : 'game.ready')}
             </span>
-          )
         }
       </div>
     </div>

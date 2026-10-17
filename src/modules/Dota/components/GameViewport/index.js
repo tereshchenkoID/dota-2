@@ -17,25 +17,29 @@ import styles from './index.module.scss'
 import { stopSounds, unlockAudio } from '@/lib/sound'
 
 const GameViewport = ({ children, onOpen }) => {
-  const ref = useRef(null)
+  const { t } = useTranslation()
   const setPortalTarget = useModalStore((s) => s.setPortalTarget)
+  const sound = useGameStore((s) => s.settings.sound)
+  const toggleSound = useGameStore((s) => s.toggleSound)
+  const ref = useRef(null)
+
+  const [nativeFullscreen, setNativeFullscreen] = useState(false)
+  const [expanded, setExpanded] = useState(false)
+  const immersive = nativeFullscreen || expanded
+
   useEffect(() => {
     setPortalTarget(ref.current)
     return () => setPortalTarget(null)
   }, [setPortalTarget])
-  const [nativeFullscreen, setNativeFullscreen] = useState(false)
-  const [expanded, setExpanded] = useState(false)
-  const { t } = useTranslation()
-  const sound = useGameStore((s) => s.settings.sound)
-  const toggleSound = useGameStore((s) => s.toggleSound)
-  const immersive = nativeFullscreen || expanded
+
   useScrollLock(expanded)
+
   useEffect(() => {
     if (!sound) stopSounds()
   }, [sound])
+
   useEffect(() => {
-    const sync = () =>
-      setNativeFullscreen(document.fullscreenElement === ref.current)
+    const sync = () => setNativeFullscreen(document.fullscreenElement === ref.current)
     const escape = (event) => {
       if (
         event.key === 'Escape' &&
@@ -46,15 +50,18 @@ const GameViewport = ({ children, onOpen }) => {
     }
     document.addEventListener('fullscreenchange', sync)
     document.addEventListener('keydown', escape, true)
+
     return () => {
       document.removeEventListener('fullscreenchange', sync)
       document.removeEventListener('keydown', escape, true)
     }
   }, [])
+
   useEffect(() => {
     if (!expanded) return
     const inertSiblings = []
     let branch = ref.current
+
     while (branch?.parentElement && branch !== document.body) {
       for (const sibling of branch.parentElement.children) {
         if (sibling !== branch && sibling instanceof HTMLElement) {
@@ -68,6 +75,7 @@ const GameViewport = ({ children, onOpen }) => {
       for (const [element, wasInert] of inertSiblings) element.inert = wasInert
     }
   }, [expanded])
+
   const toggleFullscreen = async () => {
     if (document.fullscreenElement === ref.current) {
       await document.exitFullscreen()
@@ -85,29 +93,33 @@ const GameViewport = ({ children, onOpen }) => {
       }
     }
   }
+
   const soundClick = () => {
     if (!sound) unlockAudio()
     else stopSounds()
     toggleSound()
   }
+
   return (
     <section
       ref={ref}
       className={
         clsx(
-          styles.viewport,
-          immersive && styles.immersive,
-          expanded && styles.expanded,
+          styles.block,
+          {
+            [styles.immersive]: immersive,
+            [styles.expanded]: expanded
+          }
         )
       }
       aria-label={t('app.title')}
     >
       <header className={styles.toolbar}>
-        <div className={styles.gameBrand}>
+        <div className={styles.game}>
           <Image
             className={styles.image}
-            width={634}
-            height={591}
+            width={60}
+            height={60}
             src="/assets/ui/dota-logo.png"
             alt=""
           />
@@ -120,11 +132,10 @@ const GameViewport = ({ children, onOpen }) => {
             </span>
           </div>
         </div>
-        <div className={styles.toolbarActions}>
+        <div className={styles.actions}>
           <GameButton
             variant="secondary"
             square
-            className={styles.guideControl}
             type="button"
             onClick={() => onOpen('guide')}
             aria-label={t('nav.guide')}
@@ -142,19 +153,10 @@ const GameViewport = ({ children, onOpen }) => {
             aria-label={t('header.sound')}
             aria-pressed={sound}
           >
-            {
-              sound ? (
-                <Icon
-                  name="volume-2"
-                  size={20}
-                />
-              ) : (
-                <Icon
-                  name="volume-x"
-                  size={20}
-                />
-              )
-            }
+            <Icon
+              name={sound ? 'volume-2' : 'volume-x'}
+              size={20}
+            />
           </GameButton>
           <GameButton
             variant="secondary"
@@ -173,31 +175,18 @@ const GameViewport = ({ children, onOpen }) => {
             square
             type="button"
             onClick={toggleFullscreen}
-            aria-label={
-              t(
-                immersive ? 'game.exitFullscreen' : 'game.fullscreen',
-              )
-            }
-            aria-pressed={immersive}
             title={t(immersive ? 'game.exitFullscreen' : 'game.fullscreen')}
+            aria-label={t(immersive ? 'game.exitFullscreen' : 'game.fullscreen')}
+            aria-pressed={immersive}
           >
-            {
-              immersive ? (
-                <Icon
-                  name="minimize"
-                  size={20}
-                />
-              ) : (
-                <Icon
-                  name="maximize"
-                  size={20}
-                />
-              )
-            }
+            <Icon
+              name={immersive ? 'minimize' : 'maximize'}
+              size={20}
+            />
           </GameButton>
         </div>
       </header>
-      <div className={styles.viewportBody}>
+      <div className={styles.body}>
         {children}
       </div>
     </section>

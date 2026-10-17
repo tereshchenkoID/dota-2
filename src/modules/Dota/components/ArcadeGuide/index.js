@@ -7,6 +7,7 @@ import GameGuide from '@/modules/Dota/components/GameGuide'
 
 const ArcadeGuide = () => {
   const { t } = useTranslation()
+
   return (
     <>
       <Text>
@@ -18,6 +19,7 @@ const ArcadeGuide = () => {
       <Text color="muted">
         {t('gauntlet.runeHint')}
       </Text>
+      <br />
       <GameGuide />
     </>
   )

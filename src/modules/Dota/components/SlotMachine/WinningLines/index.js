@@ -17,7 +17,6 @@ const WinningLines = ({ containerRef, matches }) => {
       className={styles.overlay}
       viewBox={`0 0 ${geometry.width} ${geometry.height}`}
       preserveAspectRatio="none"
-
     >
       {
         geometry.lines.map(({ lineIndex, points }) => (

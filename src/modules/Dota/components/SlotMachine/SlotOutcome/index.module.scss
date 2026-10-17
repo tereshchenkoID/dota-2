@@ -1,4 +1,4 @@
-.overlay {
+.block {
   @include flex(center, center);
 
   position: absolute;
@@ -8,26 +8,49 @@
   z-index: $z-index-3;
 }
 
+.healing,
+.message {
+  @include flex(center, center);
+
+  gap: rem(8px);
+  font-family: var(--font-game), Arial, sans-serif;
+  font-size: rem(14px);
+  color: rgb(230 227 217);
+}
+
+.build,
+.rune {
+  padding: rem(4px) rem(8px);
+  border: rem(1px) solid currentcolor;
+  background: var(--color-game-material-input);
+}
+
 .panel {
+  @include scroll-y(var(--color-game-scroll-thumb), var(--color-game-scroll-track));
+
   display: grid;
   gap: rem(8px);
   padding: rem(12px);
-  border: rem(1px) solid #d8be7c80;
-  width: min(100%, rem(440px));
+  border: rem(1px) solid rgb(216 190 124 / 50.2%);
+  width: min(100%, rem(320px));
   max-height: 100%;
-  background: linear-gradient(120deg, #0b141bc4, #111b24b0);
-  box-shadow: 0 rem(8px) rem(28px) #0005, inset 0 rem(1px) #fff1;
-
-  @include scroll-y(var(--color-game-scroll-thumb), var(--color-game-scroll-track));
-
+  background: linear-gradient(120deg, rgb(11 20 27 / 76.86%), rgb(17 27 36 / 69.02%));
+  box-shadow: 0 rem(8px) rem(28px) rgb(0 0 0 / 33.33%), inset 0 rem(1px) rgb(255 255 255 / 6.67%);
   animation: reveal 0.24s ease-out both;
   text-align: center;
-  pointer-events: auto;
+
+  @include mob-m {
+    gap: rem(12px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 .compact {
   width: auto;
-  border-color: #a5b8c54d;
+  border-color: rgb(165 184 197 / 30.2%);
 }
 
 .combinations {
@@ -38,56 +61,69 @@
   font-family: var(--font-game), Arial, sans-serif;
   font-size: rem(12px);
 
-  .item {
-    @include flex(center, center);
-
-    gap: rem(8px);
-    color: var(--color-win-line);
+  @include mob-m {
+    font-size: rem(16px);
   }
+}
 
-  .fill {
-    @include size(rem(6px));
+.item {
+  @include flex(center, center);
 
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: var(--color-win-line);
-  }
+  gap: rem(8px);
+  color: var(--color-win-line);
+}
+
+.fill {
+  @include size(rem(6px));
+
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-win-line);
 }
 
 .ability {
   @include flex(center, center, null, wrap);
 
   gap: rem(8px);
-  color: #f3dca6;
-
-  .glyph {
-    flex-shrink: 0;
-  }
-
-  .value {
-    font-family: var(--font-game), Arial, sans-serif;
-    font-size: rem(20px);
-    font-weight: var(--font-weight-bold);
-    color: #ffe4a4;
-  }
+  color: rgb(243 220 166);
 }
 
-.healing,
-.message {
-  @include flex(center, center);
+.glyph {
+  flex-shrink: 0;
+}
 
-  gap: rem(8px);
+.value {
   font-family: var(--font-game), Arial, sans-serif;
-  font-size: rem(14px);
-  color: #e6e3d9;
+  font-size: rem(20px);
+  font-weight: var(--font-weight-bold);
+  color: rgb(255 228 164);
+}
 
-  .glyph {
-    flex-shrink: 0;
+.message {
+  @include mob-m {
+    font-size: rem(16px);
   }
 }
 
 .healing {
-  color: #b7efa0;
+  color: rgb(183 239 160);
+}
+
+.breakdown {
+  @include flex(center, center, null, wrap);
+
+  gap: rem(4px) rem(8px);
+  margin: 0;
+  font-size: rem(14px);
+  color: var(--color-game-accent);
+}
+
+.build {
+  color: var(--color-game-accent);
+}
+
+.rune {
+  color: var(--color-game-accent-hover);
 }
 
 @keyframes reveal {
@@ -100,50 +136,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@include mob-m {
-  .panel {
-    gap: rem(12px);
-    padding: rem(20px) rem(24px);
-  }
-
-  .combinations,
-  .message {
-    font-size: rem(16px);
-  }
-
-  .ability .value {
-    font-size: rem(24px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .panel {
-    animation: none;
-  }
-}
-
-.breakdown {
-  @include flex(center, center, null, wrap);
-
-  gap: rem(4px) rem(8px);
-  margin: 0;
-  font-size: rem(14px);
-  color: var(--color-game-accent);
-}
-
-.build,
-.rune {
-  padding: rem(4px) rem(8px);
-  border: rem(1px) solid currentcolor;
-  background: var(--color-game-material-input);
-}
-
-.build {
-  color: var(--color-game-accent);
-}
-
-.rune {
-  color: var(--color-game-accent-hover);
 }

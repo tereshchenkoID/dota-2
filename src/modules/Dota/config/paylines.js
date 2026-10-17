@@ -6,4 +6,4 @@ export const PAYLINES = [
   [2, 1, 0, 1, 2],
 ]
 
-export const LINE_COLORS = ['#ffd580', '#7ee8fa', '#c4a1ff', '#a7ef9b', '#ff9eae']
+export const LINE_COLORS = ['rgb(255 213 128)', 'rgb(126 232 250)', 'rgb(196 161 255)', 'rgb(167 239 155)', 'rgb(255 158 174)']

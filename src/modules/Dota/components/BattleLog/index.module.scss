@@ -1,13 +1,14 @@
 .entry {
   display: grid;
-  grid-template-columns: rem(80px) 1fr;
+  grid-template-columns: rem(100px) 1fr;
   gap: rem(12px);
   padding-block: rem(16px);
-  border-block-end: rem(1px) solid var(--color-border-muted);
-}
 
-.entry:last-child {
-  border-block-end: 0;
+  &:not(:last-child) {
+    &:last-child {
+      border-block-end: rem(1px) solid var(--color-border-muted);
+    }
+  }
 }
 
 .empty {

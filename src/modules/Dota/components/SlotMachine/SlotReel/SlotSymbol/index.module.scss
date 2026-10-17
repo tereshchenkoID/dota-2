@@ -5,9 +5,9 @@
   flex: 0 0 auto;
   position: relative;
   aspect-ratio: var(--symbol-ratio, 0.72);
-  border: rem(1px) solid #7b899329;
-  background: #0c1219;
-  box-shadow: inset 0 0 rem(14px) #0008;
+  border: rem(1px) solid rgb(123 137 147 / 16.08%);
+  background: rgb(12 18 25);
+  box-shadow: inset 0 0 rem(14px) rgb(0 0 0 / 53.33%);
   overflow: hidden;
 
   .image {
@@ -20,7 +20,7 @@
 
   &[data-symbol-type="item"] .image {
     padding: rem(4px);
-    background: radial-gradient(ellipse, #33445044, transparent 70%);
+    background: radial-gradient(ellipse, rgb(51 68 80 / 26.67%), transparent 70%);
     object-fit: contain;
   }
 }

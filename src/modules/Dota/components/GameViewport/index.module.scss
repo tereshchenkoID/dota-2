@@ -1,6 +1,6 @@
 @use "theme";
 
-.viewport {
+.block {
   @include theme.theme;
 
   --symbol-ratio: 1.02;
@@ -13,6 +13,18 @@
   font-family: var(--font-game), Arial, sans-serif;
   color: var(--color-game-text);
   isolation: isolate;
+
+  &.expanded {
+    @include size(100%, 100dvh);
+
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+  }
+
+  @include mob-m {
+    --symbol-ratio: 1.22;
+  }
 }
 
 .toolbar {
@@ -22,136 +34,107 @@
   padding: rem(12px) rem(10px);
   border-block-end: rem(1px) solid var(--color-game-border);
   background: var(--background-game-toolbar);
+
+  @include mob-m {
+    gap: rem(12px);
+    padding: rem(16px);
+  }
 }
 
-.gameBrand {
+.game {
   @include flex(null, center);
 
   gap: rem(8px);
+
+  @include mob-m {
+    gap: rem(12px);
+  }
 }
 
-.gameBrand .image {
+.image {
+  @include size(rem(44px));
+
   display: none;
-
-  @include size(rem(22px), rem(27px));
-
   object-fit: contain;
+
+  @include mob-m {
+    display: block;
+  }
 }
 
-.gameBrand .title {
+.title {
   font-family: var(--font-game-display), georgia, serif;
   font-size: rem(16px);
   font-weight: var(--font-weight-bold);
   letter-spacing: rem(1px);
-  color: #f1eeea;
+  color: rgb(241 238 234);
+
+  @include mob-m {
+    letter-spacing: rem(2px);
+  }
 }
 
-.gameBrand .label {
+.label {
   display: none;
   margin-block-start: rem(4px);
   font-size: rem(12px);
   color: var(--color-game-text-muted);
   letter-spacing: rem(1.7px);
+
+  @include mob-m {
+    display: block;
+  }
 }
 
-.toolbarActions {
-  display: flex;
+.actions {
+  @include flex;
+
   gap: rem(4px);
 }
 
-.viewportBody {
+.body {
   padding: rem(10px);
-}
 
-.expanded {
-  position: fixed;
-  inset: 0;
-
-  @include size(100%, 100dvh);
-
-  z-index: 100;
+  @include mob-m {
+    padding: rem(16px);
+  }
 }
 
 .immersive,
 .viewport:fullscreen {
-  display: flex;
-  flex-direction: column;
-  border: 0;
-
   @include size(100%, 100dvh);
   @include scroll-y(var(--color-game-scroll-thumb), var(--color-game-scroll-track));
+
+  display: flex;
+  flex-direction: column;
 }
 
-.immersive .viewportBody {
+.immersive .body {
   flex: 1;
   margin: auto;
   padding: clamp(rem(12px), 2.5vh, rem(28px)) clamp(rem(12px), 3vw, rem(48px));
   width: 100%;
   max-width: rem(1600px);
   min-height: 0;
-}
+ }
 
-.immersive [data-game-arena] {
+ .immersive [data-game-arena] {
   align-items: stretch;
   min-height: 100%;
-}
+ }
 
 .viewport:fullscreen::backdrop {
-  background: #0b1015;
-}
-
-.guideControl {
-  display: none;
+  background: rgb(11 16 21);
 }
 
 @include mob-m {
-  .viewport {
-    --symbol-ratio: 1.22;
-  }
-
   .immersive,
   .viewport:fullscreen {
     --symbol-ratio: 1.15;
   }
-
-  .guideControl {
-    display: inline-flex;
-  }
-
-  .toolbar {
-    gap: rem(12px);
-    padding: rem(16px) rem(18px);
-  }
-
-  .gameBrand {
-    gap: rem(12px);
-  }
-
-  .gameBrand .image {
-    display: block;
-
-    @include size(rem(30px), rem(34px));
-  }
-
-  .gameBrand .title {
-    letter-spacing: rem(2px);
-  }
-
-  .gameBrand .label {
-    display: block;
-  }
-
-  .viewportBody {
-    padding: rem(16px);
-  }
-
 }
 
 @include tab-l {
-  .viewportBody {
-    padding: rem(24px);
-  }
-
   .immersive [data-game-arena] {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
   }

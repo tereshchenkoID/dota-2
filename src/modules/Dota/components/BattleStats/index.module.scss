@@ -1,10 +1,35 @@
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: rem(12px);
-  padding: rem(12px);
+.block {
+  padding: rem(16px);
   border: rem(1px) solid var(--color-game-border);
   background: var(--background-game-panel);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(20px);
+  margin-block-end: rem(20px);
+
+  @include desk-s {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  position: relative;
+
+  @include desk-s {
+    &:not(:last-child) {
+      &::after {
+        position: absolute;
+        inset-block: 0;
+        inset-inline-end: rem(-10px);
+        width: rem(1px);
+        background-color: var(--color-game-border);
+        content: '';
+      }
+    }
+  }
 }
 
 .label {
@@ -15,119 +40,79 @@
   color: var(--color-game-text-muted);
 }
 
-.caption {
-  font-size: inherit;
-}
-
 .value {
   display: block;
   margin-block-start: rem(4px);
   font-family: var(--font-game), Arial, sans-serif;
   font-size: rem(24px);
+
+  .caption {
+    font-size: rem(14px);
+    color: rgb(133 138 128);
+  }
+
+  .label {
+    color: rgb(159 183 137);
+  }
+
+  @include tab-s {
+    margin-block-start: rem(8px);
+    font-size: rem(28px);
+  }
 }
 
-.value .caption {
-  font-size: rem(14px);
-  color: #858a80;
-}
-
-.healthStat .label {
-  color: #9fb789;
-}
-
-.healthTrack {
+.track {
   margin-block-start: rem(4px);
   height: rem(4px);
-  background: #0e1410;
+  background-color: rgb(14 20 16);
+
+  @include tab-s {
+    margin-block-start: rem(8px);
+  }
 }
 
-.healthTrack .fill {
-  display: block;
-
-  @include size(var(--health), 100%);
+.fill {
   @include transition(width, 0.4s);
+  @include size(var(--health), 100%);
 
-  background: var(--color-game-success);
+  display: block;
+  background-color: var(--color-game-success);
 }
 
-.lastAbility {
+.ability {
   @include flex(space-between, center);
 
-  grid-column: 1 / -1;
   gap: rem(8px);
-  margin: 0;
-  padding-block-start: rem(8px);
+  padding-block-start: rem(16px);
   border-block-start: rem(1px) solid var(--color-game-border);
-}
 
-.lastAbility .label {
-  font-size: rem(12px);
-  color: #85927d;
-}
+  .label {
+    font-size: rem(12px);
+    color: rgb(133 146 125);
+  }
 
-.lastAbility .value {
-  margin: 0;
-  font-size: rem(14px);
-  text-align: end;
-  color: var(--color-game-accent);
+  .value {
+    font-size: rem(14px);
+    text-align: end;
+    color: var(--color-game-accent);
+  }
 }
 
 .healed {
   animation: health-glow 1s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 @keyframes health-glow {
   from {
-    color: #d1ffad;
-    filter: drop-shadow(0 0 rem(8px) #9de878);
+    color: rgb(209 255 173);
+    filter: drop-shadow(0 0 rem(8px) rgb(157 232 120));
   }
 
   to {
     filter: none;
-  }
-}
-
-@include tab-s {
-  .stats {
-    grid-template-columns: 1.3fr 1fr 1fr 0.7fr;
-    gap: rem(20px) rem(12px);
-    padding: rem(16px) rem(12px);
-  }
-
-  .group {
-    padding-inline: rem(8px);
-    border-inline-end: rem(1px) solid var(--color-game-border);
-  }
-
-  .shield {
-    border-inline-end: 0;
-  }
-
-  .label {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .value {
-    margin-block-start: rem(8px);
-    font-size: rem(28px);
-  }
-
-  .healthTrack {
-    margin-block-start: rem(8px);
-  }
-
-  .lastAbility {
-    padding: rem(12px) rem(8px) 0;
-  }
-
-  .lastAbility .value {
-    font-size: rem(16px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .healed {
-    animation: none;
   }
 }

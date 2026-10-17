@@ -9,27 +9,34 @@ import { BOSS_CONFIG, getPhase } from '@/modules/Dota/config/boss'
 import styles from './index.module.scss'
 
 const PHASES = [null, styles.phase2, styles.phase3]
+
 const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
   const { t, number } = useTranslation()
   const phase = getPhase(run.bossHp, bossConfig.maxHp)
+
   return (
-    <section
-      className={clsx(styles.boss, PHASES[phase])}
+    <div
+      className={
+        clsx(
+          styles.block,
+          PHASES[phase]
+        )
+      }
       aria-label={t('game.roshan')}
     >
       <Image
         width={800}
         height={921}
-        className={styles.bossArt}
+        className={styles.image}
         src="/assets/bosses/roshan.jpg"
         alt={t('game.roshan')}
       />
-      <div className={styles.bossTop}>
-        <span className={clsx(styles.raidBadge, styles.label)}>
+      <div className={styles.headline}>
+        <span className={clsx(styles.badge, styles.raise)}>
           <i className={styles.fill} />
           {t('game.live')}
         </span>
-        <span className={clsx(styles.phaseBadge, styles.label)}>
+        <span className={clsx(styles.badge, styles.phase)}>
           {t('game.phase', { phase: number(phase + 1) })}
         </span>
       </div>
@@ -37,7 +44,7 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
         run.lastDamage > 0 && !spinning &&
         <span
           key={`damage-${run.turn}`}
-          className={clsx(styles.damagePopup, styles.label)}
+          className={styles.damage}
         >
           −
           {number(run.lastDamage)}
@@ -47,15 +54,15 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
         run.lastDamage > 0 && !spinning &&
         <div
           key={`impact-${run.turn}`}
-          className={styles.impactEffect}
+          className={styles.impact}
         >
           <i className={styles.fill} />
           <i className={styles.fill} />
           <i className={styles.fill} />
         </div>
       }
-      <div className={styles.bossInfo}>
-        <span className={clsx(styles.bossLabel, styles.label)}>
+      <div className={styles.info}>
+        <span className={styles.label}>
           {t('game.bossLabel')}
         </span>
         <h2 className={styles.title}>
@@ -64,8 +71,8 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
         <p className={styles.description}>
           {t(`game.phase${phase + 1}`)}
         </p>
-        <div className={styles.hpLabel}>
-          <span className={styles.label}>
+        <div className={styles.hp}>
+          <span className={styles.icon}>
             <Icon
               name="heart"
               size={21}
@@ -81,7 +88,7 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
           </b>
         </div>
         <div
-          className={styles.bossHealth}
+          className={styles.health}
           role="progressbar"
           aria-label={t('game.roshan')}
           aria-valuenow={run.bossHp}
@@ -89,11 +96,11 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
           aria-valuemax={bossConfig.maxHp}
         >
           <i
-            className={styles.fill}
+            className={styles.scale}
             style={{ '--health': `${(run.bossHp / bossConfig.maxHp) * 100}%` }}
           />
         </div>
-        <div className={styles.attackInfo}>
+        <div className={styles.attack}>
           <span className={styles.label}>
             <Icon
               name="swords"
@@ -103,15 +110,11 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
             {t('game.attackIn', { count: number(bossConfig.attackInterval - (run.turn % bossConfig.attackInterval)) })}
           </span>
           <span className={styles.label}>
-            {
-              t('game.attackPower', {
-              damage: number(bossConfig.phases[phase].damage),
-            })
-            }
+            {t('game.attackPower', { damage: number(bossConfig.phases[phase].damage) })}
           </span>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

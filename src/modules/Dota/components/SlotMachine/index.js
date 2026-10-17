@@ -16,14 +16,16 @@ import WinningLines from './WinningLines'
 import styles from './index.module.scss'
 
 import { playSound, unlockAudio } from '@/lib/sound'
+
 const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
   const { t, number } = useTranslation()
   const state = useStore()
   const { pending, spinning, beginSpin, finishSpin } = state
-  const run = state.run.battle || state.run
   const settings = useGameStore((s) => s.settings)
+  const run = state.run.battle || state.run
   const reelsRef = useRef(null)
   const [stopped, setStopped] = useState(0)
+
   useEffect(() => {
     if (!spinning) return
     const getRun = () => useStore.getState().run.battle || useStore.getState().run
@@ -58,6 +60,7 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
     )
     return () => timers.forEach(clearTimeout)
   }, [spinning, finishSpin, useStore])
+
   const spin = () => {
     if (beginSpin()) {
       setStopped(0)
@@ -67,10 +70,12 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
       }
     }
   }
+
   const winning = run.matches.flatMap((m) => m.cells)
+
   return (
-    <section className={styles.machine}>
-      <div className={styles.machineHeading}>
+    <section className={styles.block}>
+      <div className={styles.headline}>
         <span className={styles.label}>
           <Icon
             name="gem"
@@ -83,8 +88,8 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
           {t('game.match')}
         </span>
       </div>
-      <div className={styles.reelsFrame}>
-        <div className={styles.paylineMarker}>
+      <div className={styles.frame}>
+        <div className={styles.arrow}>
           <Icon
             name="chevron-right"
             size={24}
@@ -118,7 +123,7 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
             spinning={spinning}
           />
         </div>
-        <div className={styles.paylineMarker}>
+        <div className={styles.arrow}>
           <Icon
             name="chevron-left"
             size={24}
@@ -134,13 +139,14 @@ const SlotMachine = ({ onNew, store: useStore = useGameStore }) => {
             {t('game.spinsLeft')}
           </span>
         </div>
+        <hr className={styles.divider} />
         <SpinButton
           spinning={spinning}
           disabled={spinning || run.status !== 'active'}
           onClick={spin}
         />
       </div>
-      <div className={styles.machineFooter}>
+      <div className={styles.footer}>
         <span className={styles.label}>
           <i className={styles.fill} />
           {' '}

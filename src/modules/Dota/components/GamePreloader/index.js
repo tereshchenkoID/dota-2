@@ -13,15 +13,15 @@ import Text from '@/components/Text'
 import styles from './index.module.scss'
 
 const GamePreloader = ({ children }) => {
-  const { ready, progress, error, retry } = useGameReady()
   const { t, number } = useTranslation()
+  const { ready, progress, error, retry } = useGameReady()
 
   if (ready) return children
 
   return (
     <Panel
       variant="raised"
-      className={styles.loader}
+      className={styles.block}
       aria-busy={!error}
       aria-label={t('game.loading')}
     >

@@ -2,6 +2,10 @@
   display: grid;
   gap: rem(16px);
   margin-block: rem(24px);
+
+  @include tab-s {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .card {
@@ -9,10 +13,4 @@
   justify-items: start;
   align-content: start;
   gap: rem(12px);
-}
-
-@include tab-s {
-  .block {
-    grid-template-columns: 1fr 1fr;
-  }
 }

@@ -3,11 +3,11 @@ import styles from './index.module.scss'
 const BattleArena = ({ boss, stats, children }) => {
   return (
     <div
+      className={styles.block}
       data-game-arena
-      className={styles.arena}
     >
       {boss}
-      <div className={styles.playerSide}>
+      <div className={styles.side}>
         <div className={styles.health}>
           {stats}
         </div>

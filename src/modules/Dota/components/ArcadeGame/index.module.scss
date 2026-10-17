@@ -2,7 +2,6 @@
   display: grid;
   justify-items: start;
   gap: rem(24px);
-
 }
 
 .banner {
@@ -35,18 +34,18 @@
 }
 
 .world {
-  --color-game-aura: #718b65;
+  --color-game-aura: rgb(113 139 101);
 
   background: radial-gradient(ellipse at top, color-mix(in srgb, var(--color-game-aura) 12%, transparent), transparent 72%);
 }
 
-.introduction { --color-game-aura: #718b65; }
+.introduction { --color-game-aura: rgb(113 139 101); }
 
-.development { --color-game-aura: #8bb85d; }
+.development { --color-game-aura: rgb(139 184 93); }
 
-.challenge { --color-game-aura: #cb7053; }
+.challenge { --color-game-aura: rgb(203 112 83); }
 
-.endless { --color-game-aura: #e34736; }
+.endless { --color-game-aura: rgb(227 71 54); }
 
 .world .boss {
   box-shadow: 0 0 rem(24px) color-mix(in srgb, var(--color-game-aura) 24%, transparent);

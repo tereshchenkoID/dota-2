@@ -65,8 +65,22 @@ const ArcadeGame = () => {
 
   return (
     <GameViewport onOpen={open}>
-      <div className={clsx(styles.world, styles[band])}>
-        <div className={clsx(styles.banner, run.stageConfig.elite && styles.elite)}>
+      <div className={
+        clsx(
+          styles.world,
+          styles[band]
+        )
+      }
+      >
+        <div className={
+          clsx(
+            styles.banner,
+            {
+              [styles.elite]: run.stageConfig.elite
+            }
+          )
+        }
+        >
           <strong>
             {t('gauntlet.stage', { stage: run.stage })}
             {' '}
@@ -107,7 +121,15 @@ const ArcadeGame = () => {
         }
         <BattleArena
           boss={
-            <div className={clsx(styles.boss, run.stageConfig.elite && styles.empowered)}>
+            <div className={
+              clsx(
+                styles.boss,
+                {
+                  [styles.empowered]: run.stageConfig.elite
+                }
+              )
+            }
+            >
               <RoshanBoss
                 run={run.battle}
                 spinning={spinning}

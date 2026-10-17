@@ -153,6 +153,11 @@ p {
   margin: 0;
 }
 
+hr {
+  margin: 0;
+  border: 0;
+}
+
 ::selection {
   background: var(--color-danger);
   color: var(--color-white);

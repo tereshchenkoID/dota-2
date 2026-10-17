@@ -1,22 +1,43 @@
-.boss {
+.block {
   position: relative;
-  border: rem(1px) solid #7b899340;
+  border: rem(1px) solid rgb(123 137 147 / 25%);
   min-height: rem(370px);
-  background: #070e13;
+  background: rgb(7 14 19);
   overflow: hidden;
   isolation: isolate;
 
   &::after {
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 rem(70px) #050b12b3;
+    box-shadow: inset 0 0 rem(70px) rgb(5 11 18 / 70%);
     z-index: $z-index-1;
-    content: "";
     pointer-events: none;
+    content: "";
+  }
+
+  &.phase2 {
+    box-shadow: inset 0 0 rem(70px) rgb(199 109 37 / 12%);
+
+    .badge {
+      color: rgb(248 165 92);
+    }
+  }
+
+  &.phase3 {
+    box-shadow: inset 0 0 rem(70px) rgb(219 56 39 / 21%);
+
+    .badge {
+      color: rgb(255 121 92);
+    }
+  }
+
+  @include tab-l {
+    height: 100%;
+    min-height: rem(430px);
   }
 }
 
-.bossArt {
+.image {
   @include size(100%);
 
   position: absolute;
@@ -26,7 +47,7 @@
   z-index: 0;
 }
 
-.bossTop {
+.headline {
   @include flex(space-between);
 
   position: relative;
@@ -34,149 +55,140 @@
   z-index: $z-index-2;
 }
 
-.raidBadge,
-.phaseBadge {
-  padding: rem(8px) rem(10px);
-  border: rem(1px) solid #ffffff16;
-  background: #0c141bd9;
-  font-size: rem(12px);
-  letter-spacing: rem(1.3px);
-}
-
-.raidBadge {
+.badge {
   @include flex(null, center);
 
   gap: rem(8px);
-  color: #b9c1b6;
+  padding: rem(8px) rem(10px);
+  background-color: rgb(12 20 27 / 85%);
+  font-size: rem(12px);
+  letter-spacing: rem(1.3px);
 
   .fill {
     @include size(rem(5px));
 
     border-radius: 50%;
-    background: #92b787;
-    box-shadow: 0 0 rem(9px) #8ba37d;
+    background-color: rgb(146 183 135);
+    box-shadow: 0 0 rem(9px) rgb(139 163 125);
+  }
+
+  &.raise {
+    border: rem(1px) solid rgb(255 255 255 / 10%);
+    color: rgb(185 193 182);
+  }
+
+  &.phase {
+    color: var(--color-game-accent);
   }
 }
 
-.phaseBadge {
-  color: var(--color-game-accent);
-}
-
-.bossInfo {
+.info {
   position: absolute;
   inset-block-end: 0;
   inset-inline-start: 0;
   padding: rem(110px) rem(22px) rem(20px);
   width: 100%;
-  background: linear-gradient(transparent, #071019e8 38%, #070e15fa);
+  background: linear-gradient(transparent, rgb(7 16 25 / 90%) 38%, rgb(7 14 21 / 98%));
   z-index: $z-index-2;
   text-align: center;
 
-  .title {
-    margin-block: rem(6px) rem(4px);
-    font: var(--font-weight-bold) rem(32px) var(--font-game-display), georgia, serif;
-    letter-spacing: rem(5px);
-    text-shadow: 0 rem(2px) rem(16px) #000;
-  }
-
-  .description {
-    font: rem(12px) var(--font-game), arial, sans-serif;
-    letter-spacing: rem(1px);
-    color: #9ca7a5;
+  @include tab-l {
+    padding: rem(100px) rem(24px) rem(24px);
   }
 }
 
-.bossLabel {
+.title {
+  margin-block: rem(6px) rem(4px);
+  font: var(--font-weight-bold) rem(32px) var(--font-game-display), georgia, serif;
+  letter-spacing: rem(5px);
+  text-shadow: 0 rem(2px) rem(16px) var(--color-black);
+
+  @include tab-l {
+    font-size: rem(38px);
+  }
+}
+
+.description {
+  font: rem(12px) var(--font-game), arial, sans-serif;
+  letter-spacing: rem(1px);
+  color: rgb(156 167 165);
+}
+
+.label {
   font-size: rem(12px);
   letter-spacing: rem(3px);
-  color: #b7a581;
+  color: rgb(183 165 129);
 }
 
-.hpLabel {
+.hp {
   @include flex(space-between, center);
 
   margin-block-start: rem(20px);
   font-size: rem(12px);
-
-  .label {
-    color: #cd5b46;
-  }
-
-  .value {
-    font-size: rem(13px);
-    letter-spacing: rem(1px);
-  }
-
-  .caption {
-    font-weight: var(--font-weight-regular);
-    color: #858a80;
-  }
 }
 
-.bossHealth {
+.icon {
+  color: rgb(205 91 70);
+}
+
+.value {
+  font-size: rem(13px);
+  letter-spacing: rem(1px);
+}
+
+.caption {
+  font-weight: var(--font-weight-regular);
+  color: rgb(133 138 128);
+}
+
+.health {
   margin-block-start: rem(8px);
   padding: rem(2px);
   height: rem(10px);
-  background: #080d0c;
-  box-shadow: 0 0 0 rem(1px) #ffffff12;
-
-  .fill {
-    @include size(var(--health), 100%);
-    @include transition(width, 0.5s);
-
-    display: block;
-    background: linear-gradient(90deg, #802f2b, #d65a41);
-    box-shadow: 0 0 rem(12px) #d8563c33;
-  }
+  background: rgb(8 13 12);
+  box-shadow: 0 0 0 rem(1px) rgb(255 255 255 / 7%);
 }
 
-.attackInfo {
+.scale {
+  @include size(var(--health), 100%);
+  @include transition(width, 0.5s);
+
+  display: block;
+  background: linear-gradient(90deg, rgb(128 47 43), rgb(214 90 65));
+  box-shadow: 0 0 rem(12px) rgb(216 86 60 / 20%);
+}
+
+.attack {
   @include flex(space-between);
 
   gap: rem(10px);
   margin-block-start: rem(12px);
   font-size: rem(12px);
-  color: #838b80;
+  color: rgb(131 139 128);
 
-  .label:first-child {
-    @include flex(null, center);
+  .label {
+    &:first-child {
+      @include flex(null, center);
 
-    gap: rem(4px);
-    color: #c3a47b;
+      gap: rem(4px);
+      color: rgb(195 164 123);
+    }
   }
 }
 
-.phase2 {
-  box-shadow: inset 0 0 rem(70px) #c76d2520;
-
-  .phaseBadge {
-    color: #f8a55c;
-  }
-}
-
-.phase3 {
-  box-shadow: inset 0 0 rem(70px) #db382738;
-
-  .phaseBadge {
-    color: #ff795c;
-  }
-}
-
-.damagePopup {
+.damage {
   position: absolute;
   inset-block-start: 38%;
   inset-inline-start: 42%;
   z-index: 4;
   animation: damage 1.1s forwards;
+  color: rgb(255 240 203);
   font: var(--font-weight-bold) rem(46px) var(--font-game), arial, sans-serif;
-  color: #fff0cb;
-  text-shadow:
-    0 rem(2px) rem(3px) #000,
-    0 0 rem(18px) #fb6e33;
+  text-shadow: 0 rem(2px) rem(3px) rgb(0 0 0), 0 0 rem(18px) rgb(251 110 51);
   pointer-events: none;
 }
 
-.impactEffect {
+.impact {
   position: absolute;
   inset: 15% 8% 35%;
   overflow: hidden;
@@ -190,8 +202,8 @@
     position: absolute;
     inset-block-start: 45%;
     inset-inline-start: 7%;
-    background: linear-gradient(90deg, transparent, #f1aa6b, #fff7d8, #e44e2b, transparent);
-    box-shadow: 0 0 rem(16px) #ff6e2d;
+    background: linear-gradient(90deg, transparent, rgb(241 170 107), rgb(255 247 216), rgb(228 78 43), transparent);
+    box-shadow: 0 0 rem(16px) rgb(255 110 45);
     animation: slash 0.5s ease-out forwards;
     transform: rotate(-36deg);
 
@@ -252,24 +264,9 @@
   }
 }
 
-@include tab-l {
-  .boss {
-    height: 100%;
-    min-height: rem(430px);
-  }
-
-  .bossInfo {
-    padding: rem(100px) rem(24px) rem(24px);
-
-    .title {
-      font-size: rem(38px);
-    }
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .damagePopup,
-  .impactEffect {
+  .impact {
     display: none;
   }
 }

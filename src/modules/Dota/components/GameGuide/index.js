@@ -13,59 +13,56 @@ import styles from './index.module.scss'
 
 const GameGuide = ({ compact = false }) => {
   const { t, number } = useTranslation()
+
   return (
     <div>
-      <div className={styles.guideHeading}>
-        <div>
-          <Text
-            as="span"
-            size={4}
-            color="accent"
-          >
-            {t('guide.heroes')}
-          </Text>
-          <Heading
-            as="h2"
-            size={3}
-          >
-            {t('guide.title')}
-          </Heading>
-        </div>
+      <div className={styles.headline}>
+        <Text
+          as="span"
+          size={4}
+          color="accent"
+        >
+          {t('guide.heroes')}
+        </Text>
+        <Heading
+          as="h2"
+          size={3}
+        >
+          {t('guide.title')}
+        </Heading>
         <Text
           size={3}
           color="muted"
-          className={styles.description}
         >
           {t('guide.subtitle')}
         </Text>
       </div>
-      <div className={styles.heroes}>
+      <div className={styles.grid}>
         {
-          HEROES.map((h) => (
+          HEROES.map((el) => (
             <div
+              key={el.id}
               className={styles.hero}
-              key={h.id}
             >
               <Image
                 className={styles.image}
                 width={256}
                 height={144}
-                src={h.image}
-                alt=""
+                src={el.image}
+                alt={el.id}
               />
               <div>
                 <Heading
                   as="h3"
                   size={5}
                 >
-                  {t(h.nameKey)}
+                  {t(el.nameKey)}
                 </Heading>
                 <Text
                   size={3}
                   color="muted"
-                  className={styles.description}
                 >
-                  {t('abilities.' + h.ability)}
+                  {t('abilities.' + el.ability)}
                 </Text>
                 {
                   !compact &&
@@ -75,16 +72,18 @@ const GameGuide = ({ compact = false }) => {
                       size={4}
                       color="accent"
                     >
-                      {t('guide.damage', { damage: number(h.baseDamage) })}
+                      {t('guide.damage', { damage: number(el.baseDamage) })}
                     </Text>
                     <Text
                       size={3}
                       color="muted"
-                      className={styles.description}
                     >
                       {t('guide.five')}
                       :
-                      {t('abilities.' + h.ultimate)}
+                      {' '}
+                      <strong>
+                        {t('abilities.' + el.ultimate)}
+                      </strong>
                     </Text>
                   </>
                 }
@@ -96,19 +95,20 @@ const GameGuide = ({ compact = false }) => {
       {
         !compact &&
         <>
-          <Heading
-            as="h3"
-            size={4}
-            className={styles.sectionTitle}
-          >
-            {t('guide.lines')}
-          </Heading>
-          <Text color="muted">
-            {t('guide.rules')}
-          </Text>
+          <div className={styles.headline}>
+            <Heading
+              as="h3"
+              size={4}
+            >
+              {t('guide.lines')}
+            </Heading>
+            <Text color="muted">
+              {t('guide.rules')}
+            </Text>
+          </div>
           <div className={styles.lines}>
             {
-              PAYLINES.map((line, i) => (
+              PAYLINES.map((el, i) => (
                 <Panel
                   padding={1}
                   className={styles.line}
@@ -131,7 +131,7 @@ const GameGuide = ({ compact = false }) => {
                     }
                     <polyline
                       points={
-                        line
+                        el
                           .map((r, c) => `${c * 20 + 10},${r * 20 + 8}`)
                           .join(' ')
                       }
@@ -154,47 +154,47 @@ const GameGuide = ({ compact = false }) => {
           <Text color="muted">
             {t('guide.weights')}
           </Text>
-          <Heading
-            as="h3"
-            size={4}
-            className={styles.sectionTitle}
-          >
-            {t('guide.items')}
-          </Heading>
-          <Text color="muted">
-            {t('guide.itemsRule')}
-          </Text>
-          <div className={styles.items}>
+          <div className={styles.headline}>
+            <Heading
+              as="h3"
+              size={4}
+            >
+              {t('guide.items')}
+            </Heading>
+            <Text color="muted">
+              {t('guide.itemsRule')}
+            </Text>
+          </div>
+          <div className={styles.grid}>
             {
-              ITEMS.map((item) => (
+              ITEMS.map((el) =>
                 <div
                   className={styles.hero}
-                  key={item.id}
+                  key={el.id}
                 >
                   <Image
                     className={styles.image}
                     width={256}
                     height={144}
-                    src={item.image}
-                    alt=""
+                    src={el.image}
+                    alt={el.id}
                   />
                   <div>
                     <Heading
                       as="h3"
                       size={5}
                     >
-                      {t(item.nameKey)}
+                      {t(el.nameKey)}
                     </Heading>
                     <Text
                       size={3}
                       color="muted"
-                      className={styles.description}
                     >
-                      {t('item.' + item.id)}
+                      {t('item.' + el.id)}
                     </Text>
                   </div>
                 </div>
-              ))
+              )
             }
           </div>
         </>

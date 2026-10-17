@@ -1,6 +1,5 @@
 'use client'
 
-
 import { usePathname } from '@/i18n/navigation'
 
 import { useTranslation } from '@/hooks/useTranslation'
@@ -16,8 +15,8 @@ import styles from './index.module.scss'
 
 const ModeMenu = () => {
   const { t, number } = useTranslation()
-  const pathname = usePathname().replace(/\/+$/, '')
   const { run, stats } = useArcadeStore()
+  const pathname = usePathname().replace(/\/+$/, '')
   const continuing = ['fighting', 'choosing-reward', 'transitioning'].includes(run.status)
 
   return (
