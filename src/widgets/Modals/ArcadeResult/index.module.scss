@@ -12,9 +12,6 @@
   @include flex(center, center, null, wrap);
 
   gap: rem(12px);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
 .upgrade {

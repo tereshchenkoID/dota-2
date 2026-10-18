@@ -50,3 +50,22 @@
     }
   }
 }
+
+.success {
+  border-color: color-mix(in srgb, var(--color-success) 45%, var(--color-border-muted));
+  background-color: var(--color-success-soft);
+
+  &.interactive {
+    &:focus-visible {
+      border-color: var(--color-success);
+      background-color: var(--color-success-soft);
+    }
+
+    @include hover {
+      &:hover:not(:disabled) {
+        border-color: var(--color-success);
+        background-color: var(--color-success-soft);
+      }
+    }
+  }
+}

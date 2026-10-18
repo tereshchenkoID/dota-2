@@ -1,15 +1,13 @@
 .block,
 .groups,
-.group,
-.details {
+.group {
   display: grid;
   gap: rem(16px);
 }
 
 .list {
   display: grid;
-  gap: rem(12px);
-  margin: 0;
+  gap: rem(8px);
 }
 
 .row {
@@ -22,13 +20,10 @@
   @include flex(null, flex-start);
 
   gap: rem(12px);
-  padding-block-end: rem(16px);
-  border-block-end: rem(1px) solid var(--color-border-muted);
-  color: var(--color-accent);
 }
 
-@include tab-s {
-  .groups {
+.groups {
+  @include tab-s {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -37,7 +32,15 @@
 .examples {
   display: grid;
   gap: rem(12px);
-  margin: 0;
+
+  @include tab-s {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.details {
+  display: grid;
+  gap: rem(8px);
 }
 
 .controls {
@@ -49,11 +52,4 @@
 .example {
   display: grid;
   gap: rem(4px);
-}
-
-@include tab-s {
-  .resources,
-  .examples {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }

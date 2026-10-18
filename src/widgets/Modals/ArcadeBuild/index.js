@@ -112,7 +112,9 @@ const ArcadeBuild = () => {
       {
         upgrades.length ?
           upgrades.map((upgrade) =>
-            <section
+            <Panel
+              variant="success"
+              padding={1}
               className={styles.upgrade}
               key={upgrade.id}
             >
@@ -135,7 +137,7 @@ const ArcadeBuild = () => {
                   {t(upgrade.descriptionKey, { value: number(getUpgradeValue(upgrade, run.upgrades[upgrade.id])) })}
                 </Text>
               </div>
-            </section>
+            </Panel>
           )
           :
           <Text

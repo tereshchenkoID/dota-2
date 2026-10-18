@@ -429,7 +429,8 @@
       "longest": "Самый долгий записанный забег"
     },
     "notAvailable": "—",
-    "durationLabel": "Длительность"
+    "durationLabel": "Длительность",
+    "ownedUpgrade": "В билде · ур. {level}"
   },
   "buildImpact": {
     "title": "Как работает твой билд",

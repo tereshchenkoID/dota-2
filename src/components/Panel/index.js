@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import styles from './index.module.scss'
 
 const Panel = ({
-  as: Component = 'section',
+  as: Component = 'div',
   variant = 'default',
   padding = 2,
   interactive = false,

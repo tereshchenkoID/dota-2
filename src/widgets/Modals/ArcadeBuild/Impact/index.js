@@ -58,12 +58,30 @@ const Impact = ({ run }) => {
         {t('buildImpact.levelHint', { max: number(progress.maximum), capacity: number(progress.capacity) })}
       </Text>
       <div className={styles.resources}>
-        <Text size={3}>
-          {t('buildImpact.health', { base: number(progress.startingHp), value: number(run.maxHp) })}
-        </Text>
-        <Text size={3}>
-          {t('buildImpact.spins', { base: number(progress.baseSpins), value: number(progress.startingSpins) })}
-        </Text>
+        <Panel
+          as="div"
+          padding={1}
+          variant={run.maxHp > progress.startingHp ? 'success' : 'default'}
+        >
+          <Text
+            size={3}
+            color={run.maxHp > progress.startingHp ? 'success' : 'muted'}
+          >
+            {t('buildImpact.health', { base: number(progress.startingHp), value: number(run.maxHp) })}
+          </Text>
+        </Panel>
+        <Panel
+          as="div"
+          padding={1}
+          variant={progress.startingSpins > progress.baseSpins ? 'success' : 'default'}
+        >
+          <Text
+            size={3}
+            color={progress.startingSpins > progress.baseSpins ? 'success' : 'muted'}
+          >
+            {t('buildImpact.spins', { base: number(progress.baseSpins), value: number(progress.startingSpins) })}
+          </Text>
+        </Panel>
       </div>
       <Text
         size={3}
@@ -95,8 +113,12 @@ const Impact = ({ run }) => {
         {
           HEROES.map((hero) => {
             const preview = getHeroPreview(run, hero.id, count)
+            const boosted = preview.bonus > 0 || preview.rune > 0
             return (
-              <div
+              <Panel
+                as="div"
+                padding={1}
+                variant={boosted ? 'success' : 'default'}
                 className={styles.example}
                 key={hero.id}
               >
@@ -110,11 +132,11 @@ const Impact = ({ run }) => {
                   as="dd"
                   size={3}
                   weight="bold"
-                  color="accent"
+                  color={boosted ? 'success' : 'muted'}
                 >
                   {t('buildImpact.damage', { base: number(preview.base), value: number(preview.total), bonus: number(preview.bonus), rune: number(preview.rune) })}
                 </Text>
-              </div>
+              </Panel>
             )
           })
         }
@@ -129,8 +151,12 @@ const Impact = ({ run }) => {
         {
           ITEMS.map(([id, field]) => {
             const preview = getItemPreview(run, id, field, count)
+            const boosted = preview.value > preview.base
             return (
-              <div
+              <Panel
+                as="div"
+                padding={1}
+                variant={boosted ? 'success' : 'default'}
                 className={styles.example}
                 key={id}
               >
@@ -143,11 +169,11 @@ const Impact = ({ run }) => {
                 <Text
                   as="dd"
                   size={3}
-                  color="accent"
+                  color={boosted ? 'success' : 'muted'}
                 >
                   {t(`buildImpact.itemStats.${field}`, { base: number(preview.base), value: number(preview.value) })}
                 </Text>
-              </div>
+              </Panel>
             )
           })
         }

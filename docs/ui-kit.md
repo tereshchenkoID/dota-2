@@ -19,7 +19,7 @@
 | Input | `label`, `icon`, `description`, `error`, стандартные input props | Поля с единым focus/error/disabled оформлением |
 | Select | `value`, `options`, `onChange(nextValue)`, `label`, `disabled` | Кастомный listbox с управлением клавиатурой |
 | Toggle | `checked`, `onChange(nextBoolean)`, `label`, `onLabel`, `offLabel` | Булевый переключатель |
-| Panel | `variant="default|raised|inset"`, `padding={0|1|2}`, `interactive`, `selected`, `as` | Поверхности и карточки; padding 0 / 12 / 20 px |
+| Panel | `variant="default|raised|success"`, `padding={0|1|2}`, `interactive`, `selected`, `as` | Поверхности и карточки; padding 0 / 12 / 20 px |
 | Metrics | `items=[{id,label,value,icon}]`, `columns={2|3}` | Карточки статистики с едиными dt/dd и типографикой |
 | SettingRow | `label`, `description`, `icon`, `children` | Строка настройки с адаптивным расположением контрола |
 | ActionItem | `icon`, `href` или `onClick` | Кнопка/ссылка-строка в профиле, стандартная высота 44 px |
@@ -89,3 +89,5 @@ npm run build
 `BattleArena` — общая компоновка Roshan, здоровья и барабанов для Classic и Arcade. В `ArcadeGame/ArcadePanel` и `ArcadeGame/CombatNotice` находятся компоненты только Arcade. Компоненты барабанов лежат в `SlotMachine/`, а `SlotSymbol` вложен в `SlotReel/`. Имена папок компонентов — PascalCase.
 
 `@include scroll-y` используется в модалках, аватарах, списках Select и полноэкранной арене; `scroll-x` — в ленте улучшений. Миксины поддерживают стандартные и WebKit-скроллбары, принимают цвета ползунка и дорожки. Игровые скроллы получают золотую палитру отдельно от сайта.
+
+`Panel variant="success"` выделяет уже полученные улучшения и положительный вклад билда. Используйте общий вариант вместо локального переопределения фона/рамки; интерактивная карточка сохраняет зелёное состояние при hover и focus.

@@ -28,6 +28,12 @@
   }
 }
 
+.badges {
+  @include flex(null, center, null, wrap);
+
+  gap: rem(8px);
+}
+
 .icon {
   color: var(--color-accent);
 }

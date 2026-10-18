@@ -429,7 +429,8 @@
       "longest": "Найдовший записаний забіг"
     },
     "notAvailable": "—",
-    "durationLabel": "Тривалість"
+    "durationLabel": "Тривалість",
+    "ownedUpgrade": "У білді · рів. {level}"
   },
   "buildImpact": {
     "title": "Як працює твій білд",

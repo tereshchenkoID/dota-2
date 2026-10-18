@@ -3,7 +3,7 @@
   border: rem(1px) solid var(--color-border);
   border-radius: rem(12px);
   width: min(rem(760px), calc(100% - rem(24px)));
-  max-height: 88dvh;
+  max-height: 94dvh;
   background: var(--color-material);
   box-shadow: var(--shadow-dialog);
   overflow: hidden;
@@ -29,7 +29,7 @@
 
   position: relative;
   padding: rem(24px);
-  max-height: calc(88dvh - rem(2px));
+  max-height: calc(94dvh - rem(2px));
 
   @include tab-s {
     padding: rem(32px);

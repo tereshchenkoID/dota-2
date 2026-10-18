@@ -429,7 +429,8 @@
       "longest": "Longest recorded run"
     },
     "notAvailable": "—",
-    "durationLabel": "Duration"
+    "durationLabel": "Duration",
+    "ownedUpgrade": "In build · Lv. {level}"
   },
   "buildImpact": {
     "title": "See your build at work",
