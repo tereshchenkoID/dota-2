@@ -1,6 +1,6 @@
 .block {
   display: grid;
-  gap: rem(12px);
+  gap: rem(16px);
   margin-block-start: rem(16px);
   padding: rem(16px);
   border: rem(1px) solid var(--color-game-border);
@@ -21,5 +21,4 @@
   @include scroll-x(var(--color-game-scroll-thumb), var(--color-game-scroll-track));
 
   gap: rem(8px);
-  padding-block-end: rem(8px);
 }

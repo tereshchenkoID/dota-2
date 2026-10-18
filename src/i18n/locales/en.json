@@ -393,7 +393,6 @@
     "legacyRecords": "Earlier totals and best stage were preserved. Historical average and duration are available for runs recorded since this update.",
     "runeActivated": "{name} activated",
     "victorySummary": "Blocked: {blocked} · Healing: +{healing} HP · Bonus spins: +{spins} · Victory recovery: +{recovery} HP",
-    "skip": "Choose rewards now",
     "levelChange": "Level {current} → {next} / {max}",
     "bonusChange": "{stat}: {before} → {after}",
     "nextStageOnly": "Next stage only",

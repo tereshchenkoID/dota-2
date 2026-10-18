@@ -72,12 +72,11 @@ const RoshanBoss = ({ run, spinning, bossConfig = BOSS_CONFIG }) => {
           {t(`game.phase${phase + 1}`)}
         </p>
         <div className={styles.hp}>
-          <span className={styles.icon}>
-            <Icon
-              name="heart"
-              size={21}
-            />
-          </span>
+          <Icon
+            name="heart"
+            size={22}
+            className={styles.icon}
+          />
           <b className={styles.value}>
             {number(run.bossHp)}
             {' '}

@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import { useTranslation } from '@/hooks/useTranslation'
 import { useArcadeStore } from '@/modules/Dota/store/arcade'
 
@@ -20,45 +18,9 @@ import styles from './index.module.scss'
 const ArcadeReward = ({ onClose }) => {
   const { t, number } = useTranslation()
   const { run, chooseReward, nextStage } = useArcadeStore()
-  const [showRewards, setShowRewards] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowRewards(true), window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 850)
-    return () => clearTimeout(timer)
-  }, [run.id, run.stage])
-
   const selected = REWARDS.find((entry) => entry.id === run.selectedReward)
 
   if (!['choosing-reward', 'transitioning'].includes(run.status)) return null
-
-  if (!showRewards && !selected) {
-    return (
-      <div className={styles.block}>
-        <Icon
-          name="trophy"
-          size={48}
-        />
-        <Heading
-          as="h3"
-          size={2}
-        >
-          {t('gauntlet.stageCleared', { stage: number(run.stage) })}
-        </Heading>
-        <Text>
-          {t('gauntlet.stageSummary', { damage: number(run.battle.totalDamage), spins: number(run.battle.turn), hp: number(run.battle.hp), max: number(run.maxHp) })}
-        </Text>
-        <Text color="accent">
-          {t('progression.victorySummary', { blocked: number(run.victorySummary?.blocked || 0), recovery: number(run.victorySummary?.recovery || 0), spins: number(run.victorySummary?.bonusSpins || 0), healing: number(run.victorySummary?.healing || 0) })}
-        </Text>
-        <Text color="muted">
-          {t('gauntlet.nextStage', { stage: number(run.stage + 1) })}
-        </Text>
-        <Button onClick={() => setShowRewards(true)}>
-          {t('progression.skip')}
-        </Button>
-      </div>
-    )
-  }
 
   return (
     <div className={styles.block}>
@@ -75,7 +37,8 @@ const ArcadeReward = ({ onClose }) => {
         {t('progression.victorySummary', { blocked: number(run.victorySummary?.blocked || 0), recovery: number(run.victorySummary?.recovery || 0), spins: number(run.victorySummary?.bonusSpins || 0), healing: number(run.victorySummary?.healing || 0) })}
       </Text>
       {
-        selected ? (
+        selected
+          ?
           <Panel
             variant="raised"
             className={styles.confirmation}
@@ -95,7 +58,7 @@ const ArcadeReward = ({ onClose }) => {
               {t('gauntlet.rewardApplied')}
             </Text>
           </Panel>
-        ) : (
+          :
           <div className={styles.cards}>
             {
               run.choices.map((id) => {
@@ -103,6 +66,7 @@ const ArcadeReward = ({ onClose }) => {
                 const level = entry.type === 'rune' ? 1 : (run.upgrades[id] || 0) + 1
                 const previous = entry.type === 'rune' ? 0 : entry.effect === 'maxHp' ? run.maxHp : getUpgradeValue(entry, level - 1)
                 const value = entry.type === 'rune' ? 0 : entry.effect === 'maxHp' ? run.maxHp + entry.value : getUpgradeValue(entry, level)
+
                 return (
                   <Panel
                     as="button"
@@ -162,7 +126,6 @@ const ArcadeReward = ({ onClose }) => {
               })
             }
           </div>
-        )
       }
       <Button
         disabled={run.status !== 'transitioning'}

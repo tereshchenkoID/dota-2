@@ -2,7 +2,6 @@
   display: grid;
   justify-items: center;
   gap: rem(24px);
-  padding: rem(16px) 0;
   animation: victory-in 0.3s ease-out both;
   text-align: center;
   color: var(--color-accent-hover);
@@ -15,6 +14,7 @@
 .cards {
   display: grid;
   gap: rem(12px);
+  width: 100%;
 }
 
 .card {

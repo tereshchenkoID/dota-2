@@ -393,7 +393,6 @@
     "legacyRecords": "Прежние общие показатели и рекорд сохранены. Средний этап и длительность доступны для забегов, записанных после обновления.",
     "runeActivated": "{name}: активирована",
     "victorySummary": "Блоки: {blocked} · Лечение: +{healing} HP · Бонус вращений: +{spins} · После победы: +{recovery} HP",
-    "skip": "Сразу к наградам",
     "levelChange": "Уровень {current} → {next} / {max}",
     "bonusChange": "{stat}: {before} → {after}",
     "nextStageOnly": "Только следующий этап",

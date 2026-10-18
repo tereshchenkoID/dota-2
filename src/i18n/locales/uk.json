@@ -393,7 +393,6 @@
     "legacyRecords": "Попередні загальні показники й рекорд збережено. Середній етап і тривалість доступні для забігів, записаних після оновлення.",
     "runeActivated": "{name}: активовано",
     "victorySummary": "Блоки: {blocked} · Лікування: +{healing} HP · Бонус обертань: +{spins} · Після перемоги: +{recovery} HP",
-    "skip": "Одразу до нагород",
     "levelChange": "Рівень {current} → {next} / {max}",
     "bonusChange": "{stat}: {before} → {after}",
     "nextStageOnly": "Лише наступний етап",

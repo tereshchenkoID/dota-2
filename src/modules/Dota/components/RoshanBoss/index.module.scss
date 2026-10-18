@@ -123,7 +123,7 @@
 .hp {
   @include flex(space-between, center);
 
-  margin-block-start: rem(20px);
+  margin-block-start: rem(16px);
   font-size: rem(12px);
 }
 
@@ -159,9 +159,9 @@
 }
 
 .attack {
-  @include flex(space-between);
+  @include flex($justify-content: space-between, $wrap: wrap);
 
-  gap: rem(10px);
+  gap: rem(8px);
   margin-block-start: rem(12px);
   font-size: rem(12px);
   color: rgb(131 139 128);
